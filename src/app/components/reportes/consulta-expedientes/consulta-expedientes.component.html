@@ -1,0 +1,183 @@
+<h1 class="titulo-cdmx">Consulta Expedientes</h1>
+
+<fieldset>
+    <legend>Datos Básicos Expediente</legend>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Tipo Trámite:</mat-label>
+                <mat-select>
+                    <mat-option value="">Tipo Trámite 1</mat-option>
+                    <mat-option value="">Tipo Trámite 2</mat-option>
+                    <mat-option value="">Tipo Trámite 3</mat-option>
+                    <mat-option value="">Tipo Trámite 4</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Subtipo Trámite:</mat-label>
+                <mat-select>
+                    <mat-option value="">Subtipo Trámite 1</mat-option>
+                    <mat-option value="">Subtipo Trámite 2</mat-option>
+                    <mat-option value="">Subtipo Trámite 3</mat-option>
+                    <mat-option value="">Subtipo Trámite 4</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>N° Expediente</mat-label>
+                <input matInput placeholder="Placeholder">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4 offset-md-2">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>N° Oficio</mat-label>
+                <input matInput placeholder="Placeholder">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Fecha Entrada Desde</mat-label>
+                <input matInput [matDatepicker]="fechaDesde">
+                <mat-datepicker-toggle matSuffix [for]="fechaDesde"></mat-datepicker-toggle>
+                <mat-datepicker #fechaDesde></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4 offset-md-2">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Fecha Entrada Hasta</mat-label>
+                <input matInput [matDatepicker]="fechaHasta">
+                <mat-datepicker-toggle matSuffix [for]="fechaHasta"></mat-datepicker-toggle>
+                <mat-datepicker #fechaHasta></mat-datepicker>
+            </mat-form-field>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Oficialía</mat-label>
+                <input matInput placeholder="Placeholder">
+            </mat-form-field>
+        </div>
+        <div class="col-md-1">
+            <button mat-stroked-button class="boton-n-representacion" color="primary" aria-label="Guardar" style="margin-top: 10px;">
+                <mat-icon style="display: inherit; width: 15px;">search</mat-icon>
+            </button>
+        </div>
+        <div class="col-md-4 offset-md-1">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Programa Masivo:</mat-label>
+                <mat-select>
+                    <mat-option value="">Programa 1</mat-option>
+                    <mat-option value="">Programa 2</mat-option>
+                    <mat-option value="">Programa 3</mat-option>
+                    <mat-option value="">Programa 4</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+            <mat-label>Estado:</mat-label>
+        </div>
+        <div class="col-md-3">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">En Tramitación</mat-radio-button>
+                <mat-radio-button value="2">Todos</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-md-2 offset-md-2">
+            <mat-label>Tiempo a término:</mat-label>
+        </div>
+        <div class="col-md-3">
+            <section class="example-section">
+                <mat-checkbox class="example-margin">V</mat-checkbox>
+                <mat-checkbox class="example-margin">A</mat-checkbox>
+                <mat-checkbox class="example-margin">R</mat-checkbox>
+                <mat-checkbox class="example-margin">N</mat-checkbox>
+                <mat-checkbox class="example-margin">B</mat-checkbox>
+            </section>
+        </div>
+    </div>
+
+</fieldset>
+
+
+<fieldset>
+    <legend>Cuenta Catastral</legend>
+
+    <div class="row">
+        <mat-form-field class="col-2" appearance="outline">
+            <mat-label>Región:</mat-label>
+            <input matInput #region formControlName="region" minlength="3" maxlength="3">
+            <!-- <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)"> -->
+        </mat-form-field>
+        <mat-form-field class="col-2" appearance="outline">
+            <mat-label>Manzana:</mat-label>
+            <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3">
+            <!-- <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)"> -->
+        </mat-form-field>
+        <mat-form-field class="col-2" appearance="outline">
+            <mat-label>Lote:</mat-label>
+            <input matInput #lote formControlName="lote" minlength="2" maxlength="2">
+            <!-- <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, unidad)"> -->
+        </mat-form-field>
+        <mat-form-field class="col-2" appearance="outline">
+            <mat-label>Unidad Privativa:</mat-label>
+            <input matInput #unidad formControlName="unidad" minlength="3" maxlength="3">
+            <!-- <input matInput #unidad formControlName="unidad" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)"> -->
+        </mat-form-field>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Ubicación:</mat-label>
+                <input matInput placeholder="Placeholder">
+            </mat-form-field>
+        </div>
+    </div>
+
+</fieldset>
+
+
+<fieldset>
+    <legend>Promovente</legend>
+
+</fieldset>
+
+
+<fieldset>
+    <legend>Representante</legend>
+
+</fieldset>
+
+
+<!-- Guardar -->
+<div class="row" style="margin-top: 40px;">
+    <div class="col-md-2 offset-md-8">
+        <div class="d-flex flex-row-reverse">
+            <button mat-stroked-button class="boton-n-representacion" color="primary" aria-label="Guardar">
+                Buscar <mat-icon style="display: inherit; width: 15px;">search</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="d-flex flex-row-reverse">
+            <button mat-stroked-button class="boton-n-representacion" color="warn" aria-label="Cancelar">
+                Limpiar
+            </button>
+        </div>
+    </div>
+</div>

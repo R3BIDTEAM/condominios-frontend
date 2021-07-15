@@ -10,13 +10,21 @@ import { AuthService } from '@serv/auth.service';
 export class MenuComponent implements OnInit {
 
   menus: any[] = [
-    { nombre: 'Dashboard', ruta: '/dashboard', icono: 'dashboard' },
+    { nombre: 'Bandeja de Tareas', ruta: '/main/bandeja-tareas', icono: 'add' },
+    { nombre: 'Registro', ruta: '', icono: 'add' },
+    { nombre: 'Gestión', ruta: '', icono: 'add' },
+    { nombre: 'Registro Procesos Masivos', ruta: '', icono: 'add' },
+    { nombre: 'Reportes', ruta: '/reportes', icono: 'add' }
+  ];
+
+  reportes: any[] = [
+    { nombre: 'Consulta Expedientes', ruta: '/main/consulta-expedientes', icono: 'edit' }
   ];
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.menus = this.authService.getMenu();
+    // this.menus = this.authService.getMenu();
   }
 
 }
