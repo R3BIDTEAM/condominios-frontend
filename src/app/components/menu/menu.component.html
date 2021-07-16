@@ -1,8 +1,18 @@
 <mat-selection-list #men [multiple]="false">
-    <mat-list-option *ngFor="let menu of menus" [routerLink]="menu.ruta">
-        <mat-icon matListIcon>{{menu.icono}}</mat-icon>
-        {{menu.nombre}}
-    </mat-list-option>
+    <ng-container *ngFor="let menu of menus">
+        <mat-list-option [routerLink]="menu.ruta">
+            <mat-icon matListIcon>{{menu.icono}}</mat-icon>
+            {{menu.nombre}}
+        </mat-list-option>
+        <!-- <mat-list-option *ngFor="let menu of menus" [routerLink]="menu.ruta">
+            <mat-icon matListIcon>{{menu.icono}}</mat-icon>
+            {{menu.nombre}}
+        </mat-list-option> -->
+        <ng-container *ngIf="menu.ruta === '/reportes'">
+            <mat-nav-list style="margin-left: 45px;">
+                <a mat-list-item *ngFor="let opcion of reportes" [routerLink]="opcion.ruta"><mat-icon>{{opcion.icono}}</mat-icon> {{opcion.nombre}} </a>
+            </mat-nav-list>
+        </ng-container>
+    </ng-container>
 </mat-selection-list>
-<button (click)="pruebas1()">TEST 1</button>
-<button (click)="pruebas2()">TEST 2</button>
+    

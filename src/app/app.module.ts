@@ -21,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginFirmaComponent } from './components/login-firma/login-firma.component';
 import { MainComponent } from './components/main/main.component';
-import { DialogsComponent, DialogsAlta } from './components/dialogs/dialogs.component';
+import { ConsultaExpedientesComponent } from './components/reportes/consulta-expedientes/consulta-expedientes.component';
+import { BandejaTareasComponent } from './components/bandeja-tareas/bandeja-tareas.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,8 @@ import { DialogsComponent, DialogsAlta } from './components/dialogs/dialogs.comp
     MenuComponent,
     LoginFirmaComponent,
     MainComponent,
-    DialogsComponent,
-    DialogsAlta
+    ConsultaExpedientesComponent,
+    BandejaTareasComponent
   ],
   imports: [
     BrowserModule,
