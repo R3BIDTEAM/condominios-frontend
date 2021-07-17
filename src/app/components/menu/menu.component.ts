@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
     constructor(private authService: AuthService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
-        this.menus = this.authService.getMenu();
+        // this.menus = this.authService.getMenu();
     }
 
     pruebas1(): void {

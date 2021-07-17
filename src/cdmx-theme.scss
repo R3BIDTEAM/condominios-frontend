@@ -10,3 +10,15 @@ $cdmx-app-warn:    mat-palette($mat-red);
 $cdmx-app-theme: mat-light-theme($cdmx-app-primary, $cdmx-app-accent, $cdmx-app-warn);
 
 @include angular-material-theme($cdmx-app-theme);
+
+.titulo-cdmx{color: #00A447; text-align: center;}
+.verde-cdmx{color: #00A447;}
+
+.mat-drawer-container{background-color: #FFF;}
+
+legend{color: #00A447; font-weight: 500; font-size: 16px;}
+
+fieldset{border-color: gray; border-radius: 5px; margin-bottom: 15px;}
+
+mat-radio-button {margin-right: 10px!important;}
+mat-checkbox {margin-right: 10px!important;}
