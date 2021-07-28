@@ -12,8 +12,9 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./alta-expediente.component.css']
 })
 export class AltaExpedienteComponent implements OnInit {
-  filtro = {FILTER: ""};
-  catTiposTramite = environment.endpointCatalogos + 'ADYCON_CATTIPOSTRAMITE';
+  httpOptions;
+  filtro = "{\n    \"FILTER\": \"\"\n}";
+  catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
   loadingTiposTramite = false;
   tiposTramite;
 
@@ -22,19 +23,26 @@ export class AltaExpedienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
     this.getTiposTramite();
   }
 
   getTiposTramite(): void {
-    console.log(this.filtro);
     this.loadingTiposTramite = true;
-    this.http.post(this.catTiposTramite, this.filtro).subscribe(
+    console.log(this.filtro);
+    this.http.post(this.catTiposTramite, this.filtro, this.httpOptions).subscribe(
       (res: any) => {
         this.loadingTiposTramite = false;
         this.tiposTramite = res;
+        console.log(res);
       },
       (error) => {
         this.loadingTiposTramite = false;
+        console.log(error);
       }
     );
   }
