@@ -24,6 +24,7 @@ import { MainComponent } from './components/main/main.component';
 import { ConsultaExpedientesComponent } from './components/reportes/consulta-expedientes/consulta-expedientes.component';
 import { BandejaTareasComponent } from './components/bandeja-tareas/bandeja-tareas.component';
 import { DialogsComponent, DialogsAlta } from './components/dialogs/dialogs.component';
+import { AltaExpedienteComponent } from './components/registro/alta-expediente/alta-expediente.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DialogsComponent, DialogsAlta } from './components/dialogs/dialogs.comp
     ConsultaExpedientesComponent,
     BandejaTareasComponent,
     DialogsComponent,
-    DialogsAlta
+    DialogsAlta,
+    AltaExpedienteComponent
   ],
   imports: [
     BrowserModule,
