@@ -8,6 +8,7 @@ export const environment = {
   baseHref: '/',
   appName: 'ADYCON',
   endpoint: 'http://localhost:8000/api/v1/',
+  endpointCatalogos: 'https://rest-adycon-dot-build-bpm.uc.r.appspot.com/v1/adycon?action=getCatalogo&table=',
   ssoEndpoint: 'http://ovica.linesolutions.tech/sso-backend/public/api/v1/',
   ssoRemember: 'http://ovica.linesolutions.tech/sso/recordar-password',
   rconEndpoint: 'http://ovica.linesolutions.tech/rcon-backend/public/api/v1/',
