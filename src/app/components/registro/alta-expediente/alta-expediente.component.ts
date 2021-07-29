@@ -12,7 +12,6 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./alta-expediente.component.css']
 })
 export class AltaExpedienteComponent implements OnInit {
-  httpOptions;
   filtro = "{\n    \"FILTER\": \"\"\n}";
   catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
   loadingTiposTramite = false;
@@ -20,29 +19,37 @@ export class AltaExpedienteComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
     this.getTiposTramite();
   }
 
   getTiposTramite(): void {
     this.loadingTiposTramite = true;
-    console.log(this.filtro);
-    this.http.post(this.catTiposTramite, this.filtro, this.httpOptions).subscribe(
+    this.http.post(this.catTiposTramite, this.filtro).subscribe(
       (res: any) => {
         this.loadingTiposTramite = false;
-        this.tiposTramite = res;
-        console.log(res);
+
+        if(res.error.code === 0)
+        {
+          this.tiposTramite = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
       },
       (error) => {
         this.loadingTiposTramite = false;
-        console.log(error);
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
       }
     );
   }
