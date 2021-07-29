@@ -6,16 +6,18 @@ import { AuthService } from '@serv/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 
+export interface DataExpediente {
+  tipoTramite: number;
+}
 @Component({
   selector: 'app-alta-expediente',
   templateUrl: './alta-expediente.component.html',
   styleUrls: ['./alta-expediente.component.css']
 })
 export class AltaExpedienteComponent implements OnInit {
-  filtro = "{\n    \"FILTER\": \"\"\n}";
-  catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
   loadingTiposTramite = false;
   tiposTramite;
+  dataExpediente: DataExpediente = {} as DataExpediente;
 
   constructor(
     private http: HttpClient,
@@ -27,11 +29,12 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   getTiposTramite(): void {
+    let catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
     this.loadingTiposTramite = true;
-    this.http.post(this.catTiposTramite, this.filtro).subscribe(
+    this.http.post(catTiposTramite, filtro).subscribe(
       (res: any) => {
         this.loadingTiposTramite = false;
-
         if(res.error.code === 0)
         {
           this.tiposTramite = res.data.result;

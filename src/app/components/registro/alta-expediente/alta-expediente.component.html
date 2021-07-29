@@ -1,43 +1,25 @@
 <h1 class="titulo-cdmx">Alta Expediente</h1>
-
-<fieldset>
-    <legend>Elección de Trámite</legend>
-
-    <div class="row">
-        <div class="col-md-6">
-            <mat-form-field appearance="outline" style="width: 100%;">
-                <mat-label>Tipo Trámite:</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
-                        {{ tramite.DESCRIPCION}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
-
-</fieldset>
-
-
-
-
-
-
-
-<!-- Guardar -->
-<div class="row" style="margin-top: 40px;">
-    <div class="col-md-2 offset-md-8">
-        <div class="d-flex flex-row-reverse">
-            <button mat-stroked-button class="boton-n-representacion" color="primary" aria-label="Guardar">
-                Buscar <mat-icon style="display: inherit; width: 15px;">search</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="d-flex flex-row-reverse">
-            <button mat-stroked-button class="boton-n-representacion" color="warn" aria-label="Cancelar">
-                Limpiar
-            </button>
-        </div>
-    </div>
+<div style="padding: 30px; text-align: center;" *ngIf="loadingTiposTramite">
+    <mat-spinner style="margin:0 auto;"></mat-spinner>
+    <p>Cargando...</p>
 </div>
+<ng-container *ngIf="!loadingTiposTramite">
+
+    <fieldset>
+        <legend>Elección de Trámite</legend>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Tipo Trámite:</mat-label>
+                    <mat-select [(ngModel)]="dataExpediente.tipoTramite">
+                        <mat-option [value]="">Seleccione un trámite ...</mat-option>
+                        <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
+                            {{ tramite.DESCRIPCION}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </fieldset>
+
+</ng-container>
