@@ -26,6 +26,7 @@ export class AltaExpedienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTiposTramite();
+    this.dataExpediente.tipoTramite = 0;
   }
 
   getTiposTramite(): void {

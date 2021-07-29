@@ -12,7 +12,7 @@
                 <mat-form-field appearance="outline" style="width: 100%;">
                     <mat-label>Tipo Trámite:</mat-label>
                     <mat-select [(ngModel)]="dataExpediente.tipoTramite">
-                        <mat-option [value]="">Seleccione un trámite ...</mat-option>
+                        <mat-option [value]="0">Seleccione un trámite ...</mat-option>
                         <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
                             {{ tramite.DESCRIPCION}}
                         </mat-option>
