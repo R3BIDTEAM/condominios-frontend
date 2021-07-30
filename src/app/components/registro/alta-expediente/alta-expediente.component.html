@@ -30,6 +30,42 @@
                 </mat-form-field>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2">
+                <button mat-stroked-button color="primary" aria-label="Cancelar">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Documentos a Aportar</legend>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="!documentosAportar; else tableDocumentosAportar">
+                    No hay documentos relacionados
+                </div>
+                <ng-template #tableDocumentosAportar>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Rol</th>
+                                <th>Nombre</th>
+                                <th>RFC</th>
+                                <th>CURP</th>
+                                <th>INE</th>
+                                <th>%</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </ng-template>                    
+            </div>
+        </div>
     </fieldset>
 
 </ng-container>

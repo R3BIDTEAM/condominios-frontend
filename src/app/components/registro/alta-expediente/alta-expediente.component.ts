@@ -18,6 +18,7 @@ export interface DataExpediente {
 export class AltaExpedienteComponent implements OnInit {
   loadingTiposTramite = false;
   tiposTramite;
+  documentosAportar;
   dataExpediente: DataExpediente = {} as DataExpediente;
 
   constructor(
