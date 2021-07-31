@@ -18,7 +18,8 @@ export interface DataExpediente {
 export class AltaExpedienteComponent implements OnInit {
   loadingTiposTramite = false;
   tiposTramite;
-  documentosAportar;
+  documentosAportar = [1,1,1,1];
+  documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   dataExpediente: DataExpediente = {} as DataExpediente;
 
   constructor(
