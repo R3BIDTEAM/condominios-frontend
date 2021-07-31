@@ -76,4 +76,32 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>Datos Generales del Expediente</legend>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Fecha Entrada:</mat-label>
+                    <input matInput [matDatepicker]="fechaEntrada" [(ngModel)]="dataExpediente.fechaEntrada">
+                    <mat-datepicker-toggle matSuffix [for]="fechaEntrada"></mat-datepicker-toggle>
+                    <mat-datepicker #fechaEntrada></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4 offset-md-2">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Fecha Término:</mat-label>
+                    <input matInput [matDatepicker]="fechaTermino" [(ngModel)]="dataExpediente.fechaTermino">
+                    <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
+                    <mat-datepicker #fechaTermino></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-10">
+                <mat-label>Observaciones:</mat-label>
+                <textarea matInput rows="5" [(ngModel)]="dataExpediente.observaciones"></textarea>
+            </mat-form-field>
+        </div>
+    </fieldset>
+
 </ng-container>
