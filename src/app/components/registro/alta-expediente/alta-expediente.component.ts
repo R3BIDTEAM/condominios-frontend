@@ -8,7 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 
 export interface DataExpediente {
   tipoTramite: number;
-  subTipoTramite: number;
   fechaEntrada: Date;
   fechaTermino: Date;
   observaciones: string;
@@ -33,7 +32,6 @@ export class AltaExpedienteComponent implements OnInit {
   ngOnInit(): void {
     this.getTiposTramite();
     this.dataExpediente.tipoTramite = 0;
-    this.dataExpediente.subTipoTramite = 0;
     this.dataExpediente.fechaEntrada = new Date((new Date().getTime()));
   }
 
