@@ -176,4 +176,9 @@ export class AltaExpedienteComponent implements OnInit {
     );
   }
 
+  clearFormPromovente(): void{
+    this.promoventeFisica.reset();
+    this.promoventeMoral.reset();
+  }
+
 }
