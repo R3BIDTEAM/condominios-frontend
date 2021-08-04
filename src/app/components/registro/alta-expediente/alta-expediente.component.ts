@@ -46,6 +46,7 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
   tipoPersona = 'F';
+  promovente: DataPromovente = {} as DataPromovente; 
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromovente[] = [];
   promoventeFisica: FormGroup;
@@ -179,14 +180,36 @@ export class AltaExpedienteComponent implements OnInit {
   clearFormPromovente(): void {
     this.promoventeFisica.reset();
     this.promoventeMoral.reset();
+    this.promovente = {} as DataPromovente;
   }
 
   addPromoventeFisica(): void {
+    this.promovente.TIPOPERSONA = this.tipoPersona;
+    this.promovente.IDPERSONAAYC = 0;
+    this.promovente.NOMBRE = this.promoventeFisica.value.NOMBRE;
+    this.promovente.APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
+    this.promovente.APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
+    this.promovente.RFC = this.promoventeFisica.value.RFC;
+    this.promovente.CURP = this.promoventeFisica.value.CURP;
+    this.promovente.CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : null;
+    this.promovente.IDDOCIDENTIF = (this.promoventeFisica.value.IDDOCIDENTIF) ? this.promoventeFisica.value.IDDOCIDENTIF : 0;
+    this.promovente.OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
+    this.promovente.CELULAR = this.promoventeFisica.value.CELULAR;
+    this.promovente.EMAIL = this.promoventeFisica.value.EMAIL;
 
+    this.dataPromoventes.push(this.promovente);
+    this.promovente = {} as DataPromovente;
   }
 
   addPromoventeMoral(): void {
+    this.promovente.TIPOPERSONA = this.tipoPersona;
+    this.promovente.IDPERSONAAYC = 0;
+    this.promovente.NOMBRE = this.promoventeMoral.value.NOMBRE;
+    this.promovente.RFC = this.promoventeMoral.value.RFC;
+    this.promovente.ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
 
+    this.dataPromoventes.push(this.promovente);
+    this.promovente = {} as DataPromovente;
   }
 
 }
