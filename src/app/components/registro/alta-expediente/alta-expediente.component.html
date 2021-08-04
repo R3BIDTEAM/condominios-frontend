@@ -239,6 +239,53 @@
                     </div>
                 </div>
             </ng-container>
+            <ng-container *ngIf="dataPromoventes.length != 0">
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tipo Persona</th>
+                                    <th>Datos Personales</th>
+                                    <th>Datos Identificativos</th>
+                                    <th>Datos de Contacto</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let promovente of dataPromoventes; let i = index;">
+                                    <td>{{ promovente.TIPOPERSONA }}</td>
+                                    <td>{{ promovente.APELLIDOPATERNO }} {{ promovente.APELLIDOMATERNO }} {{ promovente.NOMBRE }}</td>
+                                    <td>
+                                        {{ promovente.RFC }}
+                                        <br>
+                                        {{ promovente.CURP }}
+                                        <br>
+                                        {{ promovente.CLAVEIFE }}
+                                        <br>
+                                        {{ promovente.OTROS }}
+                                    </td>
+                                    <td>
+                                        {{ promovente.CELULAR }}
+                                        <br>
+                                        {{ promovente.EMAIL }}
+                                    </td>
+                                    <td>
+                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                   
+                    </div>
+                </div>
+            </ng-container>
         </fieldset>
     </ng-container>
 
