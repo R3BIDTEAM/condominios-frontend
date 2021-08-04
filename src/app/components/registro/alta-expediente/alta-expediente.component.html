@@ -190,6 +190,30 @@
                     </div>
                 </form>
             </ng-container>
+            <ng-container *ngIf="tipoPersona == 'M'">
+                <form [formGroup]="promoventeMoral">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col-10 offset-1">
+                            <mat-label>Nombre: *</mat-label>
+                            <input matInput formControlName="NOMBRE" maxlength="50" placeholder="Ingrese el nombre">
+                            <mat-error *ngIf="promoventeMoral.controls.NOMBRE.errors?.required">Requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col-5 offset-1">
+                            <mat-label>RFC: *</mat-label>
+                            <input matInput formControlName="RFC" pattern="^([A-ZÑ&]{3})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$" maxlength="12" placeholder="Ingrese el RFC">
+                            <mat-error *ngIf="promoventeMoral.controls.RFC.errors?.required">Requerido</mat-error>
+                            <mat-error *ngIf="promoventeMoral.controls.RFC.errors?.pattern">El campo RFC debe contener 3 letras mayúsculas, 6 números y 3 alfanuméricos de la homoclave.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="col-5">
+                            <mat-label>Actividad Principal: *</mat-label>
+                            <input matInput formControlName="ACTIVPRINCIP" maxlength="50" placeholder="Ingrese la actividad principal">
+                            <mat-error *ngIf="promoventeMoral.controls.ACTIVPRINCIP.errors?.required">Requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </ng-container>
         </fieldset>
     </ng-container>
 

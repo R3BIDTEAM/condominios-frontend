@@ -82,8 +82,8 @@ export class AltaExpedienteComponent implements OnInit {
 
     this.promoventeMoral = this._formBuilder.group({
       NOMBRE: [null, [Validators.required]],
+      RFC: [null, [Validators.required]],
       ACTIVPRINCIP: [null, [Validators.required]],
-      RFC: [null, [Validators.required, Validators.pattern('^([A-ZÑ&]{3})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$')]],
     });
 
     console.log(this.dataExpediente);
