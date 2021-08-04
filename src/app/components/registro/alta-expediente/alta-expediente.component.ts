@@ -8,6 +8,9 @@ import { MatPaginator } from '@angular/material/paginator';
 
 export interface DataExpediente {
   IDTIPOTRAMITE: number;
+  FECHAENTRADA: Date;
+  FECHATERMINO: Date;
+  observaciones: string;
 }
 @Component({
   selector: 'app-alta-expediente',
@@ -29,6 +32,7 @@ export class AltaExpedienteComponent implements OnInit {
   ngOnInit(): void {
     this.getTiposTramite();
     this.dataExpediente.IDTIPOTRAMITE = 0;
+    this.dataExpediente.FECHAENTRADA = new Date((new Date().getTime()));
   }
 
   getTiposTramite(): void {
