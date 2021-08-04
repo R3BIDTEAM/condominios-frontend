@@ -6,6 +6,7 @@ import { AuthService } from '@serv/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { DatePipe } from '@angular/common';
+import { FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface DataExpediente {
   IDTIPOTRAMITE: string;
@@ -16,11 +17,11 @@ export interface DataExpediente {
 export interface DataPromovente {
   TIPOPERSONA: string;
   IDPERSONAAYC: number;
-  CURP: string;
   NOMBRE: string;
   APELLIDOPATERNO: string;
   APELLIDOMATERNO: string;
   RFC: string;
+  CURP: string;
   CLAVEIFE: string;
   IDDOCIDENTIF: number;
   OTROS: string;
@@ -40,13 +41,17 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
+  tipoPersona = 'F';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromovente[] = [];
+  promoventeFisica: FormGroup;
+  promoventeMoral: FormGroup;
 
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private _formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +59,26 @@ export class AltaExpedienteComponent implements OnInit {
     this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
     this.dataExpediente.FECHATERMINO = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
+    
+    this.promoventeFisica = this._formBuilder.group({
+      NOMBRE: [null, [Validators.required]],
+      APELLIDOPATERNO: [null, [Validators.required]],
+      APELLIDOMATERNO: [null, []],
+      RFC: [null, [Validators.required, Validators.pattern('^([A-ZÑ&]{4})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$')]],
+      CURP: [null, [Validators.required, Validators.pattern('^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$')]],
+      CLAVEIFE: [null, []],
+      IDDOCIDENTIF: ['', []],
+      OTROS: [null, []],
+      CELULAR: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      EMAIL: [null, [Validators.required, Validators.email]],
+    });
+
+    this.promoventeMoral = this._formBuilder.group({
+      NOMBRE: [null, [Validators.required]],
+      ACTIVPRINCIP: [null, [Validators.required]],
+      RFC: [null, [Validators.required, Validators.pattern('^([A-ZÑ&]{3})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$')]],
+    });
+
     console.log(this.dataExpediente);
   }
 
