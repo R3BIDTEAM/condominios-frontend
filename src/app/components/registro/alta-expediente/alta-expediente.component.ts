@@ -40,6 +40,8 @@ export class AltaExpedienteComponent implements OnInit {
   tiposTramite;
   loadingTiposPersona = false;
   tiposPersona;
+  loadingTiposDocIdentif = false;
+  tiposDocIdentif;
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
@@ -59,6 +61,7 @@ export class AltaExpedienteComponent implements OnInit {
   ngOnInit(): void {
     this.getTiposTramite();
     this.getTiposPersona();
+    this.getTiposDocIdentif();
 
     this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
@@ -68,8 +71,8 @@ export class AltaExpedienteComponent implements OnInit {
       NOMBRE: [null, [Validators.required]],
       APELLIDOPATERNO: [null, [Validators.required]],
       APELLIDOMATERNO: [null, []],
-      RFC: [null, [Validators.required, Validators.pattern('^([A-ZÑ&]{4})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$')]],
-      CURP: [null, [Validators.required, Validators.pattern('^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$')]],
+      RFC: [null, [Validators.required]],
+      CURP: [null, [Validators.required]],
       CLAVEIFE: [null, []],
       IDDOCIDENTIF: ['', []],
       OTROS: [null, []],
@@ -135,6 +138,35 @@ export class AltaExpedienteComponent implements OnInit {
       },
       (error) => {
         this.loadingTiposPersona = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  getTiposDocIdentif(): void {
+    let catDocIdentif = environment.endpoint + '?action=getCatalogo&table=RCON_CATDOCIDENTIF';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
+    this.loadingTiposDocIdentif = true;
+    this.http.post(catDocIdentif, filtro).subscribe(
+      (res: any) => {
+        this.loadingTiposDocIdentif = false;
+        if(res.error.code === 0)
+        {
+          this.tiposDocIdentif = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingTiposDocIdentif = false;
         this.snackBar.open(error.message, 'Cerrar', {
           duration: 10000,
           horizontalPosition: 'end',
