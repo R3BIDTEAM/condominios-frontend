@@ -90,22 +90,21 @@
     </fieldset>
 
     <fieldset>
-        <legend>Consulta de Promoventes
-            <button type="button" mat-flat-button color="primary" aria-label="" matTooltip="" class="boton-pequeno">
-                <mat-icon>add</mat-icon>
-            </button>
-        </legend>
+        <legend>Consulta de Promoventes</legend>
         <div class="row">
-            <div class="col-md-6">
-                <mat-form-field appearance="outline" style="width: 100%;">
-                    <mat-label>Tipo:</mat-label>
-                    <mat-select [(ngModel)]="dataExpediente.tipoTramite">
-                        <mat-option [value]="0">Seleccione un trámite ...</mat-option>
-                        <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
-                            {{ tramite.DESCRIPCION}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div class="col-md-2 offset-md-8">
+                <div class="d-flex flex-row-reverse">
+                    <button mat-stroked-button color="primary" aria-label="Buscar">
+                        Buscar<mat-icon style="display: inherit; width: 15px;">search</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="d-flex flex-row-reverse">
+                    <button mat-stroked-button color="warn" aria-label="Limpiar">
+                        Limpiar
+                    </button>
+                </div>
             </div>
         </div>
     </fieldset>
