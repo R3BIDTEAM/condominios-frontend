@@ -197,6 +197,7 @@ export class AltaExpedienteComponent implements OnInit {
     promovente.EMAIL = this.promoventeFisica.value.EMAIL;
 
     this.dataPromoventes.push(promovente);
+    this.clearFormPromovente();
     console.log(this.dataPromoventes);
   }
 
@@ -209,7 +210,12 @@ export class AltaExpedienteComponent implements OnInit {
     promovente.ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
 
     this.dataPromoventes.push(promovente);
+    this.clearFormPromovente();
     console.log(this.dataPromoventes);
+  }
+
+  deletePromovente(index): void{
+    this.dataPromoventes.splice(index, 1);
   }
 
 }
