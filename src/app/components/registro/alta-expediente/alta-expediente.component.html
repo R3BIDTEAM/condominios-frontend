@@ -105,13 +105,13 @@
                 <mat-form-field appearance="fill" class="col-4 offset-md-4">
                     <mat-label>Tipo Persona:</mat-label>
                     <mat-select [(ngModel)]="tipoPersona" (selectionChange)="clearFormPromovente()">
-                        <mat-option *ngFor="let tipo of tiposPersona" [value]="tipo.CODTIPOPERSONA">
+                        <mat-option *ngFor="let tipo of tiposPersona" [value]="tipo.DESTIPOPERSONA">
                             {{ tipo.DESTIPOPERSONA }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
-            <ng-container *ngIf="tipoPersona == 'F'">
+            <ng-container *ngIf="tipoPersona == 'FISICA'">
                 <form [formGroup]="promoventeFisica">
                     <div class="row">
                         <mat-form-field appearance="outline" class="col-10 offset-1">
@@ -186,7 +186,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeFisica.invalid">
+                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeFisica.invalid" (click)="addPromoventeFisica()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                         </button>
                     </div>
@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </ng-container>
-            <ng-container *ngIf="tipoPersona == 'M'">
+            <ng-container *ngIf="tipoPersona == 'MORAL'">
                 <form [formGroup]="promoventeMoral">
                     <div class="row">
                         <mat-form-field appearance="outline" class="col-10 offset-1">
@@ -226,7 +226,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeMoral.invalid">
+                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeMoral.invalid" (click)="addPromoventeMoral()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                         </button>
                     </div>

@@ -45,7 +45,7 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
-  tipoPersona = 'F';
+  tipoPersona = 'FISICA';
   promovente: DataPromovente = {} as DataPromovente; 
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromovente[] = [];
@@ -199,6 +199,8 @@ export class AltaExpedienteComponent implements OnInit {
 
     this.dataPromoventes.push(this.promovente);
     this.promovente = {} as DataPromovente;
+
+    console.log(this.dataPromoventes);
   }
 
   addPromoventeMoral(): void {
@@ -210,6 +212,8 @@ export class AltaExpedienteComponent implements OnInit {
 
     this.dataPromoventes.push(this.promovente);
     this.promovente = {} as DataPromovente;
+
+    console.log(this.dataPromoventes);
   }
 
 }
