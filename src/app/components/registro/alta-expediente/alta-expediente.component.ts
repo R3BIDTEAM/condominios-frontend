@@ -13,6 +13,21 @@ export interface DataExpediente {
   FECHATERMINO: string;
   OBSERVACIONES: string;
 }
+export interface DataPromovente {
+  TIPOPERSONA: string;
+  IDPERSONAAYC: number;
+  CURP: string;
+  NOMBRE: string;
+  APELLIDOPATERNO: string;
+  APELLIDOMATERNO: string;
+  RFC: string;
+  CLAVEIFE: string;
+  IDDOCIDENTIF: number;
+  OTROS: string;
+  CELULAR: string;
+  EMAIL: string;
+  ACTIVPRINCIP: string;
+}
 @Component({
   selector: 'app-alta-expediente',
   templateUrl: './alta-expediente.component.html',
@@ -26,6 +41,7 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
   dataExpediente: DataExpediente = {} as DataExpediente;
+  dataPromoventes: DataPromovente[] = [];
 
   constructor(
     private http: HttpClient,
