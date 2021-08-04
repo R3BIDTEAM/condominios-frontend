@@ -6,9 +6,6 @@ import { AuthService } from '@serv/auth.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 
-export interface payload{
-  ADYCON_EXPEDIENTES: DataExpediente;
-}
 export interface DataExpediente {
   IDTIPOTRAMITE: number;
   FECHAENTRADA: Date;
@@ -25,7 +22,6 @@ export class AltaExpedienteComponent implements OnInit {
   tiposTramite;
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
-  payload: payload = {} as payload;
   dataExpediente: DataExpediente = {} as DataExpediente;
 
   constructor(
