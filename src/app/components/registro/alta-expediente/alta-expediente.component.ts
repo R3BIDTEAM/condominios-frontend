@@ -38,6 +38,8 @@ export interface DataPromovente {
 export class AltaExpedienteComponent implements OnInit {
   loadingTiposTramite = false;
   tiposTramite;
+  loadingTiposPersona = false;
+  tiposPersona;
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
@@ -56,6 +58,8 @@ export class AltaExpedienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTiposTramite();
+    this.getTiposPersona();
+
     this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
     this.dataExpediente.FECHATERMINO = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
@@ -102,6 +106,35 @@ export class AltaExpedienteComponent implements OnInit {
       },
       (error) => {
         this.loadingTiposTramite = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  getTiposPersona(): void {
+    let catTipoPersona = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOPEERSONA';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
+    this.loadingTiposPersona = true;
+    this.http.post(catTipoPersona, filtro).subscribe(
+      (res: any) => {
+        this.loadingTiposPersona = false;
+        if(res.error.code === 0)
+        {
+          this.tiposPersona = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingTiposPersona = false;
         this.snackBar.open(error.message, 'Cerrar', {
           duration: 10000,
           horizontalPosition: 'end',

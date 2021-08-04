@@ -1,9 +1,9 @@
 <h1 class="titulo-cdmx">Alta Expediente</h1>
-<div style="padding: 30px; text-align: center;" *ngIf="loadingTiposTramite">
+<div style="padding: 30px; text-align: center;" *ngIf="loadingTiposTramite || loadingTiposPersona">
     <mat-spinner style="margin:0 auto;"></mat-spinner>
     <p>Cargando...</p>
 </div>
-<ng-container *ngIf="!loadingTiposTramite">
+<ng-container *ngIf="!loadingTiposTramite && !loadingTiposPersona">
 
     <fieldset>
         <legend>Elección de Trámite</legend>
@@ -14,7 +14,7 @@
                     <mat-select #IDTIPOTRAMITE="ngModel" [(ngModel)]="dataExpediente.IDTIPOTRAMITE" required>
                         <mat-option value="">Seleccione un trámite ...</mat-option>
                         <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
-                            {{ tramite.DESCRIPCION}}
+                            {{ tramite.DESCRIPCION }}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="IDTIPOTRAMITE.errors?.required">Requerido</mat-error>
@@ -107,6 +107,16 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="fill" class="col-4 offset-md-4">
+                    <mat-label>Tipo Persona:</mat-label>
+                    <mat-select [(ngModel)]="tipoPersona">
+                        <mat-option *ngFor="let tipo of tiposPersona" [value]="tipo.CODTIPOPERSONA">
+                            {{ tipo.DESTIPOPERSONA }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </fieldset>
     </ng-container>
