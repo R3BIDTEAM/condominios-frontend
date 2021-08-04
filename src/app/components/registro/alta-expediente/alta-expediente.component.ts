@@ -10,7 +10,7 @@ export interface DataExpediente {
   IDTIPOTRAMITE: number;
   FECHAENTRADA: Date;
   FECHATERMINO: Date;
-  observaciones: string;
+  OBSERVACIONES: string;
 }
 @Component({
   selector: 'app-alta-expediente',
