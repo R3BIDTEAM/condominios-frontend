@@ -7,7 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 
 export interface DataExpediente {
-  IDTIPOTRAMITE: number;
+  IDTIPOTRAMITE: string;
   FECHAENTRADA: Date;
   FECHATERMINO: Date;
   OBSERVACIONES: string;
@@ -31,7 +31,7 @@ export class AltaExpedienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTiposTramite();
-    this.dataExpediente.IDTIPOTRAMITE = 0;
+    this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = new Date((new Date().getTime()));
   }
 
