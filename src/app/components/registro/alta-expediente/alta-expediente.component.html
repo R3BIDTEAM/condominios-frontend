@@ -75,10 +75,9 @@
             <div class="col-md-4 offset-md-2">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Fecha Término:</mat-label>
-                    <input matInput #FECHATERMINO="ngModel" [matDatepicker]="fechaTermino" [(ngModel)]="dataExpediente.FECHATERMINO" required>
+                    <input matInput [matDatepicker]="fechaTermino" [(ngModel)]="dataExpediente.FECHATERMINO">
                     <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
                     <mat-datepicker #fechaTermino></mat-datepicker>
-                    <mat-error *ngIf="FECHATERMINO.errors?.required">Requerido</mat-error>
                 </mat-form-field>
             </div>
         </div>
