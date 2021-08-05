@@ -181,6 +181,8 @@ export class AltaExpedienteComponent implements OnInit {
   clearFormPromovente(): void {
     this.promoventeFisica.reset();
     this.promoventeMoral.reset();
+    this.isEdicion = false;
+    this.indexPromoventeEdicion = undefined;
   }
 
   addPromoventeFisica(): void {
@@ -200,12 +202,22 @@ export class AltaExpedienteComponent implements OnInit {
 
     this.dataPromoventes.push(promovente);
     this.clearFormPromovente();
-    console.log(this.dataPromoventes);
   }
 
   savePromoventeFisica(): void {
-    this.isEdicion = false;
-    this.indexPromoventeEdicion = undefined;
+    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersona;
+    this.dataPromoventes[this.indexPromoventeEdicion].IDPERSONAAYC = 0;
+    this.dataPromoventes[this.indexPromoventeEdicion].NOMBRE = this.promoventeFisica.value.NOMBRE;
+    this.dataPromoventes[this.indexPromoventeEdicion].APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
+    this.dataPromoventes[this.indexPromoventeEdicion].APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
+    this.dataPromoventes[this.indexPromoventeEdicion].RFC = this.promoventeFisica.value.RFC;
+    this.dataPromoventes[this.indexPromoventeEdicion].CURP = this.promoventeFisica.value.CURP;
+    this.dataPromoventes[this.indexPromoventeEdicion].CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : null;
+    this.dataPromoventes[this.indexPromoventeEdicion].IDDOCIDENTIF = (this.promoventeFisica.value.IDDOCIDENTIF) ? this.promoventeFisica.value.IDDOCIDENTIF : 0;
+    this.dataPromoventes[this.indexPromoventeEdicion].OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
+    this.dataPromoventes[this.indexPromoventeEdicion].CELULAR = this.promoventeFisica.value.CELULAR;
+    this.dataPromoventes[this.indexPromoventeEdicion].EMAIL = this.promoventeFisica.value.EMAIL;
+
     this.clearFormPromovente();
   }
 
@@ -219,12 +231,15 @@ export class AltaExpedienteComponent implements OnInit {
 
     this.dataPromoventes.push(promovente);
     this.clearFormPromovente();
-    console.log(this.dataPromoventes);
   }
 
   savePromoventeMoral(): void {
-    this.isEdicion = false;
-    this.indexPromoventeEdicion = undefined;
+    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersona;
+    this.dataPromoventes[this.indexPromoventeEdicion].IDPERSONAAYC = 0;
+    this.dataPromoventes[this.indexPromoventeEdicion].NOMBRE = this.promoventeMoral.value.NOMBRE;
+    this.dataPromoventes[this.indexPromoventeEdicion].RFC = this.promoventeMoral.value.RFC;
+    this.dataPromoventes[this.indexPromoventeEdicion].ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
+
     this.clearFormPromovente();
   }
 
