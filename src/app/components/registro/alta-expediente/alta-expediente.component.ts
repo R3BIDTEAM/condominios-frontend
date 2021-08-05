@@ -45,6 +45,7 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
+  isEdicion = false;
   tipoPersona = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromovente[] = [];
@@ -201,6 +202,10 @@ export class AltaExpedienteComponent implements OnInit {
     console.log(this.dataPromoventes);
   }
 
+  savePromoventeFisica(): void {
+    console.log("editarFisica");
+  }
+
   addPromoventeMoral(): void {
     let promovente = {} as DataPromovente; 
     promovente.TIPOPERSONA = this.tipoPersona;
@@ -212,6 +217,10 @@ export class AltaExpedienteComponent implements OnInit {
     this.dataPromoventes.push(promovente);
     this.clearFormPromovente();
     console.log(this.dataPromoventes);
+  }
+
+  savePromoventeMoral(): void {
+    console.log("editarMoral");
   }
 
   editPromovente(index): void {
@@ -232,6 +241,8 @@ export class AltaExpedienteComponent implements OnInit {
       this.promoventeMoral.controls['RFC'].setValue(this.dataPromoventes[index].RFC);
       this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(this.dataPromoventes[index].ACTIVPRINCIP);
     }
+    
+    this.isEdicion = true;
   }
 
   deletePromovente(index): void {

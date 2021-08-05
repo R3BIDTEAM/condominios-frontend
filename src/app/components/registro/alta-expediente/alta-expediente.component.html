@@ -186,8 +186,11 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeFisica.invalid" (click)="addPromoventeFisica()">
+                        <button mat-stroked-button *ngIf="isEdicion == false" color="primary" aria-label="Agregar" [disabled]="promoventeFisica.invalid" (click)="addPromoventeFisica()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
+                        </button>
+                        <button mat-stroked-button *ngIf="isEdicion == true" color="primary" aria-label="Guardar" [disabled]="promoventeFisica.invalid" (click)="savePromoventeFisica()">
+                            Guardar<mat-icon style="display: inherit; width: 15px;">save</mat-icon>
                         </button>
                     </div>
                     <div class="col-md-2">
@@ -226,8 +229,11 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="promoventeMoral.invalid" (click)="addPromoventeMoral()">
+                        <button mat-stroked-button *ngIf="isEdicion == false" color="primary" aria-label="Agregar" [disabled]="promoventeMoral.invalid" (click)="addPromoventeMoral()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
+                        </button>
+                        <button mat-stroked-button *ngIf="isEdicion == true" color="primary" aria-label="Guardar" [disabled]="promoventeMoral.invalid" (click)="savePromoventeMoral()">
+                            Guardar<mat-icon style="display: inherit; width: 15px;">save</mat-icon>
                         </button>
                     </div>
                     <div class="col-md-2">
