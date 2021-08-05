@@ -14,7 +14,7 @@ export interface DataExpediente {
   FECHATERMINO: string;
   OBSERVACIONES: string;
 }
-export interface DataPromovente {
+export interface DataPromoventeRepresentante {
   TIPOPERSONA: string;
   IDPERSONAAYC: number;
   NOMBRE: string;
@@ -28,6 +28,7 @@ export interface DataPromovente {
   CELULAR: string;
   EMAIL: string;
   ACTIVPRINCIP: string;
+  NOTIFICACION: boolean;
 }
 @Component({
   selector: 'app-alta-expediente',
@@ -49,7 +50,7 @@ export class AltaExpedienteComponent implements OnInit {
   indexPromoventeEdicion;
   tipoPersona = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
-  dataPromoventes: DataPromovente[] = [];
+  dataPromoventes: DataPromoventeRepresentante[] = [];
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
 
@@ -186,7 +187,7 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   addPromoventeFisica(): void {
-    let promovente = {} as DataPromovente; 
+    let promovente = {} as DataPromoventeRepresentante; 
     promovente.TIPOPERSONA = this.tipoPersona;
     promovente.IDPERSONAAYC = 0;
     promovente.NOMBRE = this.promoventeFisica.value.NOMBRE;
@@ -199,6 +200,7 @@ export class AltaExpedienteComponent implements OnInit {
     promovente.OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
     promovente.CELULAR = this.promoventeFisica.value.CELULAR;
     promovente.EMAIL = this.promoventeFisica.value.EMAIL;
+    promovente.NOTIFICACION = false;
 
     this.dataPromoventes.push(promovente);
     this.clearFormPromovente();
@@ -217,17 +219,19 @@ export class AltaExpedienteComponent implements OnInit {
     this.dataPromoventes[this.indexPromoventeEdicion].OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
     this.dataPromoventes[this.indexPromoventeEdicion].CELULAR = this.promoventeFisica.value.CELULAR;
     this.dataPromoventes[this.indexPromoventeEdicion].EMAIL = this.promoventeFisica.value.EMAIL;
+    this.dataPromoventes[this.indexPromoventeEdicion].NOTIFICACION = false;
 
     this.clearFormPromovente();
   }
 
   addPromoventeMoral(): void {
-    let promovente = {} as DataPromovente; 
+    let promovente = {} as DataPromoventeRepresentante; 
     promovente.TIPOPERSONA = this.tipoPersona;
     promovente.IDPERSONAAYC = 0;
     promovente.NOMBRE = this.promoventeMoral.value.NOMBRE;
     promovente.RFC = this.promoventeMoral.value.RFC;
     promovente.ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
+    promovente.NOTIFICACION = false;
 
     this.dataPromoventes.push(promovente);
     this.clearFormPromovente();
@@ -239,6 +243,7 @@ export class AltaExpedienteComponent implements OnInit {
     this.dataPromoventes[this.indexPromoventeEdicion].NOMBRE = this.promoventeMoral.value.NOMBRE;
     this.dataPromoventes[this.indexPromoventeEdicion].RFC = this.promoventeMoral.value.RFC;
     this.dataPromoventes[this.indexPromoventeEdicion].ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
+    this.dataPromoventes[this.indexPromoventeEdicion].NOTIFICACION = false;
 
     this.clearFormPromovente();
   }
