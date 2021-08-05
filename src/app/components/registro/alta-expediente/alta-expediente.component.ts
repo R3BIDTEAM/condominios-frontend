@@ -46,9 +46,9 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
-  isEdicion = false;
+  isEdicionPromovente = false;
   indexPromoventeEdicion;
-  tipoPersona = 'FISICA';
+  tipoPersonaPromovente = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentante: DataPromoventeRepresentante[] = [];
@@ -183,13 +183,13 @@ export class AltaExpedienteComponent implements OnInit {
   clearFormPromovente(): void {
     this.promoventeFisica.reset();
     this.promoventeMoral.reset();
-    this.isEdicion = false;
+    this.isEdicionPromovente = false;
     this.indexPromoventeEdicion = undefined;
   }
 
   addPromoventeFisica(): void {
     let promovente = {} as DataPromoventeRepresentante; 
-    promovente.TIPOPERSONA = this.tipoPersona;
+    promovente.TIPOPERSONA = this.tipoPersonaPromovente;
     promovente.IDPERSONAAYC = 0;
     promovente.NOMBRE = this.promoventeFisica.value.NOMBRE;
     promovente.APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
@@ -208,7 +208,7 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   savePromoventeFisica(): void {
-    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersona;
+    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersonaPromovente;
     this.dataPromoventes[this.indexPromoventeEdicion].IDPERSONAAYC = 0;
     this.dataPromoventes[this.indexPromoventeEdicion].NOMBRE = this.promoventeFisica.value.NOMBRE;
     this.dataPromoventes[this.indexPromoventeEdicion].APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
@@ -227,7 +227,7 @@ export class AltaExpedienteComponent implements OnInit {
 
   addPromoventeMoral(): void {
     let promovente = {} as DataPromoventeRepresentante; 
-    promovente.TIPOPERSONA = this.tipoPersona;
+    promovente.TIPOPERSONA = this.tipoPersonaPromovente;
     promovente.IDPERSONAAYC = 0;
     promovente.NOMBRE = this.promoventeMoral.value.NOMBRE;
     promovente.RFC = this.promoventeMoral.value.RFC;
@@ -239,7 +239,7 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   savePromoventeMoral(): void {
-    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersona;
+    this.dataPromoventes[this.indexPromoventeEdicion].TIPOPERSONA = this.tipoPersonaPromovente;
     this.dataPromoventes[this.indexPromoventeEdicion].IDPERSONAAYC = 0;
     this.dataPromoventes[this.indexPromoventeEdicion].NOMBRE = this.promoventeMoral.value.NOMBRE;
     this.dataPromoventes[this.indexPromoventeEdicion].RFC = this.promoventeMoral.value.RFC;
@@ -250,8 +250,8 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   editPromovente(index): void {
-    this.tipoPersona = this.dataPromoventes[index].TIPOPERSONA;
-    if(this.tipoPersona == 'FISICA'){
+    this.tipoPersonaPromovente = this.dataPromoventes[index].TIPOPERSONA;
+    if(this.tipoPersonaPromovente == 'FISICA'){
       this.promoventeFisica.controls['NOMBRE'].setValue(this.dataPromoventes[index].NOMBRE);
       this.promoventeFisica.controls['APELLIDOPATERNO'].setValue(this.dataPromoventes[index].APELLIDOPATERNO);
       this.promoventeFisica.controls['APELLIDOMATERNO'].setValue(this.dataPromoventes[index].APELLIDOMATERNO);
@@ -268,7 +268,7 @@ export class AltaExpedienteComponent implements OnInit {
       this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(this.dataPromoventes[index].ACTIVPRINCIP);
     }
     
-    this.isEdicion = true;
+    this.isEdicionPromovente = true;
     this.indexPromoventeEdicion = index;
   }
 
