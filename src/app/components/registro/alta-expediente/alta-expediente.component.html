@@ -393,7 +393,7 @@
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-2">
-                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteFisica.invalid || dataRepresentante.length == 1" (click)="addRepresentanteFisica()">
                                     Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                                 </button>
                                 <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
@@ -436,7 +436,7 @@
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-2">
-                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteMoral.invalid" (click)="addRepresentanteMoral()">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteMoral.invalid || dataRepresentante.length == 1" (click)="addRepresentanteMoral()">
                                     Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                                 </button>
                                 <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteMoral.invalid" (click)="saveRepresentanteMoral()">
