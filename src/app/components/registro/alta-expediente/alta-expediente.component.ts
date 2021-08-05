@@ -209,13 +209,6 @@ export class AltaExpedienteComponent implements OnInit {
     this.indexEdicionPromovente = undefined;
   }
 
-  clearFormRepresentante(): void {
-    this.representanteFisica.reset();
-    this.representanteMoral.reset();
-    this.isEdicionRepresentante = false;
-    this.indexEdicionRepresentante = undefined;
-  }
-
   addPromoventeFisica(): void {
     let promovente = {} as DataPromoventeRepresentante; 
     promovente.TIPOPERSONA = this.tipoPersonaPromovente;
@@ -303,8 +296,16 @@ export class AltaExpedienteComponent implements OnInit {
 
   deletePromovente(index): void {
     this.dataPromoventes.splice(index, 1);
+    this.isEdicionPromovente = false;
   }
 
+  clearFormRepresentante(): void {
+    this.representanteFisica.reset();
+    this.representanteMoral.reset();
+    this.isEdicionRepresentante = false;
+    this.indexEdicionRepresentante = undefined;
+  }
+  
   addRepresentanteFisica(): void {
     let representante = {} as DataPromoventeRepresentante; 
     representante.TIPOPERSONA = this.tipoPersonaRepresentante;
@@ -392,6 +393,7 @@ export class AltaExpedienteComponent implements OnInit {
 
   deleteRepresentante(index): void {
     this.dataRepresentante.splice(index, 1);
+    this.isEdicionRepresentante = false;
   }
 
 }
