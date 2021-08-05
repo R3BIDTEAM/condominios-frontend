@@ -47,8 +47,11 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
   isEdicionPromovente = false;
+  isEdicionRepresentante = false;
   indexPromoventeEdicion;
+  indexRepresentanteEdicion;
   tipoPersonaPromovente = 'FISICA';
+  tipoPersonaRepresentante = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentante: DataPromoventeRepresentante[] = [];
