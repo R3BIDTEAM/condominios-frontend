@@ -296,7 +296,7 @@
                     </ng-container>
                 </fieldset>
             </mat-tab>
-            <mat-tab label="Representante">
+            <mat-tab label="Representante" [disabled]="dataPromoventes.length == 0">
                 <fieldset>
                     <legend>Datos del Representante</legend>
                     <div class="row">
