@@ -299,6 +299,205 @@
             <mat-tab label="Representante">
                 <fieldset>
                     <legend>Datos del Representante</legend>
+                    <div class="row">
+                        <div class="col-md-10">
+                        </div>
+                        <div class="col-md-2">
+                            <button mat-stroked-button color="primary" aria-label="Buscar">
+                                Buscar<mat-icon style="display: inherit; width: 15px;">search</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="fill" class="col-4 offset-md-4">
+                            <mat-label>Tipo Persona:</mat-label>
+                            <mat-select [(ngModel)]="tipoPersonaRepresentante" (selectionChange)="clearFormRepresentante()">
+                                <mat-option *ngFor="let tipo of tiposPersona" [value]="tipo.DESTIPOPERSONA">
+                                    {{ tipo.DESTIPOPERSONA }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <ng-container *ngIf="tipoPersonaRepresentante == 'FISICA'">
+                        <form [formGroup]="representanteFisica">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-10 offset-1">
+                                    <mat-label>Nombre: *</mat-label>
+                                    <input matInput formControlName="NOMBRE" maxlength="50" placeholder="Ingrese el nombre">
+                                    <mat-error *ngIf="representanteFisica.controls.NOMBRE.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline"  class="col-5 offset-1">
+                                    <mat-label>Apellido Paterno: *</mat-label>
+                                    <input matInput formControlName="APELLIDOPATERNO" maxlength="50" placeholder="Ingrese el apellido paterno">
+                                    <mat-error *ngIf="representanteFisica.controls.APELLIDOPATERNO.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"  class="col-5">
+                                    <mat-label>Apellido Materno:</mat-label>
+                                    <input matInput formControlName="APELLIDOMATERNO" maxlength="50" placeholder="Ingrese el apellido materno">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline"  class="col-5 offset-1">
+                                    <mat-label>RFC: *</mat-label>
+                                    <input matInput formControlName="RFC" pattern="^([A-ZÑ&]{4})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$" maxlength="13" placeholder="Ingrese el RFC">
+                                    <mat-error *ngIf="representanteFisica.controls.RFC.errors?.required">Requerido</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.RFC.errors?.pattern">El campo RFC debe contener 4 letras mayúsculas, 6 números y 3 alfanuméricos de la homoclave.</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"  class="col-5">
+                                    <mat-label>CURP: *</mat-label>
+                                    <input matInput formControlName="CURP" pattern="^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$" maxlength="18" placeholder="Ingrese el CURP">
+                                    <mat-error *ngIf="representanteFisica.controls.CURP.errors?.required">Requerido</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.CURP.errors?.pattern">CURP no valido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline"  class="col-5 offset-1">
+                                    <mat-label>Clave INE:</mat-label>
+                                    <input matInput formControlName="CLAVEIFE" maxlength="50" placeholder="Ingrese el INE">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="fill"  class="col-5 offset-1">
+                                    <mat-label>Otro Documento:</mat-label>
+                                    <mat-select formControlName="IDDOCIDENTIF">
+                                        <mat-option value="">Seleccione ...</mat-option>
+                                        <mat-option *ngFor="let documento of tiposDocIdentif" [value]="documento.IDDOCIDENTIF">
+                                            {{ documento.DESCRIPCION }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"  class="col-5">
+                                    <mat-label>Número Documento</mat-label>
+                                    <input matInput formControlName="OTROS" maxlength="50" placeholder="Ingrese el número de documento">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline"  class="col-5 offset-1">
+                                    <mat-label>Celular: *</mat-label>
+                                    <input matInput formControlName="CELULAR" maxlength="10" placeholder="Ingrese el número de celular">
+                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.required">Requerido</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.minLength">El número celular debe de contener 10 digitos</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.maxLength">El número celular debe de contener 10 digitos</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline"  class="col-5">
+                                    <mat-label>E-mail: *</mat-label>
+                                    <input matInput formControlName="EMAIL" maxlength="50" placeholder="Ingrese el email">
+                                    <mat-error *ngIf="representanteFisica.controls.EMAIL.errors?.required">Requerido</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.EMAIL.errors?.maxLength">La estructura del correo es incorrecta</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
+                                    Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
+                                </button>
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
+                                    Guardar<mat-icon style="display: inherit; width: 15px;">save</mat-icon>
+                                </button>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-stroked-button color="warn" aria-label="Limpiar" (click)="clearFormRepresentante()">
+                                    Limpiar
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="tipoPersonaRepresentante == 'MORAL'">
+                        <form [formGroup]="representanteMoral">
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-10 offset-1">
+                                    <mat-label>Nombre: *</mat-label>
+                                    <input matInput formControlName="NOMBRE" maxlength="50" placeholder="Ingrese el nombre">
+                                    <mat-error *ngIf="representanteMoral.controls.NOMBRE.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field appearance="outline" class="col-5 offset-1">
+                                    <mat-label>RFC: *</mat-label>
+                                    <input matInput formControlName="RFC" pattern="^([A-ZÑ&]{3})?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$" maxlength="12" placeholder="Ingrese el RFC">
+                                    <mat-error *ngIf="representanteMoral.controls.RFC.errors?.required">Requerido</mat-error>
+                                    <mat-error *ngIf="representanteMoral.controls.RFC.errors?.pattern">El campo RFC debe contener 3 letras mayúsculas, 6 números y 3 alfanuméricos de la homoclave.</mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline" class="col-5">
+                                    <mat-label>Actividad Principal: *</mat-label>
+                                    <input matInput formControlName="ACTIVPRINCIP" maxlength="50" placeholder="Ingrese la actividad principal">
+                                    <mat-error *ngIf="representanteMoral.controls.ACTIVPRINCIP.errors?.required">Requerido</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteMoral.invalid" (click)="addRepresentanteMoral()">
+                                    Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
+                                </button>
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteMoral.invalid" (click)="saveRepresentanteMoral()">
+                                    Guardar<mat-icon style="display: inherit; width: 15px;">save</mat-icon>
+                                </button>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-stroked-button color="warn" aria-label="Limpiar" (click)="clearFormRepresentante()">
+                                    Limpiar
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="dataRepresentante.length != 0">
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo Persona</th>
+                                            <th>Datos Personales</th>
+                                            <th>Datos Identificativos</th>
+                                            <th>Datos de Contacto</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let representante of dataRepresentante; let i = index;">
+                                            <td>{{ representante.TIPOPERSONA }}</td>
+                                            <td>{{ representante.APELLIDOPATERNO }} {{ representante.APELLIDOMATERNO }} {{ representante.NOMBRE }}</td>
+                                            <td>
+                                                {{ representante.RFC }}
+                                                <br>
+                                                {{ representante.CURP }}
+                                                <br>
+                                                {{ representante.CLAVEIFE }}
+                                                <br>
+                                                {{ representante.OTROS }}
+                                            </td>
+                                            <td>
+                                                {{ representante.CELULAR }}
+                                                <br>
+                                                {{ representante.EMAIL }}
+                                            </td>
+                                            <td>
+                                                <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar" (click)="editRepresentante(i)">
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+                                                <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deleteRepresentante(i)">
+                                                    <mat-icon>delete</mat-icon>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>                   
+                            </div>
+                        </div>
+                    </ng-container>
                 </fieldset>
             </mat-tab>
         </mat-tab-group>
