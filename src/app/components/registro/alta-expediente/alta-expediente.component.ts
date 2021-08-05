@@ -95,7 +95,24 @@ export class AltaExpedienteComponent implements OnInit {
       ACTIVPRINCIP: [null, [Validators.required]],
     });
 
-    console.log(this.dataExpediente);
+    this.representanteFisica = this._formBuilder.group({
+      NOMBRE: [null, [Validators.required]],
+      APELLIDOPATERNO: [null, [Validators.required]],
+      APELLIDOMATERNO: [null, []],
+      RFC: [null, [Validators.required]],
+      CURP: [null, [Validators.required]],
+      CLAVEIFE: [null, []],
+      IDDOCIDENTIF: ['', []],
+      OTROS: [null, []],
+      CELULAR: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      EMAIL: [null, [Validators.required, Validators.email]],
+    });
+
+    this.representanteMoral = this._formBuilder.group({
+      NOMBRE: [null, [Validators.required]],
+      RFC: [null, [Validators.required]],
+      ACTIVPRINCIP: [null, [Validators.required]],
+    });
   }
 
   getTiposTramite(): void {
@@ -190,6 +207,13 @@ export class AltaExpedienteComponent implements OnInit {
     this.promoventeMoral.reset();
     this.isEdicionPromovente = false;
     this.indexEdicionPromovente = undefined;
+  }
+
+  clearFormRepresentante(): void {
+    this.representanteFisica.reset();
+    this.representanteMoral.reset();
+    this.isEdicionRepresentante = false;
+    this.indexEdicionRepresentante = undefined;
   }
 
   addPromoventeFisica(): void {
