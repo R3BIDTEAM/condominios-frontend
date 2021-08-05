@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface DataExpediente {
   IDTIPOTRAMITE: string;
@@ -214,7 +215,27 @@ export class AltaExpedienteComponent implements OnInit {
     console.log(this.dataPromoventes);
   }
 
-  deletePromovente(index): void{
+  editPromovente(index): void {
+    this.tipoPersona = this.dataPromoventes[index].TIPOPERSONA;
+    if(this.tipoPersona == 'FISICA'){
+      this.promoventeFisica.controls['NOMBRE'].setValue(this.dataPromoventes[index].NOMBRE);
+      this.promoventeFisica.controls['APELLIDOPATERNO'].setValue(this.dataPromoventes[index].APELLIDOPATERNO);
+      this.promoventeFisica.controls['APELLIDOMATERNO'].setValue(this.dataPromoventes[index].APELLIDOMATERNO);
+      this.promoventeFisica.controls['RFC'].setValue(this.dataPromoventes[index].RFC);
+      this.promoventeFisica.controls['CURP'].setValue(this.dataPromoventes[index].CURP);
+      this.promoventeFisica.controls['CLAVEIFE'].setValue(this.dataPromoventes[index].CLAVEIFE);
+      this.promoventeFisica.controls['IDDOCIDENTIF'].setValue(this.dataPromoventes[index].IDDOCIDENTIF);
+      this.promoventeFisica.controls['OTROS'].setValue(this.dataPromoventes[index].OTROS);
+      this.promoventeFisica.controls['CELULAR'].setValue(this.dataPromoventes[index].CELULAR);
+      this.promoventeFisica.controls['EMAIL'].setValue(this.dataPromoventes[index].EMAIL);
+    } else {
+      this.promoventeMoral.controls['NOMBRE'].setValue(this.dataPromoventes[index].NOMBRE);
+      this.promoventeMoral.controls['RFC'].setValue(this.dataPromoventes[index].RFC);
+      this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(this.dataPromoventes[index].ACTIVPRINCIP);
+    }
+  }
+
+  deletePromovente(index): void {
     this.dataPromoventes.splice(index, 1);
   }
 

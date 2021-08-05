@@ -241,7 +241,6 @@
             </ng-container>
             <ng-container *ngIf="dataPromoventes.length != 0">
                 <br>
-                <br>
                 <div class="row">
                     <div class="col">
                         <table>
@@ -273,7 +272,7 @@
                                         {{ promovente.EMAIL }}
                                     </td>
                                     <td>
-                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar">
+                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar" (click)="editPromovente(i)">
                                             <mat-icon>edit</mat-icon>
                                         </button>
                                         <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deletePromovente(i)">
