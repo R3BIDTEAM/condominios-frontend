@@ -7,7 +7,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 export interface DataExpediente {
   IDTIPOTRAMITE: string;
