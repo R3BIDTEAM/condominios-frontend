@@ -393,7 +393,7 @@
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-2">
-                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteFisica.invalid || dataRepresentante.length == 1" (click)="addRepresentanteFisica()">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
                                     Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                                 </button>
                                 <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteFisica.invalid" (click)="addRepresentanteFisica()">
@@ -436,7 +436,7 @@
                             <div class="col-md-4">
                             </div>
                             <div class="col-md-2">
-                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteMoral.invalid || dataRepresentante.length == 1" (click)="addRepresentanteMoral()">
+                                <button mat-stroked-button *ngIf="isEdicionRepresentante == false" color="primary" aria-label="Agregar" [disabled]="representanteMoral.invalid" (click)="addRepresentanteMoral()">
                                     Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                                 </button>
                                 <button mat-stroked-button *ngIf="isEdicionRepresentante == true" color="primary" aria-label="Guardar" [disabled]="representanteMoral.invalid" (click)="saveRepresentanteMoral()">
@@ -452,7 +452,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="dataRepresentante.length != 0">
+                    <ng-container *ngIf="dataRepresentantes.length != 0">
                         <br>
                         <div class="row">
                             <div class="col">
@@ -467,7 +467,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let representante of dataRepresentante; let i = index;">
+                                        <tr *ngFor="let representante of dataRepresentantes; let i = index;">
                                             <td>{{ representante.TIPOPERSONA }}</td>
                                             <td>{{ representante.APELLIDOPATERNO }} {{ representante.APELLIDOMATERNO }} {{ representante.NOMBRE }}</td>
                                             <td>

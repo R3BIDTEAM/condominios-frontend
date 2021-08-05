@@ -54,7 +54,7 @@ export class AltaExpedienteComponent implements OnInit {
   tipoPersonaRepresentante = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromoventeRepresentante[] = [];
-  dataRepresentante: DataPromoventeRepresentante[] = [];
+  dataRepresentantes: DataPromoventeRepresentante[] = [];
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
   representanteFisica: FormGroup;
@@ -333,9 +333,9 @@ export class AltaExpedienteComponent implements OnInit {
 
   validatePromoventeRepresentante(rfc): boolean {
     let response = true;
-    if(this.dataRepresentante.length > 0){
-      for(let i = 0; i < this.dataRepresentante.length; i++) {
-        if(this.dataRepresentante[i].RFC === rfc){
+    if(this.dataRepresentantes.length > 0){
+      for(let i = 0; i < this.dataRepresentantes.length; i++) {
+        if(this.dataRepresentantes[i].RFC === rfc){
           response = false;
         }
       }
@@ -369,7 +369,7 @@ export class AltaExpedienteComponent implements OnInit {
       representante.EMAIL = this.representanteFisica.value.EMAIL;
       representante.NOTIFICACION = false;
 
-      this.dataRepresentante.push(representante);
+      this.dataRepresentantes.push(representante);
       this.clearFormRepresentante();
     } else {
       this.snackBar.open("No puede agregar como representante una persona que ya esta como promovente", 'Cerrar', {
@@ -382,19 +382,19 @@ export class AltaExpedienteComponent implements OnInit {
 
   saveRepresentanteFisica(): void {
     if(this.validateRepresentantePromovente(this.representanteFisica.value.RFC)){
-      this.dataRepresentante[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
-      this.dataRepresentante[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
-      this.dataRepresentante[this.indexEdicionRepresentante].NOMBRE = this.representanteFisica.value.NOMBRE;
-      this.dataRepresentante[this.indexEdicionRepresentante].APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
-      this.dataRepresentante[this.indexEdicionRepresentante].APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
-      this.dataRepresentante[this.indexEdicionRepresentante].RFC = this.representanteFisica.value.RFC;
-      this.dataRepresentante[this.indexEdicionRepresentante].CURP = this.representanteFisica.value.CURP;
-      this.dataRepresentante[this.indexEdicionRepresentante].CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : null;
-      this.dataRepresentante[this.indexEdicionRepresentante].IDDOCIDENTIF = (this.representanteFisica.value.IDDOCIDENTIF) ? this.representanteFisica.value.IDDOCIDENTIF : 0;
-      this.dataRepresentante[this.indexEdicionRepresentante].OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : null;
-      this.dataRepresentante[this.indexEdicionRepresentante].CELULAR = this.representanteFisica.value.CELULAR;
-      this.dataRepresentante[this.indexEdicionRepresentante].EMAIL = this.representanteFisica.value.EMAIL;
-      this.dataRepresentante[this.indexEdicionRepresentante].NOTIFICACION = false;
+      this.dataRepresentantes[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
+      this.dataRepresentantes[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
+      this.dataRepresentantes[this.indexEdicionRepresentante].NOMBRE = this.representanteFisica.value.NOMBRE;
+      this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
+      this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].RFC = this.representanteFisica.value.RFC;
+      this.dataRepresentantes[this.indexEdicionRepresentante].CURP = this.representanteFisica.value.CURP;
+      this.dataRepresentantes[this.indexEdicionRepresentante].CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].IDDOCIDENTIF = (this.representanteFisica.value.IDDOCIDENTIF) ? this.representanteFisica.value.IDDOCIDENTIF : 0;
+      this.dataRepresentantes[this.indexEdicionRepresentante].OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].CELULAR = this.representanteFisica.value.CELULAR;
+      this.dataRepresentantes[this.indexEdicionRepresentante].EMAIL = this.representanteFisica.value.EMAIL;
+      this.dataRepresentantes[this.indexEdicionRepresentante].NOTIFICACION = false;
 
       this.clearFormRepresentante();
     } else {
@@ -416,7 +416,7 @@ export class AltaExpedienteComponent implements OnInit {
       representante.ACTIVPRINCIP = this.representanteMoral.value.ACTIVPRINCIP;
       representante.NOTIFICACION = false;
 
-      this.dataRepresentante.push(representante);
+      this.dataRepresentantes.push(representante);
       this.clearFormRepresentante();
     } else {
       this.snackBar.open("No puede agregar como representante una persona que ya esta como promovente", 'Cerrar', {
@@ -429,12 +429,12 @@ export class AltaExpedienteComponent implements OnInit {
 
   saveRepresentanteMoral(): void {
     if(this.validateRepresentantePromovente(this.representanteMoral.value.RFC)){
-      this.dataRepresentante[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
-      this.dataRepresentante[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
-      this.dataRepresentante[this.indexEdicionRepresentante].NOMBRE = this.representanteMoral.value.NOMBRE;
-      this.dataRepresentante[this.indexEdicionRepresentante].RFC = this.representanteMoral.value.RFC;
-      this.dataRepresentante[this.indexEdicionRepresentante].ACTIVPRINCIP = this.representanteMoral.value.ACTIVPRINCIP;
-      this.dataRepresentante[this.indexEdicionRepresentante].NOTIFICACION = false;
+      this.dataRepresentantes[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
+      this.dataRepresentantes[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
+      this.dataRepresentantes[this.indexEdicionRepresentante].NOMBRE = this.representanteMoral.value.NOMBRE;
+      this.dataRepresentantes[this.indexEdicionRepresentante].RFC = this.representanteMoral.value.RFC;
+      this.dataRepresentantes[this.indexEdicionRepresentante].ACTIVPRINCIP = this.representanteMoral.value.ACTIVPRINCIP;
+      this.dataRepresentantes[this.indexEdicionRepresentante].NOTIFICACION = false;
 
       this.clearFormRepresentante();
     } else {
@@ -447,22 +447,22 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   editRepresentante(index): void {
-    this.tipoPersonaRepresentante = this.dataRepresentante[index].TIPOPERSONA;
+    this.tipoPersonaRepresentante = this.dataRepresentantes[index].TIPOPERSONA;
     if(this.tipoPersonaRepresentante == 'FISICA'){
-      this.representanteFisica.controls['NOMBRE'].setValue(this.dataRepresentante[index].NOMBRE);
-      this.representanteFisica.controls['APELLIDOPATERNO'].setValue(this.dataRepresentante[index].APELLIDOPATERNO);
-      this.representanteFisica.controls['APELLIDOMATERNO'].setValue(this.dataRepresentante[index].APELLIDOMATERNO);
-      this.representanteFisica.controls['RFC'].setValue(this.dataRepresentante[index].RFC);
-      this.representanteFisica.controls['CURP'].setValue(this.dataRepresentante[index].CURP);
-      this.representanteFisica.controls['CLAVEIFE'].setValue(this.dataRepresentante[index].CLAVEIFE);
-      this.representanteFisica.controls['IDDOCIDENTIF'].setValue(this.dataRepresentante[index].IDDOCIDENTIF);
-      this.representanteFisica.controls['OTROS'].setValue(this.dataRepresentante[index].OTROS);
-      this.representanteFisica.controls['CELULAR'].setValue(this.dataRepresentante[index].CELULAR);
-      this.representanteFisica.controls['EMAIL'].setValue(this.dataRepresentante[index].EMAIL);
+      this.representanteFisica.controls['NOMBRE'].setValue(this.dataRepresentantes[index].NOMBRE);
+      this.representanteFisica.controls['APELLIDOPATERNO'].setValue(this.dataRepresentantes[index].APELLIDOPATERNO);
+      this.representanteFisica.controls['APELLIDOMATERNO'].setValue(this.dataRepresentantes[index].APELLIDOMATERNO);
+      this.representanteFisica.controls['RFC'].setValue(this.dataRepresentantes[index].RFC);
+      this.representanteFisica.controls['CURP'].setValue(this.dataRepresentantes[index].CURP);
+      this.representanteFisica.controls['CLAVEIFE'].setValue(this.dataRepresentantes[index].CLAVEIFE);
+      this.representanteFisica.controls['IDDOCIDENTIF'].setValue(this.dataRepresentantes[index].IDDOCIDENTIF);
+      this.representanteFisica.controls['OTROS'].setValue(this.dataRepresentantes[index].OTROS);
+      this.representanteFisica.controls['CELULAR'].setValue(this.dataRepresentantes[index].CELULAR);
+      this.representanteFisica.controls['EMAIL'].setValue(this.dataRepresentantes[index].EMAIL);
     } else {
-      this.representanteMoral.controls['NOMBRE'].setValue(this.dataRepresentante[index].NOMBRE);
-      this.representanteMoral.controls['RFC'].setValue(this.dataRepresentante[index].RFC);
-      this.representanteMoral.controls['ACTIVPRINCIP'].setValue(this.dataRepresentante[index].ACTIVPRINCIP);
+      this.representanteMoral.controls['NOMBRE'].setValue(this.dataRepresentantes[index].NOMBRE);
+      this.representanteMoral.controls['RFC'].setValue(this.dataRepresentantes[index].RFC);
+      this.representanteMoral.controls['ACTIVPRINCIP'].setValue(this.dataRepresentantes[index].ACTIVPRINCIP);
     }
     
     this.isEdicionRepresentante = true;
@@ -470,7 +470,7 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   deleteRepresentante(index): void {
-    this.dataRepresentante.splice(index, 1);
+    this.dataRepresentantes.splice(index, 1);
     this.isEdicionRepresentante = false;
   }
 
