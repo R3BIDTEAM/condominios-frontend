@@ -51,6 +51,7 @@ export class AltaExpedienteComponent implements OnInit {
   tipoPersona = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromoventeRepresentante[] = [];
+  dataRepresentante: DataPromoventeRepresentante[] = [];
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
 
