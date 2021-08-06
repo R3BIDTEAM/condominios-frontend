@@ -46,6 +46,7 @@ export class AltaExpedienteComponent implements OnInit {
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
+  idpersona;
   isEdicionPromovente = false;
   isEdicionRepresentante = false;
   indexEdicionPromovente;
@@ -217,7 +218,7 @@ export class AltaExpedienteComponent implements OnInit {
     if(this.validatePromoventeRepresentante(this.promoventeFisica.value.RFC)){
       let promovente = {} as DataPromoventeRepresentante; 
       promovente.TIPOPERSONA = this.tipoPersonaPromovente;
-      promovente.IDPERSONAAYC = 0;
+      promovente.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       promovente.NOMBRE = this.promoventeFisica.value.NOMBRE;
       promovente.APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
       promovente.APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
@@ -230,6 +231,7 @@ export class AltaExpedienteComponent implements OnInit {
       promovente.EMAIL = this.promoventeFisica.value.EMAIL;
       promovente.NOTIFICACION = false;
 
+      this.idpersona = undefined;
       this.dataPromoventes.push(promovente);
       this.clearFormPromovente();
     } else {
@@ -244,7 +246,6 @@ export class AltaExpedienteComponent implements OnInit {
   savePromoventeFisica(): void {
     if(this.validatePromoventeRepresentante(this.promoventeFisica.value.RFC)){
       this.dataPromoventes[this.indexEdicionPromovente].TIPOPERSONA = this.tipoPersonaPromovente;
-      this.dataPromoventes[this.indexEdicionPromovente].IDPERSONAAYC = 0;
       this.dataPromoventes[this.indexEdicionPromovente].NOMBRE = this.promoventeFisica.value.NOMBRE;
       this.dataPromoventes[this.indexEdicionPromovente].APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
       this.dataPromoventes[this.indexEdicionPromovente].APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
@@ -271,12 +272,13 @@ export class AltaExpedienteComponent implements OnInit {
     if(this.validatePromoventeRepresentante(this.promoventeMoral.value.RFC)){
       let promovente = {} as DataPromoventeRepresentante; 
       promovente.TIPOPERSONA = this.tipoPersonaPromovente;
-      promovente.IDPERSONAAYC = 0;
+      promovente.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       promovente.NOMBRE = this.promoventeMoral.value.NOMBRE;
       promovente.RFC = this.promoventeMoral.value.RFC;
       promovente.ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
       promovente.NOTIFICACION = false;
 
+      this.idpersona = undefined;
       this.dataPromoventes.push(promovente);
       this.clearFormPromovente();
     } else {
@@ -291,7 +293,6 @@ export class AltaExpedienteComponent implements OnInit {
   savePromoventeMoral(): void {
     if(this.validatePromoventeRepresentante(this.promoventeMoral.value.RFC)){
       this.dataPromoventes[this.indexEdicionPromovente].TIPOPERSONA = this.tipoPersonaPromovente;
-      this.dataPromoventes[this.indexEdicionPromovente].IDPERSONAAYC = 0;
       this.dataPromoventes[this.indexEdicionPromovente].NOMBRE = this.promoventeMoral.value.NOMBRE;
       this.dataPromoventes[this.indexEdicionPromovente].RFC = this.promoventeMoral.value.RFC;
       this.dataPromoventes[this.indexEdicionPromovente].ACTIVPRINCIP = this.promoventeMoral.value.ACTIVPRINCIP;
@@ -377,6 +378,7 @@ export class AltaExpedienteComponent implements OnInit {
           this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
         }
 
+        this.idpersona = result.IDPERSONAAYC;
         this.isEdicionPromovente = false;
       }
     });
@@ -395,7 +397,7 @@ export class AltaExpedienteComponent implements OnInit {
     if(this.validateRepresentantePromovente(this.representanteFisica.value.RFC)){
       let representante = {} as DataPromoventeRepresentante; 
       representante.TIPOPERSONA = this.tipoPersonaRepresentante;
-      representante.IDPERSONAAYC = 0;
+      representante.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       representante.NOMBRE = this.representanteFisica.value.NOMBRE;
       representante.APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
       representante.APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
@@ -408,6 +410,7 @@ export class AltaExpedienteComponent implements OnInit {
       representante.EMAIL = this.representanteFisica.value.EMAIL;
       representante.NOTIFICACION = false;
 
+      this.idpersona = undefined;
       this.dataRepresentantes.push(representante);
       this.clearFormRepresentante();
     } else {
@@ -422,7 +425,6 @@ export class AltaExpedienteComponent implements OnInit {
   saveRepresentanteFisica(): void {
     if(this.validateRepresentantePromovente(this.representanteFisica.value.RFC)){
       this.dataRepresentantes[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
-      this.dataRepresentantes[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
       this.dataRepresentantes[this.indexEdicionRepresentante].NOMBRE = this.representanteFisica.value.NOMBRE;
       this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
       this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
@@ -449,12 +451,13 @@ export class AltaExpedienteComponent implements OnInit {
     if(this.validateRepresentantePromovente(this.representanteMoral.value.RFC)){
       let representante = {} as DataPromoventeRepresentante; 
       representante.TIPOPERSONA = this.tipoPersonaRepresentante;
-      representante.IDPERSONAAYC = 0;
+      representante.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       representante.NOMBRE = this.representanteMoral.value.NOMBRE;
       representante.RFC = this.representanteMoral.value.RFC;
       representante.ACTIVPRINCIP = this.representanteMoral.value.ACTIVPRINCIP;
       representante.NOTIFICACION = false;
 
+      this.idpersona = undefined;
       this.dataRepresentantes.push(representante);
       this.clearFormRepresentante();
     } else {
@@ -469,7 +472,6 @@ export class AltaExpedienteComponent implements OnInit {
   saveRepresentanteMoral(): void {
     if(this.validateRepresentantePromovente(this.representanteMoral.value.RFC)){
       this.dataRepresentantes[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
-      this.dataRepresentantes[this.indexEdicionRepresentante].IDPERSONAAYC = 0;
       this.dataRepresentantes[this.indexEdicionRepresentante].NOMBRE = this.representanteMoral.value.NOMBRE;
       this.dataRepresentantes[this.indexEdicionRepresentante].RFC = this.representanteMoral.value.RFC;
       this.dataRepresentantes[this.indexEdicionRepresentante].ACTIVPRINCIP = this.representanteMoral.value.ACTIVPRINCIP;
@@ -552,6 +554,7 @@ export class AltaExpedienteComponent implements OnInit {
           this.representanteMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
         }
 
+        this.idpersona = result.IDPERSONAAYC;
         this.isEdicionRepresentante = false;
       }
     });
