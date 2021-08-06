@@ -359,7 +359,23 @@ export class AltaExpedienteComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(result);
+        this.tipoPersonaPromovente = result.TIPOPERSONA;
+        if(this.tipoPersonaPromovente == 'FISICA'){
+          this.promoventeFisica.controls['NOMBRE'].setValue(result.NOMBRE);
+          this.promoventeFisica.controls['APELLIDOPATERNO'].setValue(result.APELLIDOPATERNO);
+          this.promoventeFisica.controls['APELLIDOMATERNO'].setValue(result.APELLIDOMATERNO);
+          this.promoventeFisica.controls['RFC'].setValue(result.RFC);
+          this.promoventeFisica.controls['CURP'].setValue(result.CURP);
+          this.promoventeFisica.controls['CLAVEIFE'].setValue(result.CLAVEIFE);
+          this.promoventeFisica.controls['IDDOCIDENTIF'].setValue(result.IDDOCIDENTIF);
+          this.promoventeFisica.controls['OTROS'].setValue(result.OTROS);
+          this.promoventeFisica.controls['CELULAR'].setValue(result.CELULAR);
+          this.promoventeFisica.controls['EMAIL'].setValue(result.EMAIL);
+        } else {
+          this.promoventeMoral.controls['NOMBRE'].setValue(result.NOMBRE);
+          this.promoventeMoral.controls['RFC'].setValue(result.RFC);
+          this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
+        }
       }
     });
   }
