@@ -546,6 +546,7 @@ export class DialogSearchPromoventeRepresentante {
   promoventeRepresentante;
   input;
   tipoDatos;
+  tipoPersona;
   
   constructor(
     private http: HttpClient,
@@ -620,17 +621,20 @@ export class DialogSearchPromoventeRepresentante {
             this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
             this.total = this.dataResponse.length;
             this.paginator.pageIndex = 0;
+            this.tipoPersona = 'FISICA';
           } else if(res.data.ADYCON_PERSONAMORALAYC.length > 0){
             this.dataResponse = res.data.ADYCON_PERSONAMORALAYC;
             this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
             this.total = this.dataResponse.length;
             this.paginator.pageIndex = 0;
+            this.tipoPersona = 'MORAL';
           } else {
             this.dataResponse = [];
             this.dataSource = [];
             this.total = 0;
             this.paginator.pageIndex = 0;
             this.promoventeRepresentante = undefined;
+            this.tipoPersona = undefined;
           }
         } else {
           this.snackBar.open(res.error.message, 'Cerrar', {
@@ -662,6 +666,7 @@ export class DialogSearchPromoventeRepresentante {
 
   promoventeRepresentanteSelected(promoventeRepresentante): void {
     this.dataPromoventeRepresentante = promoventeRepresentante;
+    this.dataPromoventeRepresentante.TIPOPERSONA = this.tipoPersona;
   }
 }
 //////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
