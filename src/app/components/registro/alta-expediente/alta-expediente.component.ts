@@ -769,7 +769,7 @@ export class AltaExpedienteComponent implements OnInit {
   openDialogAddDireccionNotificacion(): void {
     const dialogRef = this.dialog.open(DialogAddDomicilioNotificacion, {
       width: '700px',
-      data: {},
+      data: {tiposVia: this.tiposVia, tiposLocalidad: this.tiposLocalidad, delegaciones: this.delegaciones},
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -945,10 +945,17 @@ export class DialogSearchPromoventeRepresentante {
   templateUrl: 'app-dialog-add-domicilio-notificacion.html',
 })
 export class DialogAddDomicilioNotificacion {
+  tiposVia;
+  tiposLocalidad;
+  delegaciones;
   constructor(
     public dialogRef: MatDialogRef<DialogAddDomicilioNotificacion>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
+
+      this.tiposVia = data.tiposVia;
+      this.tiposLocalidad = data.tiposLocalidad;
+      this.delegaciones = data.delegaciones;
     }
 }
 //////////AGREGAR DIRECCION NOTIFICACION///////////
