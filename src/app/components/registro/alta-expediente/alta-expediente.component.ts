@@ -65,6 +65,7 @@ export class AltaExpedienteComponent implements OnInit {
     private snackBar: MatSnackBar,
     private datePipe: DatePipe,
     private _formBuilder: FormBuilder,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -115,6 +116,7 @@ export class AltaExpedienteComponent implements OnInit {
     });
   }
 
+  //////////CATALOGOS///////////
   getTiposTramite(): void {
     let catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
     let filtro = "{\n    \"FILTER\": \"\"\n}";
@@ -201,7 +203,9 @@ export class AltaExpedienteComponent implements OnInit {
       }
     );
   }
+  //////////CATALOGOS///////////
 
+  //////////FUNCIONES PROMOVENTES///////////
   clearFormPromovente(): void {
     this.promoventeFisica.reset();
     this.promoventeMoral.reset();
@@ -345,6 +349,19 @@ export class AltaExpedienteComponent implements OnInit {
     return response;
   }
 
+  openDialogSearchPromovente(): void {
+    const dialogRef = this.dialog.open(DialogSearchPromovente, {
+      width: '700px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        console.log(result);
+      }
+    });
+  }
+  //////////FUNCIONES PROMOVENTES///////////
+
+  //////////FUNCIONES REPRESENTANTES///////////
   clearFormRepresentante(): void {
     this.representanteFisica.reset();
     this.representanteMoral.reset();
@@ -487,4 +504,19 @@ export class AltaExpedienteComponent implements OnInit {
     }
     return response;
   }
+  //////////FUNCIONES REPRESENTANTES///////////
+
 }
+
+@Component({
+  selector: 'app-dialog-search-promovente',
+  templateUrl: 'app-dialog-search-promovente.html',
+})
+export class DialogSearchPromovente {
+  constructor(
+    public dialogRef: MatDialogRef<DialogSearchPromovente>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
+}
+
