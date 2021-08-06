@@ -514,9 +514,9 @@ export class AltaExpedienteComponent implements OnInit {
 
 //////////BUSQUEDA PROMOVENTES///////////
 export interface FiltroDatosPersonales {
+  nombre: string;
   apaterno: string;
   amaterno: string;
-  nombre: string;
 }
 export interface FiltroDatosIdentificativos {
   rfc: string;
@@ -531,6 +531,7 @@ export interface FiltroDatosIdentificativos {
 export class DialogSearchPromovente {
   tiposDocIdentif;
   isBusqueda;
+  promovente;
   loadingPaginado = false;
   pageSize = 15;
   pagina = 1;
