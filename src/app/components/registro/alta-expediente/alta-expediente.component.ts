@@ -353,9 +353,9 @@ export class AltaExpedienteComponent implements OnInit {
   }
 
   openDialogSearchPromovente(): void {
-    const dialogRef = this.dialog.open(DialogSearchPromovente, {
+    const dialogRef = this.dialog.open(DialogSearchPromoventeRepresentante, {
       width: '700px',
-      data: this.tiposDocIdentif,
+      data: {tiposDocIdentif: this.tiposDocIdentif, action: 'getPromovente'},
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -512,7 +512,7 @@ export class AltaExpedienteComponent implements OnInit {
 
 }
 
-//////////BUSQUEDA PROMOVENTES///////////
+//////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
 export interface FiltroDatosPersonales {
   nombre: string;
   apaterno: string;
@@ -525,35 +525,37 @@ export interface FiltroDatosIdentificativos {
   otro: string;
 }
 @Component({
-  selector: 'app-dialog-search-promovente',
-  templateUrl: 'app-dialog-search-promovente.html',
+  selector: 'app-dialog-search-promovente-representante',
+  templateUrl: 'app-dialog-search-promovente-representante.html',
 })
-export class DialogSearchPromovente {
+export class DialogSearchPromoventeRepresentante {
   tiposDocIdentif;
+  action;
   isBusqueda;
   loadingPaginado = false;
   pagina = 1;
   total = 0;
   pageSize = 5;
   dataSource = [];
-  dataPromoventes = [];
+  dataResponse = [];
   displayedColumns: string[] = ['nombre', 'datos_identificativos', 'select'];
   @ViewChild('paginator') paginator: MatPaginator;
   filtroDatosPersonales: FiltroDatosPersonales = {} as FiltroDatosPersonales;
   filtroDatosIdentificativos: FiltroDatosIdentificativos = {} as FiltroDatosIdentificativos;
-  dataPromovente: DataPromoventeRepresentante = {} as DataPromoventeRepresentante;
-  promovente;
+  dataPromoventeRepresentante: DataPromoventeRepresentante = {} as DataPromoventeRepresentante;
+  promoventeRepresentante;
   input;
   tipoDatos;
   
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<DialogSearchPromovente>,
+    public dialogRef: MatDialogRef<DialogSearchPromoventeRepresentante>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
 
-      this.tiposDocIdentif = data;
+      this.tiposDocIdentif = data.tiposDocIdentif;
+      this.action = data.action;
     }
   
   clearDatos(input, tipoDatos): void {
@@ -595,12 +597,12 @@ export class DialogSearchPromovente {
     }
   }
 
-  getDataPromovente(): void {
+  getData(): void {
     this.isBusqueda = true;
     this.loadingPaginado = true;
     this.pagina = 1;
     let filtro = {};
-    let getPromovente = environment.endpoint + '?action=getPromovente';
+    let get = environment.endpoint + '?action=' + this.action;
 
     if(this.tipoDatos === 'personales'){
       filtro = '{\n    \"NOMBRE_COMPLETO\": \"'+((this.filtroDatosPersonales.nombre) ? (this.filtroDatosPersonales.nombre + " ") : "") + ((this.filtroDatosPersonales.apaterno) ? (this.filtroDatosPersonales.apaterno + " ") : "") + ((this.filtroDatosPersonales.amaterno) ? (this.filtroDatosPersonales.amaterno) : "")+'\",\n    \"IDENTIFICADOR\": \"\"\n}';
@@ -608,27 +610,27 @@ export class DialogSearchPromovente {
       filtro = '{\n    \"NOMBRE_COMPLETO\": \"\",\n    \"IDENTIFICADOR\": \"'+this.filtroDatosIdentificativos[this.input]+'\"\n}';
     }
 
-    this.http.post(getPromovente, filtro).subscribe(
+    this.http.post(get, filtro).subscribe(
       (res: any) => {
         this.loadingPaginado = false;
         if(res.error.code === 0)
         {
           if(res.data.ADYCON_PERSONAFISICAAYC.length > 0){
-            this.dataPromoventes = res.data.ADYCON_PERSONAFISICAAYC;
-            this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
-            this.total = this.dataPromoventes.length;
+            this.dataResponse = res.data.ADYCON_PERSONAFISICAAYC;
+            this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+            this.total = this.dataResponse.length;
             this.paginator.pageIndex = 0;
           } else if(res.data.ADYCON_PERSONAMORALAYC.length > 0){
-            this.dataPromoventes = res.data.ADYCON_PERSONAMORALAYC;
-            this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
-            this.total = this.dataPromoventes.length;
+            this.dataResponse = res.data.ADYCON_PERSONAMORALAYC;
+            this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+            this.total = this.dataResponse.length;
             this.paginator.pageIndex = 0;
           } else {
-            this.dataPromoventes = [];
+            this.dataResponse = [];
             this.dataSource = [];
             this.total = 0;
             this.paginator.pageIndex = 0;
-            this.promovente = undefined;
+            this.promoventeRepresentante = undefined;
           }
         } else {
           this.snackBar.open(res.error.message, 'Cerrar', {
@@ -651,15 +653,15 @@ export class DialogSearchPromovente {
 
   paginado(evt): void{
     this.pagina = evt.pageIndex + 1;
-    this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
+    this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
   }
 
   paginate(array, page_size, page_number) {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
-  promoventeSelected(promovente): void {
-    console.log(promovente);
+  promoventeRepresentanteSelected(promoventeRepresentante): void {
+    this.dataPromoventeRepresentante = promoventeRepresentante;
   }
 }
-//////////BUSQUEDA PROMOVENTES///////////
+//////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
