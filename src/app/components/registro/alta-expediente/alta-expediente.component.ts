@@ -376,6 +376,8 @@ export class AltaExpedienteComponent implements OnInit {
           this.promoventeMoral.controls['RFC'].setValue(result.RFC);
           this.promoventeMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
         }
+
+        this.isEdicionPromovente = false;
       }
     });
   }
@@ -549,6 +551,8 @@ export class AltaExpedienteComponent implements OnInit {
           this.representanteMoral.controls['RFC'].setValue(result.RFC);
           this.representanteMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
         }
+
+        this.isEdicionRepresentante = false;
       }
     });
   }
