@@ -524,6 +524,34 @@ export class AltaExpedienteComponent implements OnInit {
     }
     return response;
   }
+
+  openDialogSearchRepresentante(): void {
+    const dialogRef = this.dialog.open(DialogSearchPromoventeRepresentante, {
+      width: '700px',
+      data: {tiposDocIdentif: this.tiposDocIdentif, action: 'getRepresentante'},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.tipoPersonaRepresentante = result.TIPOPERSONA;
+        if(this.tipoPersonaRepresentante == 'FISICA'){
+          this.representanteFisica.controls['NOMBRE'].setValue(result.NOMBRE);
+          this.representanteFisica.controls['APELLIDOPATERNO'].setValue(result.APELLIDOPATERNO);
+          this.representanteFisica.controls['APELLIDOMATERNO'].setValue(result.APELLIDOMATERNO);
+          this.representanteFisica.controls['RFC'].setValue(result.RFC);
+          this.representanteFisica.controls['CURP'].setValue(result.CURP);
+          this.representanteFisica.controls['CLAVEIFE'].setValue(result.CLAVEIFE);
+          this.representanteFisica.controls['IDDOCIDENTIF'].setValue(result.IDDOCIDENTIF);
+          this.representanteFisica.controls['OTROS'].setValue(result.OTROS);
+          this.representanteFisica.controls['CELULAR'].setValue(result.CELULAR);
+          this.representanteFisica.controls['EMAIL'].setValue(result.EMAIL);
+        } else {
+          this.representanteMoral.controls['NOMBRE'].setValue(result.NOMBRE);
+          this.representanteMoral.controls['RFC'].setValue(result.RFC);
+          this.representanteMoral.controls['ACTIVPRINCIP'].setValue(result.ACTIVPRINCIP);
+        }
+      }
+    });
+  }
   //////////FUNCIONES REPRESENTANTES///////////
 
 }
