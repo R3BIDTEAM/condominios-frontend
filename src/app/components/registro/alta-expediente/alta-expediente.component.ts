@@ -30,6 +30,12 @@ export interface DataPromoventeRepresentante {
   ACTIVPRINCIP: string;
   NOTIFICACION: boolean;
 }
+export interface DataCuentaCatastral {
+  REGION: string;
+  MANZANA: string;
+  LOTE: string;
+  UNIDADPRIVATIVA: string;
+}
 @Component({
   selector: 'app-alta-expediente',
   templateUrl: './alta-expediente.component.html',
@@ -56,10 +62,12 @@ export class AltaExpedienteComponent implements OnInit {
   dataExpediente: DataExpediente = {} as DataExpediente;
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentantes: DataPromoventeRepresentante[] = [];
+  dataCuentasCatastrales: DataCuentaCatastral[] = [];
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
   representanteFisica: FormGroup;
   representanteMoral: FormGroup;
+  cuentaCatastral: FormGroup;
 
   constructor(
     private http: HttpClient,
@@ -114,6 +122,13 @@ export class AltaExpedienteComponent implements OnInit {
       NOMBRE: [null, [Validators.required]],
       RFC: [null, [Validators.required]],
       ACTIVPRINCIP: [null, [Validators.required]],
+    });
+
+    this.cuentaCatastral = this._formBuilder.group({
+      REGION: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+      MANZANA: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+      LOTE: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      UNIDADPRIVATIVA: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
     });
   }
 
@@ -560,6 +575,27 @@ export class AltaExpedienteComponent implements OnInit {
     });
   }
   //////////FUNCIONES REPRESENTANTES///////////
+
+  //////////FUNCIONES CUENTAS CATASTRALES///////////
+  clearFormCuentaCatastral(): void {
+    this.cuentaCatastral.reset();
+  }
+
+  addCuentaCatastral(): void {
+    let cuentaCatastral = {} as DataCuentaCatastral; 
+    cuentaCatastral.REGION = this.cuentaCatastral.value.REGION;
+    cuentaCatastral.MANZANA = this.cuentaCatastral.value.MANZANA;
+    cuentaCatastral.LOTE = this.cuentaCatastral.value.LOTE;
+    cuentaCatastral.UNIDADPRIVATIVA = this.cuentaCatastral.value.UNIDADPRIVATIVA;
+
+    this.dataCuentasCatastrales.push(cuentaCatastral);
+    this.clearFormCuentaCatastral();
+  }
+  
+  deleteCuentaCatastral(index): void {
+    this.dataCuentasCatastrales.splice(index, 1);
+  }
+  //////////FUNCIONES CUENTAS CATASTRALES///////////
 
 }
 

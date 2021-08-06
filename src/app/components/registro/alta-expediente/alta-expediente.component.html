@@ -502,6 +502,76 @@
             </mat-tab>
         </mat-tab-group>
         
+        <fieldset>
+            <legend>Datos Inmuebles</legend>
+            <form [formGroup]="cuentaCatastral">
+                <div class="row">
+                    <mat-form-field class="col-2" appearance="outline">
+                        <mat-label>Región: *</mat-label>
+                        <input matInput #region formControlName="REGION" minlength="3" maxlength="3">
+                        <mat-error *ngIf="cuentaCatastral.controls.REGION.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.REGION.errors?.minlength">Tiene que tener 3 alfanumericos</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.REGION.errors?.maxlength">Tiene que tener 3 alfanumericos</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-2" appearance="outline">
+                        <mat-label>Manzana: *</mat-label>
+                        <input matInput #manzana formControlName="MANZANA" minlength="3" maxlength="3">
+                        <mat-error *ngIf="cuentaCatastral.controls.MANZANA.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.MANZANA.errors?.minlength">Tiene que tener 3 alfanumericos</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.MANZANA.errors?.maxlength">Tiene que tener 3 alfanumericos</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-2" appearance="outline">
+                        <mat-label>Lote: *</mat-label>
+                        <input matInput #lote formControlName="LOTE" minlength="2" maxlength="2">
+                        <mat-error *ngIf="cuentaCatastral.controls.LOTE.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.LOTE.errors?.minlength">Tiene que tener 2 alfanumericos</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.LOTE.errors?.maxlength">Tiene que tener 2 alfanumericos</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="col-2" appearance="outline">
+                        <mat-label>Unidad Privativa: *</mat-label>
+                        <input matInput #unidad formControlName="UNIDADPRIVATIVA" minlength="3" maxlength="3">
+                        <mat-error *ngIf="cuentaCatastral.controls.UNIDADPRIVATIVA.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.UNIDADPRIVATIVA.errors?.minlength">Tiene que tener 3 alfanumericos</mat-error>
+                        <mat-error *ngIf="cuentaCatastral.controls.UNIDADPRIVATIVA.errors?.maxlength">Tiene que tener 3 alfanumericos</mat-error>
+                    </mat-form-field>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2">
+                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="cuentaCatastral.invalid" (click)="addCuentaCatastral()">
+                            Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ng-container *ngIf="dataCuentasCatastrales.length != 0">
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Cuenta catastral</th>
+                                    <th>Dirección</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cuenta of dataCuentasCatastrales; let i = index;">
+                                    <td>{{ cuenta.REGION }}-{{ cuenta.MANZANA }}-{{ cuenta.LOTE }}-{{ cuenta.UNIDADPRIVATIVA }}</td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deleteCuentaCatastral(i)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                   
+                    </div>
+                </div>
+            </ng-container>
+        </fieldset>
+        
     </ng-container>
 
 </ng-container>
