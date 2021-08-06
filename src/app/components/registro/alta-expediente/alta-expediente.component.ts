@@ -629,6 +629,12 @@ export class AltaExpedienteComponent implements OnInit {
   }
   //////////FUNCIONES CUENTAS CATASTRALES///////////
 
+  //////////FUNCIONES DIRECCION NOTIFICACION///////////
+  openDialogAddDireccionNotificacion(): void {
+    
+  }
+  //////////FUNCIONES DIRECCION NOTIFICACION///////////
+
 }
 
 //////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
