@@ -531,11 +531,10 @@ export interface FiltroDatosIdentificativos {
 export class DialogSearchPromovente {
   tiposDocIdentif;
   isBusqueda;
-  promovente;
   loadingPaginado = false;
-  pageSize = 15;
   pagina = 1;
   total = 0;
+  pageSize = 15;
   dataSource = [];
   dataPromoventes = [];
   displayedColumns: string[] = ['nombre', 'datos_identificativos', 'select'];
@@ -543,6 +542,8 @@ export class DialogSearchPromovente {
   filtroDatosPersonales: FiltroDatosPersonales = {} as FiltroDatosPersonales;
   filtroDatosIdentificativos: FiltroDatosIdentificativos = {} as FiltroDatosIdentificativos;
   dataPromovente: DataPromoventeRepresentante = {} as DataPromoventeRepresentante;
+  promovente;
+  tipoDatos;
   
   constructor(
     private http: HttpClient,
@@ -553,5 +554,49 @@ export class DialogSearchPromovente {
 
       this.tiposDocIdentif = data;
     }
+  
+  clearDatos(input, tipoDatos): void {
+    if(tipoDatos === 'identificativos'){
+      this.filtroDatosIdentificativos = {} as FiltroDatosIdentificativos;
+    } else {
+      this.filtroDatosPersonales = {} as FiltroDatosPersonales;
+      switch(input) {
+        case 'rfc': {
+          this.filtroDatosIdentificativos.curp = undefined;
+          this.filtroDatosIdentificativos.ife = undefined;
+          this.filtroDatosIdentificativos.otro = undefined;
+          break;
+        }
+        case 'curp': {
+          this.filtroDatosIdentificativos.rfc = undefined;
+          this.filtroDatosIdentificativos.ife = undefined;
+          this.filtroDatosIdentificativos.otro = undefined;
+          break;
+        }
+        case 'ife': {
+          this.filtroDatosIdentificativos.rfc = undefined;
+          this.filtroDatosIdentificativos.curp = undefined;
+          this.filtroDatosIdentificativos.otro = undefined;
+          break;
+        }
+        case 'otro': {
+          this.filtroDatosIdentificativos.rfc = undefined;
+          this.filtroDatosIdentificativos.curp = undefined;
+          this.filtroDatosIdentificativos.ife = undefined;
+          break;
+        }
+        default: {
+          break;
+        }
+      } 
+    }
+  }
+
+  getDataPromovente(): void {
+    this.isBusqueda = true;
+    this.loadingPaginado = true;
+    this.pagina = 1;
+    let getPromovente = environment.endpoint + '?action=getPromovente';
+  }
 }
 //////////BUSQUEDA PROMOVENTES///////////

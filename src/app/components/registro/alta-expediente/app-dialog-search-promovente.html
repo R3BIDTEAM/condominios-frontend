@@ -4,32 +4,32 @@
         <div class="row">
             <mat-form-field class="col-md-6">
                 <mat-label>Nombre/Razón social:</mat-label>
-                <input matInput placeholder="Nombre/Razón social" [(ngModel)]="filtroDatosPersonales.nombre" name="nombre">
+                <input matInput placeholder="Nombre/Razón social" [(ngModel)]="filtroDatosPersonales.nombre" name="nombre" (ngModelChange)="clearDatos('nombre', 'identificativos')">
             </mat-form-field>
         </div>
         <div class="row">
             <mat-form-field class="col-md-6">
                 <mat-label>Apellido Paterno:</mat-label>
-                <input matInput placeholder="Apellido Paterno" [(ngModel)]="filtroDatosPersonales.apaterno" name="apaterno">
+                <input matInput placeholder="Apellido Paterno" [(ngModel)]="filtroDatosPersonales.apaterno" name="apaterno" (ngModelChange)="clearDatos('apaterno', 'identificativos')">
             </mat-form-field>
             <mat-form-field class="col-md-6">
                 <mat-label>Apellido Materno:</mat-label>
-                <input matInput placeholder="Apellido Materno" [(ngModel)]="filtroDatosPersonales.amaterno" name="amaterno">
+                <input matInput placeholder="Apellido Materno" [(ngModel)]="filtroDatosPersonales.amaterno" name="amaterno" (ngModelChange)="clearDatos('amaterno', 'identificativos')">
             </mat-form-field>
         </div>
         <hr>
         <div class="row">
             <mat-form-field class="col-md-4">
                 <mat-label>RFC:</mat-label>
-                <input matInput placeholder="RFC" [(ngModel)]="filtroDatosIdentificativos.rfc" name="rfc">
+                <input matInput placeholder="RFC" [(ngModel)]="filtroDatosIdentificativos.rfc" name="rfc" (ngModelChange)="clearDatos('rfc', 'personales')">
             </mat-form-field>
             <mat-form-field class="col-md-4">
                 <mat-label>CURP:</mat-label>
-                <input matInput placeholder="CURP" [(ngModel)]="filtroDatosIdentificativos.curp" name="curp">
+                <input matInput placeholder="CURP" [(ngModel)]="filtroDatosIdentificativos.curp" name="curp" (ngModelChange)="clearDatos('curp', 'personales')">
             </mat-form-field>
             <mat-form-field class="col-md-4">
                 <mat-label>Clave INE:</mat-label>
-                <input matInput placeholder="Clave INE" [(ngModel)]="filtroDatosIdentificativos.ife" name="ife">
+                <input matInput placeholder="Clave INE" [(ngModel)]="filtroDatosIdentificativos.ife" name="ife" (ngModelChange)="clearDatos('ife', 'personales')">
             </mat-form-field>
         </div>
         <div class="row">
@@ -43,8 +43,13 @@
             </mat-form-field>
             <mat-form-field class="col-md-4">
                 <mat-label></mat-label>
-                <input matInput [(ngModel)]="filtroDatosIdentificativos.otro" name="otro">
+                <input matInput [(ngModel)]="filtroDatosIdentificativos.otro" name="otro" (ngModelChange)="clearDatos('otro', 'personales')">
             </mat-form-field>
+        </div>
+        <div class="col" align="middle">
+            <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" (click)="getDataPromovente()">
+                <mat-icon>search</mat-icon>
+            </button>
         </div>
     </form>
 </div>
