@@ -556,6 +556,7 @@ export class DialogSearchPromovente {
     }
   
   clearDatos(input, tipoDatos): void {
+    this.tipoDatos = tipoDatos;
     if(tipoDatos === 'identificativos'){
       this.filtroDatosIdentificativos = {} as FiltroDatosIdentificativos;
     } else {
