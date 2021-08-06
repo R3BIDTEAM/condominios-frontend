@@ -671,7 +671,14 @@ export class AltaExpedienteComponent implements OnInit {
 
   //////////FUNCIONES DIRECCION NOTIFICACION///////////
   openDialogAddDireccionNotificacion(): void {
-    
+    const dialogRef = this.dialog.open(DialogAddDomicilioNotificacion, {
+      width: '700px',
+      data: {},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+      }
+    });
   }
   //////////FUNCIONES DIRECCION NOTIFICACION///////////
 
@@ -835,3 +842,17 @@ export class DialogSearchPromoventeRepresentante {
   }
 }
 //////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
+
+//////////AGREGAR DIRECCION NOTIFICACION///////////
+@Component({
+  selector: 'app-dialog-add-domicilio-notificacion',
+  templateUrl: 'app-dialog-add-domicilio-notificacion.html',
+})
+export class DialogAddDomicilioNotificacion {
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddDomicilioNotificacion>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
+}
+//////////AGREGAR DIRECCION NOTIFICACION///////////
