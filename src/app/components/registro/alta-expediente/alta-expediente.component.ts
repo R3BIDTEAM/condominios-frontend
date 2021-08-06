@@ -333,6 +333,9 @@ export class AltaExpedienteComponent implements OnInit {
   deletePromovente(index): void {
     this.dataPromoventes.splice(index, 1);
     this.isEdicionPromovente = false;
+    if(this.dataPromoventes.length == 0){
+      this.dataRepresentantes = [];
+    }
   }
 
   validatePromoventeRepresentante(rfc): boolean {
