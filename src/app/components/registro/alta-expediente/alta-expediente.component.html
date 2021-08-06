@@ -174,14 +174,14 @@
                                     <mat-label>Celular: *</mat-label>
                                     <input matInput formControlName="CELULAR" maxlength="10" placeholder="Ingrese el número de celular">
                                     <mat-error *ngIf="promoventeFisica.controls.CELULAR.errors?.required">Requerido</mat-error>
-                                    <mat-error *ngIf="promoventeFisica.controls.CELULAR.errors?.minLength">El número celular debe de contener 10 digitos</mat-error>
-                                    <mat-error *ngIf="promoventeFisica.controls.CELULAR.errors?.maxLength">El número celular debe de contener 10 digitos</mat-error>
+                                    <mat-error *ngIf="promoventeFisica.controls.CELULAR.errors?.minlength">El número celular debe de contener 10 digitos</mat-error>
+                                    <mat-error *ngIf="promoventeFisica.controls.CELULAR.errors?.maxlength">El número celular debe de contener 10 digitos</mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline"  class="col-5">
                                     <mat-label>E-mail: *</mat-label>
                                     <input matInput formControlName="EMAIL" maxlength="50" placeholder="Ingrese el email">
                                     <mat-error *ngIf="promoventeFisica.controls.EMAIL.errors?.required">Requerido</mat-error>
-                                    <mat-error *ngIf="promoventeFisica.controls.EMAIL.errors?.maxLength">La estructura del correo es incorrecta</mat-error>
+                                    <mat-error *ngIf="promoventeFisica.controls.EMAIL.errors?.email">La estructura del correo es errónea</mat-error>
                                 </mat-form-field>
                             </div>
                         </form>
@@ -378,14 +378,14 @@
                                     <mat-label>Celular: *</mat-label>
                                     <input matInput formControlName="CELULAR" maxlength="10" placeholder="Ingrese el número de celular">
                                     <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.required">Requerido</mat-error>
-                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.minLength">El número celular debe de contener 10 digitos</mat-error>
-                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.maxLength">El número celular debe de contener 10 digitos</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.minlength">El número celular debe de contener 10 digitos</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.CELULAR.errors?.maxlength">El número celular debe de contener 10 digitos</mat-error>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline"  class="col-5">
                                     <mat-label>E-mail: *</mat-label>
                                     <input matInput formControlName="EMAIL" maxlength="50" placeholder="Ingrese el email">
                                     <mat-error *ngIf="representanteFisica.controls.EMAIL.errors?.required">Requerido</mat-error>
-                                    <mat-error *ngIf="representanteFisica.controls.EMAIL.errors?.maxLength">La estructura del correo es incorrecta</mat-error>
+                                    <mat-error *ngIf="representanteFisica.controls.EMAIL.errors?.email">La estructura del correo es errónea</mat-error>
                                 </mat-form-field>
                             </div>
                         </form>
