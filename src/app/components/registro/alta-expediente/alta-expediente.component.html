@@ -1,9 +1,9 @@
 <h1 class="titulo-cdmx">Alta Expediente</h1>
-<div style="padding: 30px; text-align: center;" *ngIf="loadingTiposTramite || loadingTiposPersona || loadingTiposDocIdentif">
+<div style="padding: 30px; text-align: center;" *ngIf="loadingTiposTramite || loadingTiposPersona || loadingTiposDocIdentif || loadingTiposVia || loadingTiposLocalidad || loadingDelegaciones">
     <mat-spinner style="margin:0 auto;"></mat-spinner>
     <p>Cargando...</p>
 </div>
-<ng-container *ngIf="!loadingTiposTramite && !loadingTiposPersona && !loadingTiposDocIdentif">
+<ng-container *ngIf="!loadingTiposTramite && !loadingTiposPersona && !loadingTiposDocIdentif && !loadingTiposVia && !loadingTiposLocalidad && !loadingDelegaciones">
 
     <fieldset>
         <legend>Elección de Trámite</legend>

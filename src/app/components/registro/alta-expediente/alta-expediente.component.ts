@@ -80,6 +80,12 @@ export class AltaExpedienteComponent implements OnInit {
   tiposPersona;
   loadingTiposDocIdentif = false;
   tiposDocIdentif;
+  loadingTiposVia = false;
+  tiposVia;
+  loadingTiposLocalidad = false;
+  tiposLocalidad;
+  loadingDelegaciones= false;
+  delegaciones;
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
@@ -113,6 +119,9 @@ export class AltaExpedienteComponent implements OnInit {
     this.getTiposTramite();
     this.getTiposPersona();
     this.getTiposDocIdentif();
+    this.getTiposVia();
+    this.getTiposLocalidad();
+    this.getDelegaciones();
 
     this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
@@ -243,6 +252,93 @@ export class AltaExpedienteComponent implements OnInit {
       },
       (error) => {
         this.loadingTiposDocIdentif = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  getTiposVia(): void {
+    let catTiposVia = environment.endpoint + '?action=getCatalogo&table=CAS_CATTIPOSVIA';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
+    this.loadingTiposVia = true;
+    this.http.post(catTiposVia, filtro).subscribe(
+      (res: any) => {
+        this.loadingTiposVia = false;
+        if(res.error.code === 0)
+        {
+          this.tiposVia = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingTiposVia = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  getTiposLocalidad(): void {
+    let catTiposLocalidad = environment.endpoint + '?action=getCatalogo&table=CAS_CATTIPOSLOCALIDAD';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
+    this.loadingTiposLocalidad = true;
+    this.http.post(catTiposLocalidad, filtro).subscribe(
+      (res: any) => {
+        this.loadingTiposLocalidad = false;
+        if(res.error.code === 0)
+        {
+          this.tiposLocalidad = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingTiposLocalidad = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  getDelegaciones(): void {
+    let catDelegacion = environment.endpoint + '?action=getCatalogo&table=CAS_DELEGACION';
+    let filtro = "{\n    \"FILTER\": \"\"\n}";
+    this.loadingDelegaciones = true;
+    this.http.post(catDelegacion, filtro).subscribe(
+      (res: any) => {
+        this.loadingDelegaciones = false;
+        if(res.error.code === 0)
+        {
+          this.delegaciones = res.data.result;
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingDelegaciones = false;
         this.snackBar.open(error.message, 'Cerrar', {
           duration: 10000,
           horizontalPosition: 'end',
