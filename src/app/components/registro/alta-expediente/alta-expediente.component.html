@@ -259,6 +259,7 @@
                                             <th>Datos Personales</th>
                                             <th>Datos Identificativos</th>
                                             <th>Datos de Contacto</th>
+                                            <th>Datos de Notificación</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -279,6 +280,9 @@
                                                 {{ promovente.CELULAR }}
                                                 <br>
                                                 {{ promovente.EMAIL }}
+                                            </td>
+                                            <td>
+                                                <mat-checkbox [(ngModel)]="promovente.NOTIFICACION" [disabled]="promovente.NOTIFICACION" (change)="setDatosNotificacionPromovente(i)"></mat-checkbox>
                                             </td>
                                             <td>
                                                 <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar" (click)="editPromovente(i)">
@@ -463,6 +467,7 @@
                                             <th>Datos Personales</th>
                                             <th>Datos Identificativos</th>
                                             <th>Datos de Contacto</th>
+                                            <th>Datos de Notificación</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -483,6 +488,9 @@
                                                 {{ representante.CELULAR }}
                                                 <br>
                                                 {{ representante.EMAIL }}
+                                            </td>
+                                            <td>
+                                                <mat-checkbox [(ngModel)]="representante.NOTIFICACION" [disabled]="representante.NOTIFICACION" (change)="setDatosNotificacionRepresentante(i)"></mat-checkbox>
                                             </td>
                                             <td>
                                                 <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar" (click)="editRepresentante(i)">

@@ -281,6 +281,10 @@ export class AltaExpedienteComponent implements OnInit {
       this.idpersona = undefined;
       this.dataPromoventes.push(promovente);
       this.clearFormPromovente();
+
+      if(this.dataPromoventes.length == 1){
+        this.dataPromoventes[0].NOTIFICACION = true;
+      }
     } else {
       this.snackBar.open("No puede agregar como promovente una persona que ya esta como representante", 'Cerrar', {
         duration: 10000,
@@ -328,6 +332,10 @@ export class AltaExpedienteComponent implements OnInit {
       this.idpersona = undefined;
       this.dataPromoventes.push(promovente);
       this.clearFormPromovente();
+
+      if(this.dataPromoventes.length == 1){
+        this.dataPromoventes[0].NOTIFICACION = true;
+      }
     } else {
       this.snackBar.open("No puede agregar como promovente una persona que ya esta como representante", 'Cerrar', {
         duration: 10000,
@@ -384,6 +392,9 @@ export class AltaExpedienteComponent implements OnInit {
     if(this.dataPromoventes.length == 0){
       this.dataRepresentantes = [];
     }
+    if(this.dataPromoventes.length == 1){
+      this.dataPromoventes[0].NOTIFICACION = true;
+    }
   }
 
   validatePromoventeRepresentante(rfc): boolean {
@@ -429,6 +440,19 @@ export class AltaExpedienteComponent implements OnInit {
         this.isEdicionPromovente = false;
       }
     });
+  }
+
+  setDatosNotificacionPromovente(index): void {
+    for(let i = 0; i < this.dataPromoventes.length; i++) {
+      if(i != index){
+        this.dataPromoventes[i].NOTIFICACION = false;
+      }
+    }
+    if(this.dataRepresentantes.length > 0){
+      for(let i = 0; i < this.dataRepresentantes.length; i++) {
+        this.dataRepresentantes[i].NOTIFICACION = false;
+      }
+    }
   }
   //////////FUNCIONES PROMOVENTES///////////
 
@@ -560,6 +584,9 @@ export class AltaExpedienteComponent implements OnInit {
   deleteRepresentante(index): void {
     this.dataRepresentantes.splice(index, 1);
     this.isEdicionRepresentante = false;
+    if(this.dataRepresentantes.length == 0){
+      this.dataPromoventes[0].NOTIFICACION = true;
+    }
   }
 
   validateRepresentantePromovente(rfc): boolean {
@@ -605,6 +632,19 @@ export class AltaExpedienteComponent implements OnInit {
         this.isEdicionRepresentante = false;
       }
     });
+  }
+
+  setDatosNotificacionRepresentante(index): void {
+    for(let i = 0; i < this.dataRepresentantes.length; i++) {
+      if(i != index){
+        this.dataRepresentantes[i].NOTIFICACION = false;
+      }
+    }
+    if(this.dataPromoventes.length > 0){
+      for(let i = 0; i < this.dataPromoventes.length; i++) {
+        this.dataPromoventes[i].NOTIFICACION = false;
+      }
+    }
   }
   //////////FUNCIONES REPRESENTANTES///////////
 
