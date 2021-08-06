@@ -948,7 +948,10 @@ export class DialogAddDomicilioNotificacion {
   tiposVia;
   tiposLocalidad;
   delegaciones;
+  domicilio: FormGroup;
+
   constructor(
+    private _formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DialogAddDomicilioNotificacion>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
@@ -956,6 +959,9 @@ export class DialogAddDomicilioNotificacion {
       this.tiposVia = data.tiposVia;
       this.tiposLocalidad = data.tiposLocalidad;
       this.delegaciones = data.delegaciones;
+
+      this.domicilio = this._formBuilder.group({
+      });
     }
 }
 //////////AGREGAR DIRECCION NOTIFICACION///////////
