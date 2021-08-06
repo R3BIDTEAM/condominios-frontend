@@ -534,7 +534,7 @@ export class DialogSearchPromovente {
   loadingPaginado = false;
   pagina = 1;
   total = 0;
-  pageSize = 15;
+  pageSize = 5;
   dataSource = [];
   dataPromoventes = [];
   displayedColumns: string[] = ['nombre', 'datos_identificativos', 'select'];
@@ -543,6 +543,7 @@ export class DialogSearchPromovente {
   filtroDatosIdentificativos: FiltroDatosIdentificativos = {} as FiltroDatosIdentificativos;
   dataPromovente: DataPromoventeRepresentante = {} as DataPromoventeRepresentante;
   promovente;
+  input;
   tipoDatos;
   
   constructor(
@@ -557,9 +558,10 @@ export class DialogSearchPromovente {
   
   clearDatos(input, tipoDatos): void {
     this.tipoDatos = tipoDatos;
-    if(tipoDatos === 'identificativos'){
+    if(tipoDatos === 'personales'){
       this.filtroDatosIdentificativos = {} as FiltroDatosIdentificativos;
     } else {
+      this.input = input;
       this.filtroDatosPersonales = {} as FiltroDatosPersonales;
       switch(input) {
         case 'rfc': {
@@ -597,7 +599,67 @@ export class DialogSearchPromovente {
     this.isBusqueda = true;
     this.loadingPaginado = true;
     this.pagina = 1;
+    let filtro = {};
     let getPromovente = environment.endpoint + '?action=getPromovente';
+
+    if(this.tipoDatos === 'personales'){
+      filtro = '{\n    \"NOMBRE_COMPLETO\": \"'+((this.filtroDatosPersonales.nombre) ? (this.filtroDatosPersonales.nombre + " ") : "") + ((this.filtroDatosPersonales.apaterno) ? (this.filtroDatosPersonales.apaterno + " ") : "") + ((this.filtroDatosPersonales.amaterno) ? (this.filtroDatosPersonales.amaterno) : "")+'\",\n    \"IDENTIFICADOR\": \"\"\n}';
+    } else {
+      filtro = '{\n    \"NOMBRE_COMPLETO\": \"\",\n    \"IDENTIFICADOR\": \"'+this.filtroDatosIdentificativos[this.input]+'\"\n}';
+    }
+
+    this.http.post(getPromovente, filtro).subscribe(
+      (res: any) => {
+        this.loadingPaginado = false;
+        if(res.error.code === 0)
+        {
+          if(res.data.ADYCON_PERSONAFISICAAYC.length > 0){
+            this.dataPromoventes = res.data.ADYCON_PERSONAFISICAAYC;
+            this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
+            this.total = this.dataPromoventes.length;
+            this.paginator.pageIndex = 0;
+          } else if(res.data.ADYCON_PERSONAMORALAYC.length > 0){
+            this.dataPromoventes = res.data.ADYCON_PERSONAMORALAYC;
+            this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
+            this.total = this.dataPromoventes.length;
+            this.paginator.pageIndex = 0;
+          } else {
+            this.dataPromoventes = [];
+            this.dataSource = [];
+            this.total = 0;
+            this.paginator.pageIndex = 0;
+            this.promovente = undefined;
+          }
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingPaginado = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  paginado(evt): void{
+    this.pagina = evt.pageIndex + 1;
+    this.dataSource = this.paginate(this.dataPromoventes, this.pageSize, this.pagina);
+  }
+
+  paginate(array, page_size, page_number) {
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  }
+
+  promoventeSelected(promovente): void {
+    console.log(promovente);
   }
 }
 //////////BUSQUEDA PROMOVENTES///////////
