@@ -36,6 +36,37 @@ export interface DataCuentaCatastral {
   LOTE: string;
   UNIDADPRIVATIVA: string;
 }
+export interface DataDomicilioNotificacion {
+  IDDOMICILIONOTIFICACIONES: number;
+  CODTIPOSVIA: number;
+  IDVIA: number;
+  VIA: string;
+  NUMEROEXTERIOR: string;
+  ENTRECALLE1: string;
+  ENTRECALLE2: string;
+  ANDADOR: string;
+  EDIFICIO: string;
+  SECCION: string;
+  ENTRADA: string;
+  CODTIPOSLOCALIDAD: number;
+  NUMEROINTERIOR: string;
+  CODTIPOSASENTAMIENTO: number;
+  IDCOLONIA: number;
+  CODASENTAMIENTO: number;
+  COLONIA: string;
+  CODIGOPOSTAL: string;
+  CODCIUDAD: number;
+  CIUDAD: string;
+  IDDELEGACION: number;
+  CODMUNICIPIO: number;
+  DELEGACION: string;
+  TELEFONO: string;
+  CODESTADO: number;
+  INDICACIONESADICIONALES: string;
+  IDCHS_MTODESDE: number;
+  CODTIPOSDIRECCION: string;
+  CODTIPOSDIRECCI: string;
+}
 @Component({
   selector: 'app-alta-expediente',
   templateUrl: './alta-expediente.component.html',
@@ -63,6 +94,7 @@ export class AltaExpedienteComponent implements OnInit {
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentantes: DataPromoventeRepresentante[] = [];
   dataCuentasCatastrales: DataCuentaCatastral[] = [];
+  dataDomicilioNotificacion: DataDomicilioNotificacion = {} as DataDomicilioNotificacion;
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
   representanteFisica: FormGroup;
