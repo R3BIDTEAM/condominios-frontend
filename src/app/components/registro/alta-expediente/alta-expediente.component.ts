@@ -355,6 +355,7 @@ export class AltaExpedienteComponent implements OnInit {
   openDialogSearchPromovente(): void {
     const dialogRef = this.dialog.open(DialogSearchPromovente, {
       width: '700px',
+      data: this.tiposDocIdentif,
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -511,15 +512,45 @@ export class AltaExpedienteComponent implements OnInit {
 
 }
 
+//////////BUSQUEDA PROMOVENTES///////////
+export interface FiltroDatosPersonales {
+  apaterno: string;
+  amaterno: string;
+  nombre: string;
+}
+export interface FiltroDatosIdentificativos {
+  rfc: string;
+  curp: string;
+  ife: string;
+  otro: string;
+}
 @Component({
   selector: 'app-dialog-search-promovente',
   templateUrl: 'app-dialog-search-promovente.html',
 })
 export class DialogSearchPromovente {
+  tiposDocIdentif;
+  isBusqueda;
+  loadingPaginado = false;
+  pageSize = 15;
+  pagina = 1;
+  total = 0;
+  dataSource = [];
+  dataPromoventes = [];
+  displayedColumns: string[] = ['nombre', 'datos_identificativos', 'select'];
+  @ViewChild('paginator') paginator: MatPaginator;
+  filtroDatosPersonales: FiltroDatosPersonales = {} as FiltroDatosPersonales;
+  filtroDatosIdentificativos: FiltroDatosIdentificativos = {} as FiltroDatosIdentificativos;
+  dataPromovente: DataPromoventeRepresentante = {} as DataPromoventeRepresentante;
+  
   constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<DialogSearchPromovente>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
+
+      this.tiposDocIdentif = data;
     }
 }
-
+//////////BUSQUEDA PROMOVENTES///////////
