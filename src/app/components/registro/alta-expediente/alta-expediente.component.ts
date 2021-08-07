@@ -961,6 +961,62 @@ export class DialogAddDomicilioNotificacion {
       this.delegaciones = data.delegaciones;
 
       this.domicilio = this._formBuilder.group({
+        CODESTADO: [10, Validators.required],
+        IDDELEGACION: ['', Validators.required],
+
+
+        /*
+        IDDOMICILIONOTIFICACIONES: number;
+  CODTIPOSVIA: number;
+  IDVIA: number;
+  VIA: string;
+  NUMEROEXTERIOR: string;
+  ENTRECALLE1: string;
+  ENTRECALLE2: string;
+  ANDADOR: string;
+  EDIFICIO: string;
+  SECCION: string;
+  ENTRADA: string;
+  CODTIPOSLOCALIDAD: number;
+  NUMEROINTERIOR: string;
+  CODTIPOSASENTAMIENTO: number;
+  IDCOLONIA: number;
+  CODASENTAMIENTO: number;
+  COLONIA: string;
+  CODIGOPOSTAL: string;
+  CODCIUDAD: number;
+  CIUDAD: string;
+  CODMUNICIPIO: number;
+  DELEGACION: string;
+  TELEFONO: string;
+  INDICACIONESADICIONALES: string;
+  IDCHS_MTODESDE: number;
+  CODTIPOSDIRECCION: string;
+  CODTIPOSDIRECCI: string;
+  
+        idestado: ['', Validators.required],
+            delegacion: [null],
+            municipio: [null, Validators.required],
+            idciudad: [null],
+            ciudad: [null, Validators.required],
+            codasentamiento: [null, Validators.required],
+            asentamiento: [null, Validators.required],
+            idtipoasentamiento: [null],
+            codtiposvia: [null],
+            idtipovia: ['', Validators.required],
+            via: [null, Validators.required],
+            idtipolocalidad: [null],
+            cp: [null],
+            nexterior: [null, Validators.required],
+            entrecalle1: [null],
+            entrecalle2: [null],
+            andador: [null],
+            edificio: [null],
+            seccion: [null],
+            entrada: [null],
+            ninterior: [null],
+            telefono: [null],
+            adicional: [null],*/
       });
     }
 }
