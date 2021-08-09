@@ -949,6 +949,7 @@ export class DialogAddDomicilioNotificacion {
   tiposLocalidad;
   delegaciones;
   domicilio: FormGroup;
+  dataDomicilioNotificacion: DataDomicilioNotificacion = {} as DataDomicilioNotificacion;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -959,6 +960,15 @@ export class DialogAddDomicilioNotificacion {
       this.tiposVia = data.tiposVia;
       this.tiposLocalidad = data.tiposLocalidad;
       this.delegaciones = data.delegaciones;
+
+      this.dataDomicilioNotificacion.CODESTADO = 10;
+      this.dataDomicilioNotificacion.IDCOLONIA = 10;
+      this.dataDomicilioNotificacion.CODCIUDAD = 10;
+      this.dataDomicilioNotificacion.CODTIPOSASENTAMIENTO = 10;
+      this.dataDomicilioNotificacion.CODASENTAMIENTO = 10;
+      this.dataDomicilioNotificacion.CIUDAD = "VARCHAR2";
+      this.dataDomicilioNotificacion.CODTIPOSDIRECCION = "CHAR";
+      this.dataDomicilioNotificacion.CODTIPOSDIRECCI = "CHAR";
 
       this.domicilio = this._formBuilder.group({
         ESTADO: ['Ciudad de México'],
@@ -981,9 +991,31 @@ export class DialogAddDomicilioNotificacion {
 
 
         /*
-       
+       IDDOMICILIONOTIFICACIONES: number;
+  CODTIPOSVIA: number;
+  IDVIA: number;
+  VIA: string;
+  NUMEROEXTERIOR: string;
+  ENTRECALLE1: string;
+  ENTRECALLE2: string;
+  ANDADOR: string;
+  EDIFICIO: string;
+  SECCION: string;
+  ENTRADA: string;
+  CODTIPOSLOCALIDAD: number;
+  NUMEROINTERIOR: string;
+  COLONIA: string;
+  CODIGOPOSTAL: string;
+  CODMUNICIPIO: number;
+  TELEFONO: string;
+  INDICACIONESADICIONALES: string;
+  IDCHS_MTODESDE: number;
      */
       });
     }
+  
+  getNombreDelegacion(event): void {
+    this.dataDomicilioNotificacion.DELEGACION = event.source.triggerValue;
+  }
 }
 //////////AGREGAR DIRECCION NOTIFICACION///////////
