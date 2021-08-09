@@ -993,10 +993,7 @@ export class DialogAddDomicilioNotificacion {
         /*
        IDDOMICILIONOTIFICACIONES: number;
   IDVIA: number;
-  ENTRECALLE1: string;
-  ENTRECALLE2: string;
   CODMUNICIPIO: number;
-  INDICACIONESADICIONALES: string;
      */
       });
     }
