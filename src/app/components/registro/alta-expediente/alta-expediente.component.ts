@@ -992,9 +992,7 @@ export class DialogAddDomicilioNotificacion {
 
         /*
        IDDOMICILIONOTIFICACIONES: number;
-  CODTIPOSVIA: number;
   IDVIA: number;
-  VIA: string;
   NUMEROEXTERIOR: string;
   ENTRECALLE1: string;
   ENTRECALLE2: string;
