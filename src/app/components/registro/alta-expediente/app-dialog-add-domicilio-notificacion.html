@@ -6,10 +6,8 @@
                 <mat-label>Estado:</mat-label>
                 <input matInput formControlName="ESTADO" maxlength="50" readonly>
             </mat-form-field>
-        </div>
-        <div class="row">
             <mat-form-field class="col-md-6">
-                <mat-label>Alcaldía:</mat-label>
+                <mat-label>Alcaldía: *</mat-label>
                 <mat-select formControlName="IDDELEGACION" (selectionChange)="getNombreDelegacion($event)">
                     <mat-option value="">Seleccione una Alcaldía...</mat-option>
                     <mat-option *ngFor="let delegacion of delegaciones" [value]="delegacion.IDDELEGACION">
@@ -17,6 +15,21 @@
                     </mat-option>
                 </mat-select>
                 <mat-error *ngIf="domicilio.controls.IDDELEGACION.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-8">
+                <mat-label>Colonia / Asentamiento: *</mat-label>
+                <input matInput formControlName="COLONIA" maxlength="50">
+                <mat-error *ngIf="domicilio.controls.COLONIA.errors?.required">Requerido</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-md-6">
+                <mat-label>Código Postal:</mat-label>
+                <input matInput formControlName="CODIGOPOSTAL" maxlength="5">
+                <mat-error *ngIf="domicilio.controls.CODIGOPOSTAL.errors?.minlength">El código debe de contener 5 digitos</mat-error>
+                <mat-error *ngIf="domicilio.controls.CODIGOPOSTAL.errors?.maxlength">El código debe de contener 5 digitos</mat-error>
             </mat-form-field>
         </div>
     </form>

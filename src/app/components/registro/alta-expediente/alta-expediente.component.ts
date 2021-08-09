@@ -1004,18 +1004,16 @@ export class DialogAddDomicilioNotificacion {
   ENTRADA: string;
   CODTIPOSLOCALIDAD: number;
   NUMEROINTERIOR: string;
-  COLONIA: string;
-  CODIGOPOSTAL: string;
   CODMUNICIPIO: number;
   TELEFONO: string;
   INDICACIONESADICIONALES: string;
-  IDCHS_MTODESDE: number;
      */
       });
     }
   
   getNombreDelegacion(event): void {
     this.dataDomicilioNotificacion.DELEGACION = event.source.triggerValue;
+    this.dataDomicilioNotificacion.IDCHS_MTODESDE = this.delegaciones.find(element => element.NOMBRE === this.dataDomicilioNotificacion.DELEGACION).IDCHS_MTODESDE;
   }
 }
 //////////AGREGAR DIRECCION NOTIFICACION///////////
