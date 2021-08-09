@@ -773,6 +773,7 @@ export class AltaExpedienteComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+        console.log(result);
       }
     });
   }
@@ -961,15 +962,6 @@ export class DialogAddDomicilioNotificacion {
       this.tiposLocalidad = data.tiposLocalidad;
       this.delegaciones = data.delegaciones;
 
-      this.dataDomicilioNotificacion.CODESTADO = 10;
-      this.dataDomicilioNotificacion.IDCOLONIA = 10;
-      this.dataDomicilioNotificacion.CODCIUDAD = 10;
-      this.dataDomicilioNotificacion.CODTIPOSASENTAMIENTO = 10;
-      this.dataDomicilioNotificacion.CODASENTAMIENTO = 10;
-      this.dataDomicilioNotificacion.CIUDAD = "VARCHAR2";
-      this.dataDomicilioNotificacion.CODTIPOSDIRECCION = "CHAR";
-      this.dataDomicilioNotificacion.CODTIPOSDIRECCI = "CHAR";
-
       this.domicilio = this._formBuilder.group({
         ESTADO: ['Ciudad de México'],
         IDDELEGACION: ['', [Validators.required]],
@@ -988,13 +980,6 @@ export class DialogAddDomicilioNotificacion {
         ENTRECALLE1: [null],
         ENTRECALLE2: [null],
         INDICACIONESADICIONALES: [null],
-
-
-        /*
-       IDDOMICILIONOTIFICACIONES: number;
-  IDVIA: number;
-  CODMUNICIPIO: number;
-     */
       });
     }
   
@@ -1004,6 +989,34 @@ export class DialogAddDomicilioNotificacion {
   }
 
   getDataDomicilioNotificacion(): DataDomicilioNotificacion {
+    this.dataDomicilioNotificacion.IDDOMICILIONOTIFICACIONES = 0;
+    this.dataDomicilioNotificacion.CODTIPOSVIA = this.domicilio.value.CODTIPOSVIA;
+    this.dataDomicilioNotificacion.IDVIA = this.domicilio.value.CODTIPOSVIA;
+    this.dataDomicilioNotificacion.VIA = (this.domicilio.value.VIA) ? this.domicilio.value.VIA : null;
+    this.dataDomicilioNotificacion.NUMEROEXTERIOR = (this.domicilio.value.NUMEROEXTERIOR) ? this.domicilio.value.NUMEROEXTERIOR : null;
+    this.dataDomicilioNotificacion.ENTRECALLE1 = (this.domicilio.value.ENTRECALLE1) ? this.domicilio.value.ENTRECALLE1 : null;
+    this.dataDomicilioNotificacion.ENTRECALLE2 = (this.domicilio.value.ENTRECALLE2) ? this.domicilio.value.ENTRECALLE2 : null;
+    this.dataDomicilioNotificacion.ANDADOR = (this.domicilio.value.ANDADOR) ? this.domicilio.value.ANDADOR : null;
+    this.dataDomicilioNotificacion.EDIFICIO = (this.domicilio.value.EDIFICIO) ? this.domicilio.value.EDIFICIO : null;
+    this.dataDomicilioNotificacion.SECCION = (this.domicilio.value.SECCION) ? this.domicilio.value.SECCION : null;
+    this.dataDomicilioNotificacion.ENTRADA = (this.domicilio.value.ENTRADA) ? this.domicilio.value.ENTRADA : null;
+    this.dataDomicilioNotificacion.CODTIPOSLOCALIDAD = this.domicilio.value.CODTIPOSLOCALIDAD;
+    this.dataDomicilioNotificacion.NUMEROINTERIOR = (this.domicilio.value.NUMEROINTERIOR) ? this.domicilio.value.NUMEROINTERIOR : null;
+    this.dataDomicilioNotificacion.CODTIPOSASENTAMIENTO = 10;
+    this.dataDomicilioNotificacion.IDCOLONIA = 10;
+    this.dataDomicilioNotificacion.CODASENTAMIENTO = 10;
+    this.dataDomicilioNotificacion.COLONIA = (this.domicilio.value.COLONIA) ? this.domicilio.value.COLONIA : null;
+    this.dataDomicilioNotificacion.CODIGOPOSTAL = (this.domicilio.value.CODIGOPOSTAL) ? this.domicilio.value.CODIGOPOSTAL : null;
+    this.dataDomicilioNotificacion.CODCIUDAD = 10;
+    this.dataDomicilioNotificacion.CIUDAD = "VARCHAR2";
+    this.dataDomicilioNotificacion.IDDELEGACION = this.domicilio.value.IDDELEGACION;
+    this.dataDomicilioNotificacion.CODMUNICIPIO = this.domicilio.value.IDDELEGACION;
+    this.dataDomicilioNotificacion.TELEFONO = (this.domicilio.value.TELEFONO) ? this.domicilio.value.TELEFONO : null;
+    this.dataDomicilioNotificacion.CODESTADO = 10;
+    this.dataDomicilioNotificacion.INDICACIONESADICIONALES = (this.domicilio.value.INDICACIONESADICIONALES) ? this.domicilio.value.INDICACIONESADICIONALES : null;
+    this.dataDomicilioNotificacion.CODTIPOSDIRECCION = "CHAR";
+    this.dataDomicilioNotificacion.CODTIPOSDIRECCI = "CHAR";
+    
     return this.dataDomicilioNotificacion;
   }
 }
