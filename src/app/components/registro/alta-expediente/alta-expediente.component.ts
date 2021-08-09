@@ -961,62 +961,28 @@ export class DialogAddDomicilioNotificacion {
       this.delegaciones = data.delegaciones;
 
       this.domicilio = this._formBuilder.group({
-        CODESTADO: [10, Validators.required],
-        IDDELEGACION: ['', Validators.required],
+        ESTADO: ['Ciudad de México'],
+        IDDELEGACION: ['', [Validators.required]],
+        COLONIA: [null, [Validators.required]],
+        CODIGOPOSTAL: [null, [Validators.minLength(5), Validators.maxLength(5)]],
+        CODTIPOSVIA: ['', [Validators.required]],
+        VIA: [null, [Validators.required]],
+        NUMEROEXTERIOR: [null, [Validators.required]],
+        CODTIPOSLOCALIDAD: [''],
+        NUMEROINTERIOR: [null],
+        ANDADOR: [null],
+        EDIFICIO: [null],
+        ENTRADA: [null],
+        SECCION: [null],
+        TELEFONO: [null],
+        ENTRECALLE1: [null],
+        ENTRECALLE2: [null],
+        INDICACIONESADICIONALES: [null],
 
 
         /*
-        IDDOMICILIONOTIFICACIONES: number;
-  CODTIPOSVIA: number;
-  IDVIA: number;
-  VIA: string;
-  NUMEROEXTERIOR: string;
-  ENTRECALLE1: string;
-  ENTRECALLE2: string;
-  ANDADOR: string;
-  EDIFICIO: string;
-  SECCION: string;
-  ENTRADA: string;
-  CODTIPOSLOCALIDAD: number;
-  NUMEROINTERIOR: string;
-  CODTIPOSASENTAMIENTO: number;
-  IDCOLONIA: number;
-  CODASENTAMIENTO: number;
-  COLONIA: string;
-  CODIGOPOSTAL: string;
-  CODCIUDAD: number;
-  CIUDAD: string;
-  CODMUNICIPIO: number;
-  DELEGACION: string;
-  TELEFONO: string;
-  INDICACIONESADICIONALES: string;
-  IDCHS_MTODESDE: number;
-  CODTIPOSDIRECCION: string;
-  CODTIPOSDIRECCI: string;
-  
-        idestado: ['', Validators.required],
-            delegacion: [null],
-            municipio: [null, Validators.required],
-            idciudad: [null],
-            ciudad: [null, Validators.required],
-            codasentamiento: [null, Validators.required],
-            asentamiento: [null, Validators.required],
-            idtipoasentamiento: [null],
-            codtiposvia: [null],
-            idtipovia: ['', Validators.required],
-            via: [null, Validators.required],
-            idtipolocalidad: [null],
-            cp: [null],
-            nexterior: [null, Validators.required],
-            entrecalle1: [null],
-            entrecalle2: [null],
-            andador: [null],
-            edificio: [null],
-            seccion: [null],
-            entrada: [null],
-            ninterior: [null],
-            telefono: [null],
-            adicional: [null],*/
+       
+     */
       });
     }
 }
