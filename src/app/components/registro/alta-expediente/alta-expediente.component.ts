@@ -100,7 +100,7 @@ export class AltaExpedienteComponent implements OnInit {
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentantes: DataPromoventeRepresentante[] = [];
   dataCuentasCatastrales: DataCuentaCatastral[] = [];
-  dataDomicilioNotificacion: DataDomicilioNotificacion = {} as DataDomicilioNotificacion;
+  dataDomicilioNotificacion: DataDomicilioNotificacion[] = [];
   promoventeFisica: FormGroup;
   promoventeMoral: FormGroup;
   representanteFisica: FormGroup;
@@ -773,9 +773,13 @@ export class AltaExpedienteComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(result);
+        this.dataDomicilioNotificacion.push(result);
       }
     });
+  }
+
+  deleteDireccionNotificacion(index): void {
+    this.dataDomicilioNotificacion.splice(index, 1);
   }
   //////////FUNCIONES DIRECCION NOTIFICACION///////////
 

@@ -586,11 +586,38 @@
                 <div class="col-md-5">
                 </div>
                 <div class="col-md-2">
-                    <button mat-stroked-button color="primary" aria-label="Agregar" (click)="openDialogAddDireccionNotificacion()">
+                    <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="dataDomicilioNotificacion.length > 0" (click)="openDialogAddDireccionNotificacion()">
                         Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                     </button>
                 </div>
                 <div class="col-md-5">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div *ngIf="dataDomicilioNotificacion.length == 0; else tableDomicilioNotificacion">
+                        No se ha especificado ninguna dirección
+                    </div>
+                    <ng-template #tableDomicilioNotificacion>
+                        <br>
+                        <table>
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let domicilio of dataDomicilioNotificacion; let i = index;">
+                                    <td>{{ domicilio.VIA }}, {{ domicilio.NUMEROEXTERIOR }}, COLONIA {{ domicilio.COLONIA }}, ALCALDÍA {{ domicilio.DELEGACION }}</td>
+                                    <td>
+                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deleteDireccionNotificacion(i)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>  
+                    </ng-template>                    
                 </div>
             </div>
         </fieldset>
