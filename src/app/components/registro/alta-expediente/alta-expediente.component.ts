@@ -977,8 +977,8 @@ export class DialogAddDomicilioNotificacion {
         CODIGOPOSTAL: [null, [Validators.minLength(5), Validators.maxLength(5)]],
         CODTIPOSVIA: ['', [Validators.required]],
         VIA: [null, [Validators.required]],
-        NUMEROEXTERIOR: [null, [Validators.required]],
         CODTIPOSLOCALIDAD: [''],
+        NUMEROEXTERIOR: [null, [Validators.required]],
         NUMEROINTERIOR: [null],
         ANDADOR: [null],
         EDIFICIO: [null],
@@ -1000,7 +1000,6 @@ export class DialogAddDomicilioNotificacion {
   EDIFICIO: string;
   SECCION: string;
   ENTRADA: string;
-  CODTIPOSLOCALIDAD: number;
   NUMEROINTERIOR: string;
   CODMUNICIPIO: number;
   TELEFONO: string;
