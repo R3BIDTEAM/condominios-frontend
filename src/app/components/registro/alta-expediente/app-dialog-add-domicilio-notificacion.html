@@ -23,9 +23,7 @@
                 <input matInput formControlName="COLONIA" maxlength="50">
                 <mat-error *ngIf="domicilio.controls.COLONIA.errors?.required">Requerido</mat-error>
             </mat-form-field>
-        </div>
-        <div class="row">
-            <mat-form-field class="col-md-6">
+            <mat-form-field class="col-md-4">
                 <mat-label>Código Postal:</mat-label>
                 <input matInput formControlName="CODIGOPOSTAL" maxlength="5">
                 <mat-error *ngIf="domicilio.controls.CODIGOPOSTAL.errors?.minlength">El código debe de contener 5 digitos</mat-error>
