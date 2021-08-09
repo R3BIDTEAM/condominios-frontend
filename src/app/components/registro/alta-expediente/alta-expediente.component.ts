@@ -993,14 +993,12 @@ export class DialogAddDomicilioNotificacion {
         /*
        IDDOMICILIONOTIFICACIONES: number;
   IDVIA: number;
-  NUMEROEXTERIOR: string;
   ENTRECALLE1: string;
   ENTRECALLE2: string;
   ANDADOR: string;
   EDIFICIO: string;
   SECCION: string;
   ENTRADA: string;
-  NUMEROINTERIOR: string;
   CODMUNICIPIO: number;
   TELEFONO: string;
   INDICACIONESADICIONALES: string;
