@@ -995,12 +995,7 @@ export class DialogAddDomicilioNotificacion {
   IDVIA: number;
   ENTRECALLE1: string;
   ENTRECALLE2: string;
-  ANDADOR: string;
-  EDIFICIO: string;
-  SECCION: string;
-  ENTRADA: string;
   CODMUNICIPIO: number;
-  TELEFONO: string;
   INDICACIONESADICIONALES: string;
      */
       });
