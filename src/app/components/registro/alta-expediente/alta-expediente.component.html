@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <mat-form-field appearance="outline" style="width: 100%;">
                     <mat-label>Tipo:</mat-label>
-                    <mat-select #IDTIPOTRAMITE="ngModel" [(ngModel)]="dataExpediente.IDTIPOTRAMITE" required>
+                    <mat-select #IDTIPOTRAMITE="ngModel" [(ngModel)]="dataExpediente.IDTIPOTRAMITE" (selectionChange)="getDataDocumentosAportar()" required>
                         <mat-option value="">Seleccione un trámite ...</mat-option>
                         <mat-option *ngFor="let tramite of tiposTramite" [value]="tramite.IDTIPOTRAMITE">
                             {{ tramite.DESCRIPCION }}

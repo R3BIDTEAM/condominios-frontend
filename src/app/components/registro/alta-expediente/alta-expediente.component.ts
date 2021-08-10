@@ -351,6 +351,12 @@ export class AltaExpedienteComponent implements OnInit {
   }
   //////////CATALOGOS///////////
 
+  //////////FUNCIONES DOCUMENTOS A APORTAR///////////
+  getDataDocumentosAportar(): void {
+    console.log("asd");
+  }
+  //////////FUNCIONES DOCUMENTOS A APORTAR///////////
+
   //////////FUNCIONES PROMOVENTES///////////
   clearFormPromovente(): void {
     this.promoventeFisica.reset();
