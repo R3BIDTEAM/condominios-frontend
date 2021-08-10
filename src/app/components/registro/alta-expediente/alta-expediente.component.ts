@@ -88,8 +88,15 @@ export class AltaExpedienteComponent implements OnInit {
   loadingDelegaciones= false;
   delegaciones;
   loadingDataCuentaCatastral = false;
-  documentosAportar = [1,1,1,1];
-  documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
+  isBusqueda;
+  loadingPaginado = false;
+  pagina = 1;
+  total = 0;
+  pageSize = 5;
+  dataSource = [];
+  dataResponse = [];
+  displayedColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio'];
+  @ViewChild('paginator') paginator: MatPaginator;
   hoy = new Date();
   idpersona;
   isEdicionPromovente = false;
@@ -353,7 +360,54 @@ export class AltaExpedienteComponent implements OnInit {
 
   //////////FUNCIONES DOCUMENTOS A APORTAR///////////
   getDataDocumentosAportar(): void {
-    console.log("asd");
+    this.isBusqueda = true;
+    this.loadingPaginado = true;
+    this.pagina = 1;
+    let filtro = '{\n    \"IDTIPOTRAMITE\": '+this.dataExpediente.IDTIPOTRAMITE+ '\n}';
+    let get = environment.endpoint + '?action=getTiposDocumento';
+
+    this.http.post(get, filtro).subscribe(
+      (res: any) => {
+        this.loadingPaginado = false;
+        if(res.error.code === 0)
+        {
+          if(res.data.result.length > 0){
+            this.dataResponse = res.data.result;
+            this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+            this.total = this.dataResponse.length;
+            this.paginator.pageIndex = 0;
+          } else {
+            this.dataResponse = [];
+            this.dataSource = [];
+            this.total = 0;
+            this.paginator.pageIndex = 0;
+          }
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingPaginado = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
+  }
+
+  paginado(evt): void{
+    this.pagina = evt.pageIndex + 1;
+    this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+  }
+
+  paginate(array, page_size, page_number) {
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
   //////////FUNCIONES DOCUMENTOS A APORTAR///////////
 
