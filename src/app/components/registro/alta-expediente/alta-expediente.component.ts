@@ -1206,7 +1206,6 @@ export class DialogCuentasCatastralesCurso {
   dataSource = [];
   dataResponse = [];
   displayedColumns: string[] = ['cuentas_catastrales', 'direccion'];
-  @ViewChild('paginator') paginator: MatPaginator;
 
   constructor(
     public dialogRef: MatDialogRef<DialogCuentasCatastralesCurso>,
@@ -1216,7 +1215,6 @@ export class DialogCuentasCatastralesCurso {
       this.dataResponse = data;
       this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
       this.total = this.dataResponse.length;
-      this.paginator.pageIndex = 0;
     }
 
   paginado(evt): void{
