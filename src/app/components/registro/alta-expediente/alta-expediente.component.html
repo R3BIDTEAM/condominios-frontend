@@ -545,7 +545,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="cuentaCatastral.invalid" [class.spinner]="loadingDataCuentaCatastral" (click)="addCuentaCatastral()">
+                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="cuentaCatastral.invalid || dataCuentasCatastrales.length > 0 || loadingDataCuentaCatastral" [class.spinner]="loadingDataCuentaCatastral" (click)="addCuentaCatastral()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                         </button>
                     </div>
