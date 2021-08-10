@@ -1031,6 +1031,22 @@ export class DialogAddDomicilioNotificacion {
   }
 
   setDataDomicilioNotificacion(dataDomicilioNotificacion): void {
+    this.domicilio.controls['CODTIPOSVIA'].setValue(dataDomicilioNotificacion.CODTIPOSVIA);
+    this.domicilio.controls['VIA'].setValue(dataDomicilioNotificacion.VIA);
+    this.domicilio.controls['NUMEROEXTERIOR'].setValue(dataDomicilioNotificacion.NUMEROEXTERIOR);
+    this.domicilio.controls['ENTRECALLE1'].setValue(dataDomicilioNotificacion.ENTRECALLE1);
+    this.domicilio.controls['ENTRECALLE2'].setValue(dataDomicilioNotificacion.ENTRECALLE2);
+    this.domicilio.controls['ANDADOR'].setValue(dataDomicilioNotificacion.ANDADOR);
+    this.domicilio.controls['EDIFICIO'].setValue(dataDomicilioNotificacion.EDIFICIO);
+    this.domicilio.controls['SECCION'].setValue(dataDomicilioNotificacion.SECCION);
+    this.domicilio.controls['ENTRADA'].setValue(dataDomicilioNotificacion.ENTRADA);
+    this.domicilio.controls['CODTIPOSLOCALIDAD'].setValue(dataDomicilioNotificacion.CODTIPOSLOCALIDAD);
+    this.domicilio.controls['NUMEROINTERIOR'].setValue(dataDomicilioNotificacion.NUMEROINTERIOR);
+    this.domicilio.controls['COLONIA'].setValue(dataDomicilioNotificacion.COLONIA);
+    this.domicilio.controls['CODIGOPOSTAL'].setValue(dataDomicilioNotificacion.CODIGOPOSTAL);
+    this.domicilio.controls['IDDELEGACION'].setValue(dataDomicilioNotificacion.IDDELEGACION);
+    this.domicilio.controls['TELEFONO'].setValue(dataDomicilioNotificacion.TELEFONO);
+    this.domicilio.controls['INDICACIONESADICIONALES'].setValue(dataDomicilioNotificacion.INDICACIONESADICIONALES);
   }
 }
 //////////AGREGAR DOMICILIO NOTIFICACION///////////
