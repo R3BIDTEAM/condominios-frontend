@@ -12,7 +12,14 @@ export interface DataExpediente {
   IDTIPOTRAMITE: string;
   FECHAENTRADA: string;
   FECHATERMINO: string;
+  INDIOFICIALIA: string;
   OBSERVACIONES: string;
+  IDPROCESOWORKFLOW: string;
+  SECUENCIADOCINTERNO: number;
+  RESOLUCIONALTA: string;
+  FECHAFINPROCESOWORKFLOW: string;
+  IDRESULTADOOVICA: number;
+  IDESTADOOVICA: number;
 }
 export interface DataDocumentosAportar {
   DESCRIPCION_CATCONJDOCUMENTALES: string;
@@ -146,6 +153,7 @@ export class AltaExpedienteComponent implements OnInit {
     this.dataExpediente.IDTIPOTRAMITE = "";
     this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
     this.dataExpediente.FECHATERMINO = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
+    this.dataExpediente.FECHAFINPROCESOWORKFLOW = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
     
     this.promoventeFisica = this._formBuilder.group({
       NOMBRE: [null, [Validators.required]],
@@ -915,6 +923,9 @@ export class AltaExpedienteComponent implements OnInit {
               }
             });
           } else {
+            //////////PAYLOAD///////////
+            let payload = {};
+            //////////PAYLOAD///////////
             window.location.reload();
             this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
               duration: 10000,
