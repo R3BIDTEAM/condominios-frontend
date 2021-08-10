@@ -1200,10 +1200,32 @@ export class DialogAddDomicilioNotificacion {
   templateUrl: 'app-dialog-cuentas-catastrales-curso.html',
 })
 export class DialogCuentasCatastralesCurso {
+  pagina = 1;
+  total = 0;
+  pageSize = 5;
+  dataSource = [];
+  dataResponse = [];
+  displayedColumns: string[] = ['cuentas_catastrales', 'direccion'];
+  @ViewChild('paginator') paginator: MatPaginator;
+
   constructor(
     public dialogRef: MatDialogRef<DialogCuentasCatastralesCurso>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       dialogRef.disableClose = true;
+
+      this.dataResponse = data;
+      this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+      this.total = this.dataResponse.length;
+      this.paginator.pageIndex = 0;
     }
+
+  paginado(evt): void{
+    this.pagina = evt.pageIndex + 1;
+    this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
+  }
+
+  paginate(array, page_size, page_number) {
+    return array.slice((page_number - 1) * page_size, page_number * page_size);
+  }
 }
 //////////PAGINADO CUENTAS CATASTRALES CURSO///////////
