@@ -787,6 +787,12 @@ export class AltaExpedienteComponent implements OnInit {
   }
   //////////FUNCIONES DOMICILIO NOTIFICACION///////////
 
+  //////////INICIO EXPEDIENTE///////////
+  initiateExpediente(): void {
+    console.log("inicio");
+  }
+  //////////INICIO EXPEDIENTE///////////
+
 }
 
 //////////BUSQUEDA PROMOVENTES REPRESENTANTES///////////
