@@ -35,6 +35,7 @@ export interface DataCuentaCatastral {
   MANZANA: string;
   LOTE: string;
   UNIDADPRIVATIVA: string;
+  DIRECCION: string;
 }
 export interface DataDomicilioNotificacion {
   IDDOMICILIONOTIFICACIONES: number;
@@ -86,6 +87,7 @@ export class AltaExpedienteComponent implements OnInit {
   tiposLocalidad;
   loadingDelegaciones= false;
   delegaciones;
+  loadingDataCuentaCatastral = false;
   documentosAportar = [1,1,1,1];
   documentosAportarColumns: string[] = ['conjunto_documental', 'documento', 'obligatorio', 'check'];
   hoy = new Date();
@@ -745,19 +747,49 @@ export class AltaExpedienteComponent implements OnInit {
   //////////FUNCIONES REPRESENTANTES///////////
 
   //////////FUNCIONES CUENTAS CATASTRALES///////////
-  clearFormCuentaCatastral(): void {
-    this.cuentaCatastral.reset();
-  }
-
   addCuentaCatastral(): void {
     let cuentaCatastral = {} as DataCuentaCatastral; 
-    cuentaCatastral.REGION = this.cuentaCatastral.value.REGION;
-    cuentaCatastral.MANZANA = this.cuentaCatastral.value.MANZANA;
-    cuentaCatastral.LOTE = this.cuentaCatastral.value.LOTE;
-    cuentaCatastral.UNIDADPRIVATIVA = this.cuentaCatastral.value.UNIDADPRIVATIVA;
+    let getCuentasCatastralesCurso = environment.endpoint + '?action=getCuentasCatastralesCurso';
+    let filtro = '{\n    \"REGION\": \"'+this.cuentaCatastral.value.REGION+'\",\n    \"MANZANA\": \"'+this.cuentaCatastral.value.MANZANA+'\",\n    \"LOTE\": \"'+this.cuentaCatastral.value.LOTE+'\",\n    \"UNIDADPRIVATIVA\": \"'+this.cuentaCatastral.value.UNIDADPRIVATIVA+'\"\n}';
+    this.loadingDataCuentaCatastral = true;
+    this.http.post(getCuentasCatastralesCurso, filtro).subscribe(
+      (res: any) => {
+        this.loadingDataCuentaCatastral = false;
+        if(res.error.code === 0)
+        {
+          if(res.data.result.length > 0)
+          {
+            cuentaCatastral.REGION = res.data.result[0].REGION;
+            cuentaCatastral.MANZANA = res.data.result[0].MANZANA;
+            cuentaCatastral.LOTE = res.data.result[0].LOTE;
+            cuentaCatastral.UNIDADPRIVATIVA = res.data.result[0].UNIDADPRIVATIVA;
+            cuentaCatastral.DIRECCION = res.data.result[0].DIRECCION;
 
-    this.dataCuentasCatastrales.push(cuentaCatastral);
-    this.clearFormCuentaCatastral();
+            this.dataCuentasCatastrales.push(cuentaCatastral);
+          } else {
+            this.snackBar.open('No se encontraron datos de la cuenta ingresada.', 'Cerrar', {
+              duration: 10000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top'
+            });
+          }
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadingDataCuentaCatastral = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
   }
   
   deleteCuentaCatastral(index): void {

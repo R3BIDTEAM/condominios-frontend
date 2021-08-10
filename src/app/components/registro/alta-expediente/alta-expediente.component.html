@@ -545,7 +545,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-2">
-                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="cuentaCatastral.invalid" (click)="addCuentaCatastral()">
+                        <button mat-stroked-button color="primary" aria-label="Agregar" [disabled]="cuentaCatastral.invalid" [class.spinner]="loadingDataCuentaCatastral" (click)="addCuentaCatastral()">
                             Agregar<mat-icon style="display: inherit; width: 15px;">add</mat-icon>
                         </button>
                     </div>
@@ -566,7 +566,7 @@
                             <tbody>
                                 <tr *ngFor="let cuenta of dataCuentasCatastrales; let i = index;">
                                     <td>{{ cuenta.REGION }}-{{ cuenta.MANZANA }}-{{ cuenta.LOTE }}-{{ cuenta.UNIDADPRIVATIVA }}</td>
-                                    <td></td>
+                                    <td>{{ cuenta.DIRECCION }}</td>
                                     <td>
                                         <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deleteCuentaCatastral(i)">
                                             <mat-icon>delete</mat-icon>
