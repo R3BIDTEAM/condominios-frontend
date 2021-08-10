@@ -607,7 +607,7 @@
                                 <tr *ngFor="let domicilio of dataDomicilioNotificacion; let i = index;">
                                     <td>{{ domicilio.VIA }}, {{ domicilio.NUMEROEXTERIOR }}, COLONIA {{ domicilio.COLONIA }}, ALCALDÍA {{ domicilio.DELEGACION }}</td>
                                     <td>
-                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar">
+                                        <button type="button" mat-icon-button color="primary" aria-label="Editar" matTooltip="Editar" (click)="openDialogAddDomicilioNotificacion(i, domicilio)">
                                             <mat-icon>edit</mat-icon>
                                         </button>
                                         <button type="button" mat-icon-button color="primary" aria-label="Eliminar" matTooltip="Eliminar" (click)="deleteDomicilionNotificacion(i)">
