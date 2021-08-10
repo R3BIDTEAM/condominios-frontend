@@ -14,6 +14,15 @@ export interface DataExpediente {
   FECHATERMINO: string;
   OBSERVACIONES: string;
 }
+export interface DataDocumentosAportar {
+  DESCRIPCION_CATCONJDOCUMENTALES: string;
+  DESCRIPCION_CATTIPOSDOCUMENTO: string;
+  INDIOBLIGATORIO: string;
+  IDTIPOTRAMITE: number;
+  IDCONJDOCUMENTAL: number;
+  IDTIPODOC: number;
+  INDIDOCDIGITAL: number;
+}
 export interface DataPromoventeRepresentante {
   TIPOPERSONA: string;
   IDPERSONAAYC: number;
@@ -107,6 +116,7 @@ export class AltaExpedienteComponent implements OnInit {
   tipoPersonaPromovente = 'FISICA';
   tipoPersonaRepresentante = 'FISICA';
   dataExpediente: DataExpediente = {} as DataExpediente;
+  dataDocumentosAportar: DataDocumentosAportar[] = [];
   dataPromoventes: DataPromoventeRepresentante[] = [];
   dataRepresentantes: DataPromoventeRepresentante[] = [];
   dataCuentasCatastrales: DataCuentaCatastral[] = [];
@@ -374,11 +384,13 @@ export class AltaExpedienteComponent implements OnInit {
         {
           if(res.data.result.length > 0){
             this.dataResponse = res.data.result;
+            this.dataDocumentosAportar = this.dataResponse;
             this.dataSource = this.paginate(this.dataResponse, this.pageSize, this.pagina);
             this.total = this.dataResponse.length;
             this.paginator.pageIndex = 0;
           } else {
             this.dataResponse = [];
+            this.dataDocumentosAportar = this.dataResponse;
             this.dataSource = [];
             this.total = 0;
             this.paginator.pageIndex = 0;
