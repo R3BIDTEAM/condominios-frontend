@@ -623,7 +623,7 @@
         <div class="row">
             <div class="col-md-3 offset-md-9">
                 <div class="d-flex flex-row-reverse">
-                    <button mat-stroked-button color="primary" aria-label="Iniciar Expediente" [disabled]="dataPromoventes.length == 0 || dataCuentasCatastrales.length == 0 || dataDomicilioNotificacion.length == 0" (click)="initiateExpediente()">
+                    <button mat-stroked-button color="primary" aria-label="Iniciar Expediente" [disabled]="dataPromoventes.length == 0 || dataCuentasCatastrales.length == 0 || dataDomicilioNotificacion.length == 0 || loadinCuentasCatastrales" [class.spinner]="loadinCuentasCatastrales" (click)="initiateExpediente()">
                         Iniciar Expediente
                     </button>
                 </div>

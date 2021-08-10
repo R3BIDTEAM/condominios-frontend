@@ -87,7 +87,9 @@ export class AltaExpedienteComponent implements OnInit {
   tiposLocalidad;
   loadingDelegaciones= false;
   delegaciones;
+  loadinCuentasCatastrales = false;
   loadingDataCuentaCatastral = false;
+  dataResponseCuentaCatastral = [];
   isBusqueda;
   loadingPaginado = false;
   pagina = 1;
@@ -881,7 +883,43 @@ export class AltaExpedienteComponent implements OnInit {
 
   //////////INICIO EXPEDIENTE///////////
   initiateExpediente(): void {
-    console.log("inicio");
+    let getCuentasCatastralesCurso = environment.endpoint + '?action=getCuentasCatastralesCurso';
+    let filtro = '{\n    \"REGION\": \"'+this.dataCuentasCatastrales[0].REGION+'\",\n    \"MANZANA\": \"'+this.dataCuentasCatastrales[0].MANZANA+'\",\n    \"LOTE\": \"'+this.dataCuentasCatastrales[0].LOTE+'\",\n    \"UNIDADPRIVATIVA\": \"'+this.dataCuentasCatastrales[0].UNIDADPRIVATIVA+'\"\n}';
+    this.loadinCuentasCatastrales = true;
+    this.http.post(getCuentasCatastralesCurso, filtro).subscribe(
+      (res: any) => {
+        this.loadinCuentasCatastrales = false;
+        if(res.error.code === 0)
+        {
+          if(res.data.result.length > 0)
+          {
+            this.dataResponseCuentaCatastral = res.data.result;
+            console.log(this.dataResponseCuentaCatastral);
+          } else {
+            window.location.reload();
+            this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
+              duration: 10000,
+              horizontalPosition: 'end',
+              verticalPosition: 'top'
+            });
+          }
+        } else {
+          this.snackBar.open(res.error.message, 'Cerrar', {
+            duration: 10000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top'
+          });
+        }
+      },
+      (error) => {
+        this.loadinCuentasCatastrales = false;
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 10000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top'
+        });
+      }
+    );
   }
   //////////INICIO EXPEDIENTE///////////
 
