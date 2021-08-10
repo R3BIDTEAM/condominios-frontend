@@ -894,7 +894,14 @@ export class AltaExpedienteComponent implements OnInit {
           if(res.data.result.length > 0)
           {
             this.dataResponseCuentaCatastral = res.data.result;
-            console.log(this.dataResponseCuentaCatastral);
+            const dialogRef = this.dialog.open(DialogCuentasCatastralesCurso, {
+              width: '700px',
+              data: this.dataResponseCuentaCatastral,
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              if(result){
+              }
+            });
           } else {
             window.location.reload();
             this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
@@ -1186,3 +1193,17 @@ export class DialogAddDomicilioNotificacion {
   }
 }
 //////////AGREGAR DOMICILIO NOTIFICACION///////////
+
+//////////PAGINADO CUENTAS CATASTRALES CURSO///////////
+@Component({
+  selector: 'app-dialog-cuentas-catastrales-curso',
+  templateUrl: 'app-dialog-cuentas-catastrales-curso.html',
+})
+export class DialogCuentasCatastralesCurso {
+  constructor(
+    public dialogRef: MatDialogRef<DialogCuentasCatastralesCurso>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
+}
+//////////PAGINADO CUENTAS CATASTRALES CURSO///////////

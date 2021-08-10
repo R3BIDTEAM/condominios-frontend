@@ -24,7 +24,7 @@ import { MainComponent } from './components/main/main.component';
 import { ConsultaExpedientesComponent } from './components/reportes/consulta-expedientes/consulta-expedientes.component';
 import { BandejaTareasComponent } from './components/bandeja-tareas/bandeja-tareas.component';
 import { DialogsComponent, DialogsAlta } from './components/dialogs/dialogs.component';
-import { AltaExpedienteComponent, DialogSearchPromoventeRepresentante, DialogAddDomicilioNotificacion } from './components/registro/alta-expediente/alta-expediente.component';
+import { AltaExpedienteComponent, DialogSearchPromoventeRepresentante, DialogAddDomicilioNotificacion, DialogCuentasCatastralesCurso } from './components/registro/alta-expediente/alta-expediente.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { AltaExpedienteComponent, DialogSearchPromoventeRepresentante, DialogAdd
     DialogsAlta,
     AltaExpedienteComponent,
     DialogSearchPromoventeRepresentante,
-    DialogAddDomicilioNotificacion
+    DialogAddDomicilioNotificacion,
+    DialogCuentasCatastralesCurso
   ],
   imports: [
     BrowserModule,
