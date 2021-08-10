@@ -766,14 +766,18 @@ export class AltaExpedienteComponent implements OnInit {
   //////////FUNCIONES CUENTAS CATASTRALES///////////
 
   //////////FUNCIONES DOMICILIO NOTIFICACION///////////
-  openDialogAddDomicilioNotificacion(): void {
+  openDialogAddDomicilioNotificacion(index = -1, dataDomicilioNotificacion = null): void {
     const dialogRef = this.dialog.open(DialogAddDomicilioNotificacion, {
       width: '700px',
-      data: {tiposVia: this.tiposVia, tiposLocalidad: this.tiposLocalidad, delegaciones: this.delegaciones},
+      data: {tiposVia: this.tiposVia, tiposLocalidad: this.tiposLocalidad, delegaciones: this.delegaciones, dataDomicilioNotificacion: dataDomicilioNotificacion},
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.dataDomicilioNotificacion.push(result);
+        if(index != -1){
+          this.dataDomicilioNotificacion[index] = result;
+        }else{
+          this.dataDomicilioNotificacion.push(result);
+        }
       }
     });
   }
@@ -985,6 +989,8 @@ export class DialogAddDomicilioNotificacion {
         ENTRECALLE2: [null],
         INDICACIONESADICIONALES: [null],
       });
+
+      (data.dataDomicilioNotificacion) ? this.setDataDomicilioNotificacion(data.dataDomicilioNotificacion) : "";
     }
   
   getNombreDelegacion(event): void {
@@ -1022,6 +1028,9 @@ export class DialogAddDomicilioNotificacion {
     this.dataDomicilioNotificacion.CODTIPOSDIRECCI = "CHAR";
     
     return this.dataDomicilioNotificacion;
+  }
+
+  setDataDomicilioNotificacion(dataDomicilioNotificacion): void {
   }
 }
 //////////AGREGAR DOMICILIO NOTIFICACION///////////
