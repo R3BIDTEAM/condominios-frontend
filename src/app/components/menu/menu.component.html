@@ -8,12 +8,14 @@
             <mat-icon matListIcon>{{menu.icono}}</mat-icon>
             {{menu.nombre}}
         </mat-list-option> -->
-        <ng-container *ngIf="menu.ruta === '/reportes'">
+        <ng-container *ngIf="menu.ruta === '/main'">
             <mat-nav-list style="margin-left: 45px;">
-                <a mat-list-item *ngFor="let opcion of reportes" [routerLink]="opcion.ruta"><mat-icon>{{opcion.icono}}</mat-icon> {{opcion.nombre}} </a>
+                <a mat-list-item *ngFor="let opcion of registro" [routerLink]="opcion.ruta"><mat-icon>{{opcion.icono}}</mat-icon> {{opcion.nombre}} </a>
             </mat-nav-list>
         </ng-container>
     </ng-container>
 </mat-selection-list>
+<!--
 <button (click)="pruebas1()">TEST 1</button>
 <button (click)="pruebas2()">TEST 2</button>    
+-->

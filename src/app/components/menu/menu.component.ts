@@ -13,15 +13,11 @@ export class MenuComponent implements OnInit {
     name: string;
 
     menus: any[] = [
-        { nombre: 'Bandeja de Tareas', ruta: '/main/bandeja-tareas', icono: 'add' },
-        { nombre: 'Registro', ruta: '', icono: 'add' },
-        { nombre: 'Gestión', ruta: '', icono: 'add' },
-        { nombre: 'Registro Procesos Masivos', ruta: '', icono: 'add' },
-        { nombre: 'Reportes', ruta: '/reportes', icono: 'add' }
+        { nombre: 'Registro', ruta: '/main', icono: 'add' },
     ];
 
-    reportes: any[] = [
-        { nombre: 'Consulta Expedientes', ruta: '/main/consulta-expedientes', icono: 'edit' }
+    registro: any[] = [
+        { nombre: 'Nuevo Expediente', ruta: '/main/alta-expediente', icono: 'add' }
     ];
 
     constructor(private authService: AuthService, public dialog: MatDialog) { }
