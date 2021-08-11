@@ -942,6 +942,65 @@ export class AltaExpedienteComponent implements OnInit {
               });
             }
 
+            let array_PERSONAS = [];
+            for (let i = 0; i < this.dataPromoventes.length; i++)
+            {
+              let promovente = {};
+              if (this.dataPromoventes[i].TIPOPERSONA == 'FISICA')
+              {
+                if (this.dataPromoventes[i].IDPERSONAAYC == 0)
+                {
+                  promovente = {
+                    ADYCON_PERSONAFISICAAYC: {
+                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                      CURP: this.dataPromoventes[i].CURP,
+                      NOMBRE: this.dataPromoventes[i].NOMBRE,
+                      APELLIDOPATERNO: this.dataPromoventes[i].APELLIDOPATERNO,
+                      APELLIDOMATERNO: this.dataPromoventes[i].APELLIDOMATERNO,
+                      RFC: this.dataPromoventes[i].RFC,
+                      CLAVEIFE: this.dataPromoventes[i].CLAVEIFE,
+                      IDDOCIDENTIF: this.dataPromoventes[i].IDDOCIDENTIF,
+                      OTROS: this.dataPromoventes[i].OTROS,
+                      CELULAR: this.dataPromoventes[i].IDDOCIDENTIF,
+                      EMAIL: this.dataPromoventes[i].OTROS,
+                    }
+                  }
+                }
+                else
+                {
+                  promovente = {
+                    ADYCON_PERSONAFISICAAYC: {
+                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                    }
+                  }
+                }
+              }
+              else
+              {
+                if (this.dataPromoventes[i].IDPERSONAAYC == 0)
+                {
+                  promovente = {
+                    ADYCON_PERSONAMORALAYC: {
+                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                      NOMBRE: this.dataPromoventes[i].NOMBRE,
+                      ACTIVPRINCIP: this.dataPromoventes[i].ACTIVPRINCIP,
+                      RFC: this.dataPromoventes[i].RFC,
+                    }
+                  }
+                }
+                promovente = {
+                  ADYCON_PERSONAMORALAYC: {
+                    IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                  }
+                }
+              }
+
+              array_PERSONAS.push({
+                TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                promovente
+              });
+            }
+
             let payload = {
               ADYCON_EXPEDIENTES: {
                 IDTIPOTRAMITE: this.dataExpediente.IDTIPOTRAMITE,
