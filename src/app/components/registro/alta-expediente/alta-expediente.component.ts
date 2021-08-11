@@ -1522,3 +1522,17 @@ export class DialogCuentasCatastralesCurso {
   }
 }
 //////////PAGINADO CUENTAS CATASTRALES CURSO///////////
+
+//////////MODAL INSERCION EXPEDIENTE///////////
+@Component({
+  selector: 'app-dialog-carga',
+  templateUrl: 'app-dialog-carga.html',
+})
+export class DialogInsertaExpediente {
+  constructor(
+    public dialogRef: MatDialogRef<DialogInsertaExpediente>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      dialogRef.disableClose = true;
+    }
+}
+//////////MODAL INSERCION EXPEDIENTE///////////
