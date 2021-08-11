@@ -1198,12 +1198,38 @@ export class AltaExpedienteComponent implements OnInit {
             };
             console.log(payload);
             //////////PAYLOAD///////////
-            window.location.reload();
-            this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
-              duration: 10000,
-              horizontalPosition: 'end',
-              verticalPosition: 'top'
+            const dialogRef = this.dialog.open(DialogInsertaExpediente, {
+              width: '600px',
             });
+            let insertaExpedienteCompleto = environment.endpoint + '?action=insertaExpedienteCompleto';
+            this.http.post(insertaExpedienteCompleto, payload).subscribe(
+              (res: any) => {
+                dialogRef.close();
+                if(res.error.code === 0)
+                {
+                  window.location.reload();
+                  this.snackBar.open('Se ha iniciado el expediente con numero ' + res.data.IDEXPEDIENTE, 'Cerrar', {
+                    duration: 10000,
+                    horizontalPosition: 'end',
+                    verticalPosition: 'top'
+                  });
+                } else {
+                  this.snackBar.open(res.error.message, 'Cerrar', {
+                    duration: 10000,
+                    horizontalPosition: 'end',
+                    verticalPosition: 'top'
+                  });
+                }
+              },
+              (error) => {
+                dialogRef.close();
+                this.snackBar.open(error.message, 'Cerrar', {
+                  duration: 10000,
+                  horizontalPosition: 'end',
+                  verticalPosition: 'top'
+                });
+              }
+            );
           }
         } else {
           this.snackBar.open(res.error.message, 'Cerrar', {
