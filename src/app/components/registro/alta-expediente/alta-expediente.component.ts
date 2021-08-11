@@ -994,11 +994,42 @@ export class AltaExpedienteComponent implements OnInit {
                   }
                 }
               }
-
-              array_PERSONAS.push({
-                TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
-                promovente
-              });
+              
+              if (this.dataPromoventes[i].NOTIFICACION)
+              {
+                let domicilio = {};
+                domicilio = {
+                  ADYCON_EXPEDIENTENOTIFICACION: {
+                    IDDOMICILIONOTIFICACIONES: this.dataDomicilioNotificacion[0].IDDOMICILIONOTIFICACIONES,
+                    CODTIPOSVIA: this.dataDomicilioNotificacion[0].CODTIPOSVIA,
+                    VIA: this.dataDomicilioNotificacion[0].VIA,
+                    NUMEROEXTERIOR: this.dataDomicilioNotificacion[0].NUMEROEXTERIOR,
+                    EDIFICIO: this.dataDomicilioNotificacion[0].EDIFICIO,
+                    CODTIPOSLOCALIDAD: this.dataDomicilioNotificacion[0].CODTIPOSLOCALIDAD,
+                    NUMEROINTERIOR: this.dataDomicilioNotificacion[0].NUMEROINTERIOR,
+                    CODTIPOSASENTAMIENTO: this.dataDomicilioNotificacion[0].CODTIPOSASENTAMIENTO,
+                    COLONIA: this.dataDomicilioNotificacion[0].COLONIA,
+                    CODIGOPOSTAL: this.dataDomicilioNotificacion[0].CODIGOPOSTAL,
+                    IDDELEGACION: this.dataDomicilioNotificacion[0].IDDELEGACION,
+                    CODMUNICIPIO: this.dataDomicilioNotificacion[0].CODMUNICIPIO,
+                    DELEGACION: this.dataDomicilioNotificacion[0].DELEGACION,
+                    CODESTADO: this.dataDomicilioNotificacion[0].CODESTADO,
+                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE,
+                  }
+                };
+                array_PERSONAS.push({
+                  TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                  promovente,
+                  domicilio
+                });
+              }
+              else
+              {
+                array_PERSONAS.push({
+                  TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                  promovente,
+                });
+              }
             }
 
             let payload = {
