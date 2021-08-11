@@ -946,7 +946,8 @@ export class AltaExpedienteComponent implements OnInit {
                           +'    \"IDESTADOOVICA\": '+this.dataExpediente.IDESTADOOVICA+',\n'
                           +'   },\n'
                           +'  \"ADYCON_EXPEDIENTEDOCUMENTOS\": [\n'
-                          for (let i = 0; i < this.dataDocumentosAportar.length; i++) {
+                          for (let i = 0; i < this.dataDocumentosAportar.length; i++)
+                          {
                             +'{\n'
                             +'\"IDTIPODOC\": '+this.dataDocumentosAportar[i].IDTIPODOC+',\n'
                             +'\"IDDOCUMENTODIGITAL\": '+(i+1)+',\n'
@@ -958,6 +959,66 @@ export class AltaExpedienteComponent implements OnInit {
                           +'  \"USERTOKEN\": \"TOKEN USER LOGIN\",\n'
                           +'  \"ROL\": \"CONTRIBUYENTE\",\n'
                           +'  \"PERSONAS\": [\n'
+                          for (let i = 0; i < this.dataPromoventes.length; i++)
+                          {
+                            +'{\n'
+                            +'\"TIPO\": \"ADYCON_EXPEDIENTEPROMOVENTES\",\n'
+                            if (this.dataPromoventes[i].TIPOPERSONA == 'FISICA')
+                            {
+                              +'\"ADYCON_PERSONAFISICAAYC\": {\n'
+                              +'  \"IDPERSONAAYC\": '+this.dataPromoventes[i].IDPERSONAAYC+',\n'
+                              if (this.dataPromoventes[i].IDPERSONAAYC == 0)
+                              {
+                                +'\"CURP\": \"'+this.dataPromoventes[i].CURP+'\",\n'
+                                +'\"NOMBRE\": \"'+this.dataPromoventes[i].NOMBRE+'\",\n'
+                                +'\"APELLIDOPATERNO\": \"'+this.dataPromoventes[i].APELLIDOPATERNO+'\",\n'
+                                +'\"APELLIDOMATERNO\": \"'+this.dataPromoventes[i].APELLIDOMATERNO+'\",\n'
+                                +'\"RFC\": \"'+this.dataPromoventes[i].RFC+'\",\n'
+                                +'\"CLAVEIFE\": \"'+this.dataPromoventes[i].CLAVEIFE+'\",\n'
+                                +'\"IDDOCIDENTIF\": '+this.dataPromoventes[i].IDDOCIDENTIF+',\n'
+                                +'\"OTROS\": \"'+this.dataPromoventes[i].OTROS+'\",\n'
+                                +'\"CELULAR\": \"'+this.dataPromoventes[i].CELULAR+'\",\n'
+                                +'\"EMAIL\": \"'+this.dataPromoventes[i].EMAIL+'\",\n'
+                              }
+                              +'},\n'
+                            } 
+                            else
+                            {
+                              +'\"ADYCON_PERSONAMORALAYC\": {\n'
+                              +'  \"IDPERSONAAYC\": '+this.dataPromoventes[i].IDPERSONAAYC+',\n'
+                              if (this.dataPromoventes[i].IDPERSONAAYC == 0)
+                              {
+                                +'\"NOMBRE\": \"'+this.dataPromoventes[i].NOMBRE+'\",\n'
+                                +'\"ACTIVPRINCIP\": \"'+this.dataPromoventes[i].ACTIVPRINCIP+'\",\n'
+                                +'\"RFC\": \"'+this.dataPromoventes[i].RFC+'\",\n'
+                              }
+                              +'},\n'
+                            }
+                            if (this.dataPromoventes[i].NOTIFICACION)
+                            {
+                              +'\"ADYCON_EXPEDIENTENOTIFICACION\": {\n'
+                              for (let i = 0; i < this.dataDomicilioNotificacion.length; i++)
+                              {
+                                +'\"IDDOMICILIONOTIFICACIONES\": '+this.dataDomicilioNotificacion[i].IDDOMICILIONOTIFICACIONES+',\n'
+                                +'\"CODTIPOSVIA\": '+this.dataDomicilioNotificacion[i].CODTIPOSVIA+',\n'
+                                +'\"VIA\": \"'+this.dataDomicilioNotificacion[i].VIA+'\",\n'
+                                +'\"NUMEROEXTERIOR\": \"'+this.dataDomicilioNotificacion[i].NUMEROEXTERIOR+'\",\n'
+                                +'\"EDIFICIO\": \"'+this.dataDomicilioNotificacion[i].EDIFICIO+'\",\n'
+                                +'\"CODTIPOSLOCALIDAD\": '+this.dataDomicilioNotificacion[i].CODTIPOSLOCALIDAD+',\n'
+                                +'\"NUMEROINTERIOR\": \"'+this.dataDomicilioNotificacion[i].NUMEROINTERIOR+'\",\n'
+                                +'\"CODTIPOSASENTAMIENTO\": '+this.dataDomicilioNotificacion[i].CODTIPOSASENTAMIENTO+',\n'
+                                +'\"COLONIA\": \"'+this.dataDomicilioNotificacion[i].COLONIA+'\",\n'
+                                +'\"CODIGOPOSTAL\": \"'+this.dataDomicilioNotificacion[i].CODIGOPOSTAL+'\",\n'
+                                +'\"IDDELEGACION\": '+this.dataDomicilioNotificacion[i].IDDELEGACION+',\n'
+                                +'\"CODMUNICIPIO\": '+this.dataDomicilioNotificacion[i].CODMUNICIPIO+',\n'
+                                +'\"DELEGACION\": \"'+this.dataDomicilioNotificacion[i].DELEGACION+'\",\n'
+                                +'\"CODESTADO\": '+this.dataDomicilioNotificacion[i].CODESTADO+',\n'
+                                +'\"IDCHS_MTODESDE\": '+this.dataDomicilioNotificacion[i].IDCHS_MTODESDE+',\n'
+                              }
+                              +'},\n'
+                            }
+                            +'},\n'
+                          }
                           +'  ]\n'
                           +'}';
             //////////PAYLOAD///////////
