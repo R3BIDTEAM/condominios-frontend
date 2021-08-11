@@ -1194,7 +1194,7 @@ export class AltaExpedienteComponent implements OnInit {
               ADYCON_EXPEDIENTEDOCUMENTOS: array_ADYCON_EXPEDIENTEDOCUMENTOS,
               USERTOKEN: "TOKEN USER LOGIN",
               ROL: "CONTRIBUYENTE",
-              PERSONA: array_PERSONAS
+              PERSONAS: array_PERSONAS
             };
             console.log(payload);
             //////////PAYLOAD///////////
