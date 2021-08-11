@@ -908,7 +908,7 @@ export class AltaExpedienteComponent implements OnInit {
         this.loadinCuentasCatastrales = false;
         if(res.error.code === 0)
         {
-          if(res.data.result.length == 0)
+          if(res.data.result.length > 0)
           {
             dataResponseCuentaCatastral = res.data.result;
             const dialogRef = this.dialog.open(DialogCuentasCatastralesCurso, {
@@ -1196,7 +1196,7 @@ export class AltaExpedienteComponent implements OnInit {
               ROL: "CONTRIBUYENTE",
               PERSONAS: array_PERSONAS
             };
-            console.log(JSON.stringify(payload));
+            console.log(payload);
             //////////PAYLOAD///////////
             const dialogRef = this.dialog.open(DialogInsertaExpediente, {
               width: '600px',
