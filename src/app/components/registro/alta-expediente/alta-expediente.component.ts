@@ -1019,8 +1019,69 @@ export class AltaExpedienteComponent implements OnInit {
                             }
                             +'},\n'
                           }
+                          for (let i = 0; i < this.dataRepresentantes.length; i++)
+                          {
+                            +'{\n'
+                            +'\"TIPO\": \"ADYCON_EXPEDIENTEREPRESENTANTE\",\n'
+                            if (this.dataRepresentantes[i].TIPOPERSONA == 'FISICA')
+                            {
+                              +'\"ADYCON_PERSONAFISICAAYC\": {\n'
+                              +'  \"IDPERSONAAYC\": '+this.dataRepresentantes[i].IDPERSONAAYC+',\n'
+                              if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                              {
+                                +'\"CURP\": \"'+this.dataRepresentantes[i].CURP+'\",\n'
+                                +'\"NOMBRE\": \"'+this.dataRepresentantes[i].NOMBRE+'\",\n'
+                                +'\"APELLIDOPATERNO\": \"'+this.dataRepresentantes[i].APELLIDOPATERNO+'\",\n'
+                                +'\"APELLIDOMATERNO\": \"'+this.dataRepresentantes[i].APELLIDOMATERNO+'\",\n'
+                                +'\"RFC\": \"'+this.dataRepresentantes[i].RFC+'\",\n'
+                                +'\"CLAVEIFE\": \"'+this.dataRepresentantes[i].CLAVEIFE+'\",\n'
+                                +'\"IDDOCIDENTIF\": '+this.dataRepresentantes[i].IDDOCIDENTIF+',\n'
+                                +'\"OTROS\": \"'+this.dataRepresentantes[i].OTROS+'\",\n'
+                                +'\"CELULAR\": \"'+this.dataRepresentantes[i].CELULAR+'\",\n'
+                                +'\"EMAIL\": \"'+this.dataRepresentantes[i].EMAIL+'\",\n'
+                              }
+                              +'},\n'
+                            } 
+                            else
+                            {
+                              +'\"ADYCON_PERSONAMORALAYC\": {\n'
+                              +'  \"IDPERSONAAYC\": '+this.dataRepresentantes[i].IDPERSONAAYC+',\n'
+                              if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                              {
+                                +'\"NOMBRE\": \"'+this.dataRepresentantes[i].NOMBRE+'\",\n'
+                                +'\"ACTIVPRINCIP\": \"'+this.dataRepresentantes[i].ACTIVPRINCIP+'\",\n'
+                                +'\"RFC\": \"'+this.dataRepresentantes[i].RFC+'\",\n'
+                              }
+                              +'},\n'
+                            }
+                            if (this.dataRepresentantes[i].NOTIFICACION)
+                            {
+                              +'\"ADYCON_EXPEDIENTENOTIFICACION\": {\n'
+                              for (let i = 0; i < this.dataDomicilioNotificacion.length; i++)
+                              {
+                                +'\"IDDOMICILIONOTIFICACIONES\": '+this.dataDomicilioNotificacion[i].IDDOMICILIONOTIFICACIONES+',\n'
+                                +'\"CODTIPOSVIA\": '+this.dataDomicilioNotificacion[i].CODTIPOSVIA+',\n'
+                                +'\"VIA\": \"'+this.dataDomicilioNotificacion[i].VIA+'\",\n'
+                                +'\"NUMEROEXTERIOR\": \"'+this.dataDomicilioNotificacion[i].NUMEROEXTERIOR+'\",\n'
+                                +'\"EDIFICIO\": \"'+this.dataDomicilioNotificacion[i].EDIFICIO+'\",\n'
+                                +'\"CODTIPOSLOCALIDAD\": '+this.dataDomicilioNotificacion[i].CODTIPOSLOCALIDAD+',\n'
+                                +'\"NUMEROINTERIOR\": \"'+this.dataDomicilioNotificacion[i].NUMEROINTERIOR+'\",\n'
+                                +'\"CODTIPOSASENTAMIENTO\": '+this.dataDomicilioNotificacion[i].CODTIPOSASENTAMIENTO+',\n'
+                                +'\"COLONIA\": \"'+this.dataDomicilioNotificacion[i].COLONIA+'\",\n'
+                                +'\"CODIGOPOSTAL\": \"'+this.dataDomicilioNotificacion[i].CODIGOPOSTAL+'\",\n'
+                                +'\"IDDELEGACION\": '+this.dataDomicilioNotificacion[i].IDDELEGACION+',\n'
+                                +'\"CODMUNICIPIO\": '+this.dataDomicilioNotificacion[i].CODMUNICIPIO+',\n'
+                                +'\"DELEGACION\": \"'+this.dataDomicilioNotificacion[i].DELEGACION+'\",\n'
+                                +'\"CODESTADO\": '+this.dataDomicilioNotificacion[i].CODESTADO+',\n'
+                                +'\"IDCHS_MTODESDE\": '+this.dataDomicilioNotificacion[i].IDCHS_MTODESDE+',\n'
+                              }
+                              +'},\n'
+                            }
+                            +'},\n'
+                          }
                           +'  ]\n'
                           +'}';
+            console.log(payload);
             //////////PAYLOAD///////////
             window.location.reload();
             this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
