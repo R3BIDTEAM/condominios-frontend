@@ -960,8 +960,8 @@ export class AltaExpedienteComponent implements OnInit {
                     CLAVEIFE: this.dataPromoventes[i].CLAVEIFE,
                     IDDOCIDENTIF: this.dataPromoventes[i].IDDOCIDENTIF,
                     OTROS: this.dataPromoventes[i].OTROS,
-                    CELULAR: this.dataPromoventes[i].IDDOCIDENTIF,
-                    EMAIL: this.dataPromoventes[i].OTROS,
+                    CELULAR: this.dataPromoventes[i].CELULAR,
+                    EMAIL: this.dataPromoventes[i].EMAIL,
                   }
                 }
                 else
@@ -1077,8 +1077,8 @@ export class AltaExpedienteComponent implements OnInit {
                     CLAVEIFE: this.dataRepresentantes[i].CLAVEIFE,
                     IDDOCIDENTIF: this.dataRepresentantes[i].IDDOCIDENTIF,
                     OTROS: this.dataRepresentantes[i].OTROS,
-                    CELULAR: this.dataRepresentantes[i].IDDOCIDENTIF,
-                    EMAIL: this.dataRepresentantes[i].OTROS,
+                    CELULAR: this.dataRepresentantes[i].CELULAR,
+                    EMAIL: this.dataRepresentantes[i].EMAIL,
                   }
                 }
                 else
