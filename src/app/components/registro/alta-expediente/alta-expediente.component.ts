@@ -957,6 +957,8 @@ export class AltaExpedienteComponent implements OnInit {
                           +'  ],\n'
                           +'  \"USERTOKEN\": \"TOKEN USER LOGIN\",\n'
                           +'  \"ROL\": \"CONTRIBUYENTE\",\n'
+                          +'  \"PERSONAS\": [\n'
+                          +'  ]\n'
                           +'}';
             //////////PAYLOAD///////////
             window.location.reload();
