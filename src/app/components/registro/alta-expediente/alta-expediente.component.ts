@@ -932,19 +932,29 @@ export class AltaExpedienteComponent implements OnInit {
             this.dataExpediente.IDESTADOOVICA = 2;
             
             let payload = '{\n'
-                          +'  \"ADYCON_EXPEDIENTES\": {'
-                          +'    \"IDTIPOTRAMITE\": '+this.dataExpediente.IDTIPOTRAMITE+','
-                          +'    \"FECHAENTRADA\": \"'+this.dataExpediente.FECHAENTRADA+'\",'
-                          +'    \"FECHATERMINO\": \"'+this.dataExpediente.FECHATERMINO+'\",'
-                          +'    \"INDIOFICIALIA\": \"'+this.dataExpediente.INDIOFICIALIA+'\",'
-                          +'    \"OBSERVACIONES\": \"'+this.dataExpediente.OBSERVACIONES+'\",'
-                          +'    \"IDPROCESOWORKFLOW\": \"'+this.dataExpediente.IDPROCESOWORKFLOW+'\",'
-                          +'    \"SECUENCIADOCINTERNO\": '+this.dataExpediente.SECUENCIADOCINTERNO+','
-                          +'    \"RESOLUCIONALTA\": \"'+this.dataExpediente.RESOLUCIONALTA+'\",'
-                          +'    \"FECHAFINPROCESOWORKFLOW\": \"'+this.dataExpediente.FECHAFINPROCESOWORKFLOW+'\",'
-                          +'    \"IDRESULTADOOVICA\": '+this.dataExpediente.IDRESULTADOOVICA+','
-                          +'    \"IDESTADOOVICA\": '+this.dataExpediente.IDESTADOOVICA+','
-                          +'   },'
+                          +'  \"ADYCON_EXPEDIENTES\": {\n'
+                          +'    \"IDTIPOTRAMITE\": '+this.dataExpediente.IDTIPOTRAMITE+',\n'
+                          +'    \"FECHAENTRADA\": \"'+this.dataExpediente.FECHAENTRADA+'\",\n'
+                          +'    \"FECHATERMINO\": \"'+this.dataExpediente.FECHATERMINO+'\",\n'
+                          +'    \"INDIOFICIALIA\": \"'+this.dataExpediente.INDIOFICIALIA+'\",\n'
+                          +'    \"OBSERVACIONES\": \"'+this.dataExpediente.OBSERVACIONES+'\",\n'
+                          +'    \"IDPROCESOWORKFLOW\": \"'+this.dataExpediente.IDPROCESOWORKFLOW+'\",\n'
+                          +'    \"SECUENCIADOCINTERNO\": '+this.dataExpediente.SECUENCIADOCINTERNO+',\n'
+                          +'    \"RESOLUCIONALTA\": \"'+this.dataExpediente.RESOLUCIONALTA+'\",\n'
+                          +'    \"FECHAFINPROCESOWORKFLOW\": \"'+this.dataExpediente.FECHAFINPROCESOWORKFLOW+'\",\n'
+                          +'    \"IDRESULTADOOVICA\": '+this.dataExpediente.IDRESULTADOOVICA+',\n'
+                          +'    \"IDESTADOOVICA\": '+this.dataExpediente.IDESTADOOVICA+',\n'
+                          +'   },\n'
+                          +'  \"ADYCON_EXPEDIENTEDOCUMENTOS\": [\n'
+                          for (let i = 0; i < this.dataDocumentosAportar.length; i++) {
+                            +'{\n'
+                            +'\"IDTIPODOC\": '+this.dataDocumentosAportar[i].IDTIPODOC+',\n'
+                            +'\"IDDOCUMENTODIGITAL\": '+(i+1)+',\n'
+                            +'\"IDCONJDOCUMENTAL\": '+this.dataDocumentosAportar[i].IDCONJDOCUMENTAL+',\n'
+                            +'\"INDIENTREGADO\": \"'+this.dataDocumentosAportar[i].INDIOBLIGATORIO+'\",\n'
+                            +'},\n'
+                          }
+                          +'  ],\n'
                           +'}';
             //////////PAYLOAD///////////
             window.location.reload();
