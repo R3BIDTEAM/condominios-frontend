@@ -1196,7 +1196,7 @@ export class AltaExpedienteComponent implements OnInit {
               ROL: "CONTRIBUYENTE",
               PERSONAS: array_PERSONAS
             };
-            console.log(payload);
+            console.log(JSON.stringify(payload));
             //////////PAYLOAD///////////
             const dialogRef = this.dialog.open(DialogInsertaExpediente, {
               width: '600px',
@@ -1205,20 +1205,48 @@ export class AltaExpedienteComponent implements OnInit {
             this.http.post(insertaExpedienteCompleto, JSON.stringify(payload)).subscribe(
               (res: any) => {
                 dialogRef.close();
-                if(res.error.code === 0)
-                {
-                  window.location.reload();
-                  this.snackBar.open('Se ha iniciado el expediente con numero ' + res.data.IDEXPEDIENTE, 'Cerrar', {
-                    duration: 10000,
-                    horizontalPosition: 'end',
-                    verticalPosition: 'top'
-                  });
-                } else {
-                  this.snackBar.open(res.error.message, 'Cerrar', {
-                    duration: 10000,
-                    horizontalPosition: 'end',
-                    verticalPosition: 'top'
-                  });
+                switch(res.error.code) {
+                  case 0: {
+                    window.location.reload();
+                    this.snackBar.open('Se ha iniciado el expediente con numero ' + res.data.IDEXPEDIENTE, 'Cerrar', {
+                      duration: 10000,
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top'
+                    });
+                    break;
+                  }
+                  case 100: {
+                    this.snackBar.open('Verifique la información ingresada', 'Cerrar', {
+                      duration: 10000,
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top'
+                    });
+                    break;
+                  }
+                  case 200: {
+                    this.snackBar.open('Ocurrió un error en la comucación, intentelo nuevamente', 'Cerrar', {
+                      duration: 10000,
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top'
+                    });
+                    break;
+                  }
+                  case 203: {
+                    this.snackBar.open('Ocurrió un error al guardar la información, intentelo nuevamente', 'Cerrar', {
+                      duration: 10000,
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top'
+                    });
+                    break;
+                  }
+                  default: {
+                    this.snackBar.open(res.error.message, 'Cerrar', {
+                      duration: 10000,
+                      horizontalPosition: 'end',
+                      verticalPosition: 'top'
+                    });
+                    break;
+                  }
                 }
               },
               (error) => {
