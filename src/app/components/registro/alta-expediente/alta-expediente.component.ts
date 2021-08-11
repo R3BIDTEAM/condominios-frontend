@@ -151,10 +151,7 @@ export class AltaExpedienteComponent implements OnInit {
     this.getDelegaciones();
 
     this.dataExpediente.IDTIPOTRAMITE = "";
-    this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
-    this.dataExpediente.FECHATERMINO = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
-    this.dataExpediente.FECHAFINPROCESOWORKFLOW = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
-    
+
     this.promoventeFisica = this._formBuilder.group({
       NOMBRE: [null, [Validators.required]],
       APELLIDOPATERNO: [null, [Validators.required]],
@@ -924,7 +921,31 @@ export class AltaExpedienteComponent implements OnInit {
             });
           } else {
             //////////PAYLOAD///////////
-            let payload = {};
+            this.dataExpediente.FECHAENTRADA = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
+            this.dataExpediente.FECHATERMINO = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
+            this.dataExpediente.INDIOFICIALIA = "O";
+            this.dataExpediente.IDPROCESOWORKFLOW = "I";
+            this.dataExpediente.SECUENCIADOCINTERNO = 0;
+            this.dataExpediente.RESOLUCIONALTA = "I";
+            this.dataExpediente.FECHAFINPROCESOWORKFLOW = "FEC_" + this.datePipe.transform(this.hoy, 'dd/MM/yyyy');
+            this.dataExpediente.IDRESULTADOOVICA = 1;
+            this.dataExpediente.IDESTADOOVICA = 2;
+            
+            let payload = '{\n'
+                          +'  \"ADYCON_EXPEDIENTES\": {'
+                          +'    \"IDTIPOTRAMITE\": '+this.dataExpediente.IDTIPOTRAMITE+','
+                          +'    \"FECHAENTRADA\": \"'+this.dataExpediente.FECHAENTRADA+'\",'
+                          +'    \"FECHATERMINO\": \"'+this.dataExpediente.FECHATERMINO+'\",'
+                          +'    \"INDIOFICIALIA\": \"'+this.dataExpediente.INDIOFICIALIA+'\",'
+                          +'    \"OBSERVACIONES\": \"'+this.dataExpediente.OBSERVACIONES+'\",'
+                          +'    \"IDPROCESOWORKFLOW\": \"'+this.dataExpediente.IDPROCESOWORKFLOW+'\",'
+                          +'    \"SECUENCIADOCINTERNO\": '+this.dataExpediente.SECUENCIADOCINTERNO+','
+                          +'    \"RESOLUCIONALTA\": \"'+this.dataExpediente.RESOLUCIONALTA+'\",'
+                          +'    \"FECHAFINPROCESOWORKFLOW\": \"'+this.dataExpediente.FECHAFINPROCESOWORKFLOW+'\",'
+                          +'    \"IDRESULTADOOVICA\": '+this.dataExpediente.IDRESULTADOOVICA+','
+                          +'    \"IDESTADOOVICA\": '+this.dataExpediente.IDESTADOOVICA+','
+                          +'   },'
+                          +'}';
             //////////PAYLOAD///////////
             window.location.reload();
             this.snackBar.open('Se ha iniciado el expediente.', 'Cerrar', {
