@@ -957,6 +957,8 @@ export class AltaExpedienteComponent implements OnInit {
                 IDESTADOOVICA: this.dataExpediente.IDESTADOOVICA
               },
               ADYCON_EXPEDIENTEDOCUMENTOS: array_ADYCON_EXPEDIENTEDOCUMENTOS,
+              USERTOKEN: "TOKEN USER LOGIN",
+              ROL: "CONTRIBUYENTE",
             };
             console.log(payload);
             //////////PAYLOAD///////////
