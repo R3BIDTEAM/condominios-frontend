@@ -1031,6 +1031,95 @@ export class AltaExpedienteComponent implements OnInit {
                 });
               }
             }
+            
+            for (let i = 0; i < this.dataRepresentantes.length; i++)
+            {
+              let representante = {};
+              if (this.dataRepresentantes[i].TIPOPERSONA == 'FISICA')
+              {
+                if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                {
+                  representante = {
+                    ADYCON_PERSONAFISICAAYC: {
+                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
+                      CURP: this.dataRepresentantes[i].CURP,
+                      NOMBRE: this.dataRepresentantes[i].NOMBRE,
+                      APELLIDOPATERNO: this.dataRepresentantes[i].APELLIDOPATERNO,
+                      APELLIDOMATERNO: this.dataRepresentantes[i].APELLIDOMATERNO,
+                      RFC: this.dataRepresentantes[i].RFC,
+                      CLAVEIFE: this.dataRepresentantes[i].CLAVEIFE,
+                      IDDOCIDENTIF: this.dataRepresentantes[i].IDDOCIDENTIF,
+                      OTROS: this.dataRepresentantes[i].OTROS,
+                      CELULAR: this.dataRepresentantes[i].IDDOCIDENTIF,
+                      EMAIL: this.dataRepresentantes[i].OTROS,
+                    }
+                  }
+                }
+                else
+                {
+                  representante = {
+                    ADYCON_PERSONAFISICAAYC: {
+                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
+                    }
+                  }
+                }
+              }
+              else
+              {
+                if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                {
+                  representante = {
+                    ADYCON_PERSONAMORALAYC: {
+                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
+                      NOMBRE: this.dataRepresentantes[i].NOMBRE,
+                      ACTIVPRINCIP: this.dataRepresentantes[i].ACTIVPRINCIP,
+                      RFC: this.dataRepresentantes[i].RFC,
+                    }
+                  }
+                }
+                representante = {
+                  ADYCON_PERSONAMORALAYC: {
+                    IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
+                  }
+                }
+              }
+              
+              if (this.dataRepresentantes[i].NOTIFICACION)
+              {
+                let domicilio = {};
+                domicilio = {
+                  ADYCON_EXPEDIENTENOTIFICACION: {
+                    IDDOMICILIONOTIFICACIONES: this.dataDomicilioNotificacion[0].IDDOMICILIONOTIFICACIONES,
+                    CODTIPOSVIA: this.dataDomicilioNotificacion[0].CODTIPOSVIA,
+                    VIA: this.dataDomicilioNotificacion[0].VIA,
+                    NUMEROEXTERIOR: this.dataDomicilioNotificacion[0].NUMEROEXTERIOR,
+                    EDIFICIO: this.dataDomicilioNotificacion[0].EDIFICIO,
+                    CODTIPOSLOCALIDAD: this.dataDomicilioNotificacion[0].CODTIPOSLOCALIDAD,
+                    NUMEROINTERIOR: this.dataDomicilioNotificacion[0].NUMEROINTERIOR,
+                    CODTIPOSASENTAMIENTO: this.dataDomicilioNotificacion[0].CODTIPOSASENTAMIENTO,
+                    COLONIA: this.dataDomicilioNotificacion[0].COLONIA,
+                    CODIGOPOSTAL: this.dataDomicilioNotificacion[0].CODIGOPOSTAL,
+                    IDDELEGACION: this.dataDomicilioNotificacion[0].IDDELEGACION,
+                    CODMUNICIPIO: this.dataDomicilioNotificacion[0].CODMUNICIPIO,
+                    DELEGACION: this.dataDomicilioNotificacion[0].DELEGACION,
+                    CODESTADO: this.dataDomicilioNotificacion[0].CODESTADO,
+                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE,
+                  }
+                };
+                array_PERSONAS.push({
+                  TIPO: "ADYCON_EXPEDIENTEREPRESENTANTE",
+                  representante,
+                  domicilio
+                });
+              }
+              else
+              {
+                array_PERSONAS.push({
+                  TIPO: "ADYCON_EXPEDIENTEREPRESENTANTE",
+                  representante,
+                });
+              }
+            }
 
             let payload = {
               ADYCON_EXPEDIENTES: {
@@ -1049,6 +1138,7 @@ export class AltaExpedienteComponent implements OnInit {
               ADYCON_EXPEDIENTEDOCUMENTOS: array_ADYCON_EXPEDIENTEDOCUMENTOS,
               USERTOKEN: "TOKEN USER LOGIN",
               ROL: "CONTRIBUYENTE",
+              PERSONA: array_PERSONAS
             };
             console.log(payload);
             //////////PAYLOAD///////////
