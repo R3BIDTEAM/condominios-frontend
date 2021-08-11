@@ -932,7 +932,19 @@ export class AltaExpedienteComponent implements OnInit {
             this.dataExpediente.IDESTADOOVICA = 2;
             
             let payload = {
-              
+              ADYCON_EXPEDIENTES: {
+                IDTIPOTRAMITE: this.dataExpediente.IDTIPOTRAMITE,
+                FECHAENTRADA: this.dataExpediente.FECHAENTRADA,
+                FECHATERMINO: this.dataExpediente.FECHATERMINO,
+                INDIOFICIALIA: this.dataExpediente.INDIOFICIALIA,
+                OBSERVACIONES: this.dataExpediente.OBSERVACIONES,
+                IDPROCESOWORKFLOW: this.dataExpediente.IDPROCESOWORKFLOW,
+                SECUENCIADOCINTERNO: this.dataExpediente.SECUENCIADOCINTERNO,
+                RESOLUCIONALTA: this.dataExpediente.RESOLUCIONALTA,
+                FECHAFINPROCESOWORKFLOW: this.dataExpediente.FECHAFINPROCESOWORKFLOW,
+                IDRESULTADOOVICA: this.dataExpediente.IDRESULTADOOVICA,
+                IDESTADOOVICA: this.dataExpediente.IDESTADOOVICA
+              },
             };
             console.log(payload);
             //////////PAYLOAD///////////
