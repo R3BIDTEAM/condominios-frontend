@@ -155,12 +155,12 @@ export class AltaExpedienteComponent implements OnInit {
     this.promoventeFisica = this._formBuilder.group({
       NOMBRE: [null, [Validators.required]],
       APELLIDOPATERNO: [null, [Validators.required]],
-      APELLIDOMATERNO: [null, []],
+      APELLIDOMATERNO: ['', []],
       RFC: [null, [Validators.required]],
       CURP: [null, [Validators.required]],
-      CLAVEIFE: [null, []],
+      CLAVEIFE: ['', []],
       IDDOCIDENTIF: ['', []],
-      OTROS: [null, []],
+      OTROS: ['', []],
       CELULAR: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       EMAIL: [null, [Validators.required, Validators.email]],
     });
@@ -174,12 +174,12 @@ export class AltaExpedienteComponent implements OnInit {
     this.representanteFisica = this._formBuilder.group({
       NOMBRE: [null, [Validators.required]],
       APELLIDOPATERNO: [null, [Validators.required]],
-      APELLIDOMATERNO: [null, []],
+      APELLIDOMATERNO: ['', []],
       RFC: [null, [Validators.required]],
       CURP: [null, [Validators.required]],
-      CLAVEIFE: [null, []],
+      CLAVEIFE: ['', []],
       IDDOCIDENTIF: ['', []],
-      OTROS: [null, []],
+      OTROS: ['', []],
       CELULAR: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       EMAIL: [null, [Validators.required, Validators.email]],
     });
@@ -444,12 +444,12 @@ export class AltaExpedienteComponent implements OnInit {
       promovente.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       promovente.NOMBRE = this.promoventeFisica.value.NOMBRE;
       promovente.APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
-      promovente.APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
+      promovente.APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : '';
       promovente.RFC = this.promoventeFisica.value.RFC;
       promovente.CURP = this.promoventeFisica.value.CURP;
-      promovente.CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : null;
+      promovente.CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : '';
       promovente.IDDOCIDENTIF = (this.promoventeFisica.value.IDDOCIDENTIF) ? this.promoventeFisica.value.IDDOCIDENTIF : 0;
-      promovente.OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
+      promovente.OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : '';
       promovente.CELULAR = this.promoventeFisica.value.CELULAR;
       promovente.EMAIL = this.promoventeFisica.value.EMAIL;
       promovente.NOTIFICACION = false;
@@ -475,12 +475,12 @@ export class AltaExpedienteComponent implements OnInit {
       this.dataPromoventes[this.indexEdicionPromovente].TIPOPERSONA = this.tipoPersonaPromovente;
       this.dataPromoventes[this.indexEdicionPromovente].NOMBRE = this.promoventeFisica.value.NOMBRE;
       this.dataPromoventes[this.indexEdicionPromovente].APELLIDOPATERNO = this.promoventeFisica.value.APELLIDOPATERNO;
-      this.dataPromoventes[this.indexEdicionPromovente].APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : null;
+      this.dataPromoventes[this.indexEdicionPromovente].APELLIDOMATERNO = (this.promoventeFisica.value.APELLIDOMATERNO) ? this.promoventeFisica.value.APELLIDOMATERNO : '';
       this.dataPromoventes[this.indexEdicionPromovente].RFC = this.promoventeFisica.value.RFC;
       this.dataPromoventes[this.indexEdicionPromovente].CURP = this.promoventeFisica.value.CURP;
-      this.dataPromoventes[this.indexEdicionPromovente].CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : null;
+      this.dataPromoventes[this.indexEdicionPromovente].CLAVEIFE = (this.promoventeFisica.value.CLAVEIFE) ? this.promoventeFisica.value.CLAVEIFE : '';
       this.dataPromoventes[this.indexEdicionPromovente].IDDOCIDENTIF = (this.promoventeFisica.value.IDDOCIDENTIF) ? this.promoventeFisica.value.IDDOCIDENTIF : 0;
-      this.dataPromoventes[this.indexEdicionPromovente].OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : null;
+      this.dataPromoventes[this.indexEdicionPromovente].OTROS = (this.promoventeFisica.value.OTROS) ? this.promoventeFisica.value.OTROS : '';
       this.dataPromoventes[this.indexEdicionPromovente].CELULAR = this.promoventeFisica.value.CELULAR;
       this.dataPromoventes[this.indexEdicionPromovente].EMAIL = this.promoventeFisica.value.EMAIL;
       this.dataPromoventes[this.indexEdicionPromovente].NOTIFICACION = false;
@@ -647,12 +647,12 @@ export class AltaExpedienteComponent implements OnInit {
       representante.IDPERSONAAYC = (this.idpersona) ? this.idpersona : 0;
       representante.NOMBRE = this.representanteFisica.value.NOMBRE;
       representante.APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
-      representante.APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
+      representante.APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : '';
       representante.RFC = this.representanteFisica.value.RFC;
       representante.CURP = this.representanteFisica.value.CURP;
-      representante.CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : null;
+      representante.CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : '';
       representante.IDDOCIDENTIF = (this.representanteFisica.value.IDDOCIDENTIF) ? this.representanteFisica.value.IDDOCIDENTIF : 0;
-      representante.OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : null;
+      representante.OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : '';
       representante.CELULAR = this.representanteFisica.value.CELULAR;
       representante.EMAIL = this.representanteFisica.value.EMAIL;
       representante.NOTIFICACION = false;
@@ -674,12 +674,12 @@ export class AltaExpedienteComponent implements OnInit {
       this.dataRepresentantes[this.indexEdicionRepresentante].TIPOPERSONA = this.tipoPersonaRepresentante;
       this.dataRepresentantes[this.indexEdicionRepresentante].NOMBRE = this.representanteFisica.value.NOMBRE;
       this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOPATERNO = this.representanteFisica.value.APELLIDOPATERNO;
-      this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].APELLIDOMATERNO = (this.representanteFisica.value.APELLIDOMATERNO) ? this.representanteFisica.value.APELLIDOMATERNO : '';
       this.dataRepresentantes[this.indexEdicionRepresentante].RFC = this.representanteFisica.value.RFC;
       this.dataRepresentantes[this.indexEdicionRepresentante].CURP = this.representanteFisica.value.CURP;
-      this.dataRepresentantes[this.indexEdicionRepresentante].CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].CLAVEIFE = (this.representanteFisica.value.CLAVEIFE) ? this.representanteFisica.value.CLAVEIFE : '';
       this.dataRepresentantes[this.indexEdicionRepresentante].IDDOCIDENTIF = (this.representanteFisica.value.IDDOCIDENTIF) ? this.representanteFisica.value.IDDOCIDENTIF : 0;
-      this.dataRepresentantes[this.indexEdicionRepresentante].OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : null;
+      this.dataRepresentantes[this.indexEdicionRepresentante].OTROS = (this.representanteFisica.value.OTROS) ? this.representanteFisica.value.OTROS : '';
       this.dataRepresentantes[this.indexEdicionRepresentante].CELULAR = this.representanteFisica.value.CELULAR;
       this.dataRepresentantes[this.indexEdicionRepresentante].EMAIL = this.representanteFisica.value.EMAIL;
       this.dataRepresentantes[this.indexEdicionRepresentante].NOTIFICACION = false;
@@ -1417,15 +1417,15 @@ export class DialogAddDomicilioNotificacion {
         VIA: [null, [Validators.required]],
         CODTIPOSLOCALIDAD: [''],
         NUMEROEXTERIOR: [null, [Validators.required]],
-        NUMEROINTERIOR: [null],
-        ANDADOR: [null],
-        EDIFICIO: [null],
-        ENTRADA: [null],
-        SECCION: [null],
-        TELEFONO: [null],
-        ENTRECALLE1: [null],
-        ENTRECALLE2: [null],
-        INDICACIONESADICIONALES: [null],
+        NUMEROINTERIOR: [''],
+        ANDADOR: [''],
+        EDIFICIO: [''],
+        ENTRADA: [''],
+        SECCION: [''],
+        TELEFONO: [''],
+        ENTRECALLE1: [''],
+        ENTRECALLE2: [''],
+        INDICACIONESADICIONALES: [''],
       });
 
       (data.dataDomicilioNotificacion) ? this.setDataDomicilioNotificacion(data.dataDomicilioNotificacion) : "";
