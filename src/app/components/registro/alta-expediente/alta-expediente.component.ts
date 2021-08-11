@@ -931,6 +931,17 @@ export class AltaExpedienteComponent implements OnInit {
             this.dataExpediente.IDRESULTADOOVICA = 1;
             this.dataExpediente.IDESTADOOVICA = 2;
             
+            let array_ADYCON_EXPEDIENTEDOCUMENTOS = [];
+            for (let i = 0; i < this.dataDocumentosAportar.length; i++)
+            {
+              array_ADYCON_EXPEDIENTEDOCUMENTOS.push({
+                IDTIPODOC: this.dataDocumentosAportar[i].IDTIPODOC,
+                IDDOCUMENTODIGITAL: (i+1),
+                IDCONJDOCUMENTAL: this.dataDocumentosAportar[i].IDCONJDOCUMENTAL,
+                INDIENTREGADO: this.dataDocumentosAportar[i].INDIOBLIGATORIO
+              });
+            }
+
             let payload = {
               ADYCON_EXPEDIENTES: {
                 IDTIPOTRAMITE: this.dataExpediente.IDTIPOTRAMITE,
@@ -945,6 +956,7 @@ export class AltaExpedienteComponent implements OnInit {
                 IDRESULTADOOVICA: this.dataExpediente.IDRESULTADOOVICA,
                 IDESTADOOVICA: this.dataExpediente.IDESTADOOVICA
               },
+              ADYCON_EXPEDIENTEDOCUMENTOS: array_ADYCON_EXPEDIENTEDOCUMENTOS,
             };
             console.log(payload);
             //////////PAYLOAD///////////
