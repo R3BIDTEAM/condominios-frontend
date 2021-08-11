@@ -945,61 +945,35 @@ export class AltaExpedienteComponent implements OnInit {
             let array_PERSONAS = [];
             for (let i = 0; i < this.dataPromoventes.length; i++)
             {
-              let promovente = {};
               if (this.dataPromoventes[i].TIPOPERSONA == 'FISICA')
               {
+                let ADYCON_PERSONAFISICAAYC = {};
                 if (this.dataPromoventes[i].IDPERSONAAYC == 0)
                 {
-                  promovente = {
-                    ADYCON_PERSONAFISICAAYC: {
-                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
-                      CURP: this.dataPromoventes[i].CURP,
-                      NOMBRE: this.dataPromoventes[i].NOMBRE,
-                      APELLIDOPATERNO: this.dataPromoventes[i].APELLIDOPATERNO,
-                      APELLIDOMATERNO: this.dataPromoventes[i].APELLIDOMATERNO,
-                      RFC: this.dataPromoventes[i].RFC,
-                      CLAVEIFE: this.dataPromoventes[i].CLAVEIFE,
-                      IDDOCIDENTIF: this.dataPromoventes[i].IDDOCIDENTIF,
-                      OTROS: this.dataPromoventes[i].OTROS,
-                      CELULAR: this.dataPromoventes[i].IDDOCIDENTIF,
-                      EMAIL: this.dataPromoventes[i].OTROS,
-                    }
+                  ADYCON_PERSONAFISICAAYC = {
+                    IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                    CURP: this.dataPromoventes[i].CURP,
+                    NOMBRE: this.dataPromoventes[i].NOMBRE,
+                    APELLIDOPATERNO: this.dataPromoventes[i].APELLIDOPATERNO,
+                    APELLIDOMATERNO: this.dataPromoventes[i].APELLIDOMATERNO,
+                    RFC: this.dataPromoventes[i].RFC,
+                    CLAVEIFE: this.dataPromoventes[i].CLAVEIFE,
+                    IDDOCIDENTIF: this.dataPromoventes[i].IDDOCIDENTIF,
+                    OTROS: this.dataPromoventes[i].OTROS,
+                    CELULAR: this.dataPromoventes[i].IDDOCIDENTIF,
+                    EMAIL: this.dataPromoventes[i].OTROS,
                   }
                 }
                 else
                 {
-                  promovente = {
-                    ADYCON_PERSONAFISICAAYC: {
-                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
-                    }
-                  }
-                }
-              }
-              else
-              {
-                if (this.dataPromoventes[i].IDPERSONAAYC == 0)
-                {
-                  promovente = {
-                    ADYCON_PERSONAMORALAYC: {
-                      IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
-                      NOMBRE: this.dataPromoventes[i].NOMBRE,
-                      ACTIVPRINCIP: this.dataPromoventes[i].ACTIVPRINCIP,
-                      RFC: this.dataPromoventes[i].RFC,
-                    }
-                  }
-                }
-                promovente = {
-                  ADYCON_PERSONAMORALAYC: {
+                  ADYCON_PERSONAFISICAAYC = {
                     IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
                   }
                 }
-              }
-              
-              if (this.dataPromoventes[i].NOTIFICACION)
-              {
-                let domicilio = {};
-                domicilio = {
-                  ADYCON_EXPEDIENTENOTIFICACION: {
+                
+                if (this.dataPromoventes[i].NOTIFICACION)
+                {
+                  let ADYCON_EXPEDIENTENOTIFICACION = {
                     IDDOMICILIONOTIFICACIONES: this.dataDomicilioNotificacion[0].IDDOMICILIONOTIFICACIONES,
                     CODTIPOSVIA: this.dataDomicilioNotificacion[0].CODTIPOSVIA,
                     VIA: this.dataDomicilioNotificacion[0].VIA,
@@ -1014,81 +988,45 @@ export class AltaExpedienteComponent implements OnInit {
                     CODMUNICIPIO: this.dataDomicilioNotificacion[0].CODMUNICIPIO,
                     DELEGACION: this.dataDomicilioNotificacion[0].DELEGACION,
                     CODESTADO: this.dataDomicilioNotificacion[0].CODESTADO,
-                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE,
-                  }
-                };
-                array_PERSONAS.push({
-                  TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
-                  promovente,
-                  domicilio
-                });
+                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE
+                  };
+                  
+                  array_PERSONAS.push({
+                    TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                    ADYCON_PERSONAFISICAAYC,
+                    ADYCON_EXPEDIENTENOTIFICACION
+                  });
+                }
+                else
+                {
+                  array_PERSONAS.push({
+                    TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                    ADYCON_PERSONAFISICAAYC,
+                  });
+                }
               }
               else
               {
-                array_PERSONAS.push({
-                  TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
-                  promovente,
-                });
-              }
-            }
-            
-            for (let i = 0; i < this.dataRepresentantes.length; i++)
-            {
-              let representante = {};
-              if (this.dataRepresentantes[i].TIPOPERSONA == 'FISICA')
-              {
-                if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                let ADYCON_PERSONAMORALAYC = {};
+                if (this.dataPromoventes[i].IDPERSONAAYC == 0)
                 {
-                  representante = {
-                    ADYCON_PERSONAFISICAAYC: {
-                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
-                      CURP: this.dataRepresentantes[i].CURP,
-                      NOMBRE: this.dataRepresentantes[i].NOMBRE,
-                      APELLIDOPATERNO: this.dataRepresentantes[i].APELLIDOPATERNO,
-                      APELLIDOMATERNO: this.dataRepresentantes[i].APELLIDOMATERNO,
-                      RFC: this.dataRepresentantes[i].RFC,
-                      CLAVEIFE: this.dataRepresentantes[i].CLAVEIFE,
-                      IDDOCIDENTIF: this.dataRepresentantes[i].IDDOCIDENTIF,
-                      OTROS: this.dataRepresentantes[i].OTROS,
-                      CELULAR: this.dataRepresentantes[i].IDDOCIDENTIF,
-                      EMAIL: this.dataRepresentantes[i].OTROS,
-                    }
+                  ADYCON_PERSONAMORALAYC = {
+                    IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
+                    NOMBRE: this.dataPromoventes[i].NOMBRE,
+                    ACTIVPRINCIP: this.dataPromoventes[i].ACTIVPRINCIP,
+                    RFC: this.dataPromoventes[i].RFC,
                   }
                 }
                 else
                 {
-                  representante = {
-                    ADYCON_PERSONAFISICAAYC: {
-                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
-                    }
+                  ADYCON_PERSONAMORALAYC = {
+                    IDPERSONAAYC: this.dataPromoventes[i].IDPERSONAAYC,
                   }
                 }
-              }
-              else
-              {
-                if (this.dataRepresentantes[i].IDPERSONAAYC == 0)
+                
+                if (this.dataPromoventes[i].NOTIFICACION)
                 {
-                  representante = {
-                    ADYCON_PERSONAMORALAYC: {
-                      IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
-                      NOMBRE: this.dataRepresentantes[i].NOMBRE,
-                      ACTIVPRINCIP: this.dataRepresentantes[i].ACTIVPRINCIP,
-                      RFC: this.dataRepresentantes[i].RFC,
-                    }
-                  }
-                }
-                representante = {
-                  ADYCON_PERSONAMORALAYC: {
-                    IDPERSONAAYC: this.dataRepresentantes[i].IDPERSONAAYC,
-                  }
-                }
-              }
-              
-              if (this.dataRepresentantes[i].NOTIFICACION)
-              {
-                let domicilio = {};
-                domicilio = {
-                  ADYCON_EXPEDIENTENOTIFICACION: {
+                  let ADYCON_EXPEDIENTENOTIFICACION = {
                     IDDOMICILIONOTIFICACIONES: this.dataDomicilioNotificacion[0].IDDOMICILIONOTIFICACIONES,
                     CODTIPOSVIA: this.dataDomicilioNotificacion[0].CODTIPOSVIA,
                     VIA: this.dataDomicilioNotificacion[0].VIA,
@@ -1103,23 +1041,26 @@ export class AltaExpedienteComponent implements OnInit {
                     CODMUNICIPIO: this.dataDomicilioNotificacion[0].CODMUNICIPIO,
                     DELEGACION: this.dataDomicilioNotificacion[0].DELEGACION,
                     CODESTADO: this.dataDomicilioNotificacion[0].CODESTADO,
-                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE,
-                  }
-                };
-                array_PERSONAS.push({
-                  TIPO: "ADYCON_EXPEDIENTEREPRESENTANTE",
-                  representante,
-                  domicilio
-                });
-              }
-              else
-              {
-                array_PERSONAS.push({
-                  TIPO: "ADYCON_EXPEDIENTEREPRESENTANTE",
-                  representante,
-                });
+                    IDCHS_MTODESDE: this.dataDomicilioNotificacion[0].IDCHS_MTODESDE
+                  };
+                  
+                  array_PERSONAS.push({
+                    TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                    ADYCON_PERSONAMORALAYC,
+                    ADYCON_EXPEDIENTENOTIFICACION
+                  });
+                }
+                else
+                {
+                  array_PERSONAS.push({
+                    TIPO: "ADYCON_EXPEDIENTEPROMOVENTES",
+                    ADYCON_PERSONAMORALAYC,
+                  });
+                }
               }
             }
+            
+            
 
             let payload = {
               ADYCON_EXPEDIENTES: {
