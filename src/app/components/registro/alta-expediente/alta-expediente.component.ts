@@ -1202,7 +1202,7 @@ export class AltaExpedienteComponent implements OnInit {
               width: '600px',
             });
             let insertaExpedienteCompleto = environment.endpoint + '?action=insertaExpedienteCompleto';
-            this.http.post(insertaExpedienteCompleto, payload).subscribe(
+            this.http.post(insertaExpedienteCompleto, JSON.stringify(payload)).subscribe(
               (res: any) => {
                 dialogRef.close();
                 if(res.error.code === 0)
