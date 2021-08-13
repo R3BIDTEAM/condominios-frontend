@@ -11,7 +11,7 @@ import { DialogsComponent, DialogsAlta } from '@comp/dialogs/dialogs.component';
 export class MenuComponent implements OnInit {
     animal: string;
     name: string;
-
+ 
     menus: any[] = [
         { nombre: 'Bandeja', ruta: '/main', icono: 'add' },
     ];
