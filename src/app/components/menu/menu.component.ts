@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
     menus: any[] = [
         { nombre: 'Bandeja', ruta: '/main', icono: 'add' },
     ];
-
+ 
     constructor(private authService: AuthService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
