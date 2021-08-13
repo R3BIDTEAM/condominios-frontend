@@ -4,7 +4,6 @@ import { LoginFirmaComponent } from '@comp/login-firma/login-firma.component';
 import { LoginComponent } from '@comp/login/login.component';
 import { MainComponent } from '@comp/main/main.component';
 import { GuardService } from '@serv/guard.service';
-import { AltaExpedienteComponent } from '@comp/registro/alta-expediente/alta-expediente.component';
 import { BandejaTareasComponent } from '@comp/bandeja-tareas/bandeja-tareas.component';
 import { ConsultaExpedientesComponent } from '@comp/reportes/consulta-expedientes/consulta-expedientes.component';
 
@@ -15,7 +14,6 @@ const routes: Routes = [
     path: 'main', component: MainComponent, canActivate: [GuardService],
     children: [
        // { path: '', component: , canActivate: [GuardService] }
-       { path: 'alta-expediente', component: AltaExpedienteComponent, canActivate: [GuardService] },
        { path: 'bandeja-tareas', component: BandejaTareasComponent, canActivate: [GuardService] },
        { path: 'consulta-expedientes', component: ConsultaExpedientesComponent, canActivate: [GuardService] },
     ]

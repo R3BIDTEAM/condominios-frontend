@@ -13,17 +13,13 @@ export class MenuComponent implements OnInit {
     name: string;
 
     menus: any[] = [
-        { nombre: 'Registro', ruta: '/main', icono: 'add' },
-    ];
-
-    registro: any[] = [
-        { nombre: 'Nuevo Expediente', ruta: '/main/alta-expediente', icono: 'add' }
+        { nombre: 'Bandeja', ruta: '/main', icono: 'add' },
     ];
 
     constructor(private authService: AuthService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
-        // this.menus = this.authService.getMenu();
+        this.menus = this.authService.getMenu();
     }
 
     pruebas1(): void {
