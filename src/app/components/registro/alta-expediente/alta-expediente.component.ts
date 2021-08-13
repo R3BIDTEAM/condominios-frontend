@@ -116,6 +116,7 @@ export class AltaExpedienteComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   hoy = new Date();
   idpersona;
+  httpOptions;
   isEdicionPromovente = false;
   isEdicionRepresentante = false;
   indexEdicionPromovente;
@@ -140,9 +141,17 @@ export class AltaExpedienteComponent implements OnInit {
     private datePipe: DatePipe,
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
+    private auth: AuthService,
   ) { }
 
   ngOnInit(): void {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        login: this.auth.getSession().userData.login,
+        rol: this.auth.getSession().userData.rol,
+      })
+    };
+    
     this.getTiposTramite();
     this.getTiposPersona();
     this.getTiposDocIdentif();
@@ -203,7 +212,7 @@ export class AltaExpedienteComponent implements OnInit {
     let catTiposTramite = environment.endpoint + '?action=getCatalogo&table=ADYCON_CATTIPOSTRAMITE';
     let filtro = "{\n    \"FILTER\": \"\"\n}";
     this.loadingTiposTramite = true;
-    this.http.post(catTiposTramite, filtro).subscribe(
+    this.http.post(catTiposTramite, filtro, this.httpOptions).subscribe(
       (res: any) => {
         this.loadingTiposTramite = false;
         if(res.error.code === 0)
