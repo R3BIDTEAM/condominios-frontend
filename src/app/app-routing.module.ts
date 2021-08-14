@@ -6,6 +6,7 @@ import { MainComponent } from '@comp/main/main.component';
 import { GuardService } from '@serv/guard.service';
 import { BandejaTareasComponent } from '@comp/bandeja-tareas/bandeja-tareas.component';
 import { ConsultaExpedientesComponent } from '@comp/reportes/consulta-expedientes/consulta-expedientes.component';
+import { BandejaEntradaComponent } from '@comp/bandeja-entrada/bandeja-entrada.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: 'main', component: MainComponent, canActivate: [GuardService],
     children: [
        // { path: '', component: , canActivate: [GuardService] }
+       { path: 'bandeja-entrada', component: BandejaEntradaComponent, canActivate: [GuardService] },
        { path: 'bandeja-tareas', component: BandejaTareasComponent, canActivate: [GuardService] },
        { path: 'consulta-expedientes', component: ConsultaExpedientesComponent, canActivate: [GuardService] },
     ]

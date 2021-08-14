@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Solicitar Cuenta Predial</h1>
+<div mat-dialog-content>
+    <form [formGroup]="buscaFormGroup">
+        <div class="row">
+            <mat-form-field appearance="outline" class="col-2 offset-md-2">
+                <mat-label>Región:</mat-label>
+                <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
+                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.required">Requerido</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-2">
+                <mat-label>Manzana:</mat-label>
+                <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
+                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.required">Requerido</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline"  class="col-2">
+                <mat-label>Lote:</mat-label>
+                <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
+                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.required">Requerido</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.minlength">El valor debe de tener 2 alfanúmericos</mat-error>
+                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.maxlength">El valor debe de tener 2 alfanúmericos</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary">Aceptar</button>
+</mat-dialog-actions>
