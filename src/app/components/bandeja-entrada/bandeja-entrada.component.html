@@ -1,14 +1,21 @@
-<mat-card>
-    <div class="borde">
-        <mat-card-header style="padding-left: 7%;">
+<!-- <mat-card>
+    <div class="borde"> -->
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h1 class="titulo-cdmx">Bandeja de entrada</h1>
+        <!-- <mat-card-header style="padding-left: 7%;">
             <mat-card-title>Bandeja de entrada</mat-card-title>
-        </mat-card-header>
+        </mat-card-header> -->
         <hr>
         <br>
         <mat-card-content>
             <form [formGroup]="buscaFormGroup">
                 <div class="row">
-                    <div class="col-1 text-center">
+                    <div class="col-md-1 text-center" style="margin-top: 16px;">
+                        <mat-radio-button value="0" style="margin: auto!important;"></mat-radio-button>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 16px;">
                         <mat-label>Rango de Fechas</mat-label>
                     </div>
                     <mat-form-field appearance="fill" class="col-4">
@@ -25,24 +32,27 @@
                     </mat-form-field>
                 </div>
                 <div class="row">
-                    <div class="text-center">
+                    <div class="col-md-1 text-center" style="margin-top: 16px;">
+                        <mat-radio-button value="1" style="margin: auto!important;"></mat-radio-button>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 16px;">
                         <mat-label>Número de cuenta</mat-label>
                     </div>
-                    <mat-form-field appearance="outline" class="col-2 offset-md-2">
+                    <mat-form-field appearance="outline" class="col-md-2">
                         <mat-label>Región:</mat-label>
                         <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
                         <mat-error *ngIf="buscaFormGroup.controls.region.errors?.required">Requerido</mat-error>
                         <mat-error *ngIf="buscaFormGroup.controls.region.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
                         <mat-error *ngIf="buscaFormGroup.controls.region.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline"  class="col-2">
+                    <mat-form-field appearance="outline"  class="col-md-2">
                         <mat-label>Manzana:</mat-label>
                         <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
                         <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.required">Requerido</mat-error>
                         <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
                         <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline"  class="col-2">
+                    <mat-form-field appearance="outline"  class="col-md-2">
                         <mat-label>Lote:</mat-label>
                         <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
                         <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.required">Requerido</mat-error>
@@ -51,7 +61,7 @@
                     </mat-form-field>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-2" style="margin-top: 16px;">
                         Estados:
                     </div>
                     <mat-form-field appearance="fill" class="col-4">
@@ -66,17 +76,25 @@
                 </div>
             </form>
             <div class="row">
-                <div class="col-md-2 offset-md-5" style="text-align: center;">
+                <div class="col-md-1 offset-md-5" style="text-align: center;">
                     <div class="d-flex flex-row-reverse">
                         <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
                             <mat-icon>search</mat-icon>
                         </button>
                     </div>
                 </div>
+                <div class="col-md-1" style="text-align: center;">
+                    <div class="d-flex flex-row-reverse">
+                        <button mat-icon-button color="primary" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-5 offset-md-1" style="text-align: center;">
-                   <label>Listado de solicitudes</label>
+
+            <div class="row" style="margin-top: 5%;">
+                <div class="col-md-5">
+                   <label class="verde-cdmx" style="font-size: 16px;">Listado de solicitudes</label>
                     <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;" (click)="openSolicitud()">
                         <mat-icon>add</mat-icon>
                     </button>
@@ -88,4 +106,7 @@
             </div>
         </mat-card-content>
     </div>
-</mat-card>
+</div>
+
+    <!-- </div>
+</mat-card> -->
