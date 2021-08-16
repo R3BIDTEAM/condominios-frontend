@@ -25,3 +25,21 @@ mat-radio-button {margin-right: 10px!important;}
 mat-checkbox {margin-right: 10px!important;}
 
 .text-center{text-align: center;}
+
+.boton-normal{
+    color: #00A447;
+    border: 1px solid #00A447!important; 
+    border-radius: 12px!important;
+}
+
+.boton-normal:hover{
+    color: #FFF!important;
+    background-color: #09968C!important;
+    border: 1px solid #09968C!important;
+}
+
+.mini-boton{
+    background-color: #00A447;
+    color: #FFF;
+    border-radius: 5px;
+}

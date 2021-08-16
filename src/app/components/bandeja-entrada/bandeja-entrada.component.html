@@ -10,7 +10,7 @@
         <hr>
         <br>
         <mat-card-content>
-            <form [formGroup]="buscaFormGroup">
+            <form [formGroup]="buscaFormGroup" style="margin-bottom: 3%;">
                 <div class="row">
                     <div class="col-md-1 text-center" style="margin-top: 16px;">
                         <mat-radio-button value="0" style="margin: auto!important;"></mat-radio-button>
@@ -78,30 +78,43 @@
             <div class="row">
                 <div class="col-md-1 offset-md-5" style="text-align: center;">
                     <div class="d-flex flex-row-reverse">
-                        <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                        <button mat-icon-button class="boton-normal" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
                             <mat-icon>search</mat-icon>
                         </button>
                     </div>
                 </div>
                 <div class="col-md-1" style="text-align: center;">
                     <div class="d-flex flex-row-reverse">
-                        <button mat-icon-button color="primary" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
+                        <button mat-icon-button class="boton-normal" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="row" style="margin-top: 5%;">
-                <div class="col-md-5">
+            <div class="row" style="margin-top: 8%;">
+                <div class="col-md-6">
                    <label class="verde-cdmx" style="font-size: 16px;">Listado de solicitudes</label>
-                    <button mat-icon-button color="primary" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;" (click)="openSolicitud()">
-                        <mat-icon>add</mat-icon>
+                    <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;" (click)="openSolicitud()">
+                        <mat-icon class="mini-boton">add</mat-icon>
                     </button>
-                    <mat-icon>edit</mat-icon>
+                    <button mat-icon-button aria-label="Editar" matTooltip="Editar" style="margin: auto;">
+                        <mat-icon class="mini-boton">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Eliminar" matTooltip="Eliminar" style="margin: auto;">
+                        <mat-icon class="mini-boton">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                        <mat-icon class="mini-boton">search</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Descripcion" matTooltip="Descripcion" style="margin: auto;">
+                        <mat-icon class="mini-boton">description</mat-icon>
+                    </button>
+                    
+                    <!-- <mat-icon>edit</mat-icon>
                     <mat-icon>delete</mat-icon>
                     <mat-icon>search</mat-icon>
-                    <mat-icon>description</mat-icon>
+                    <mat-icon>description</mat-icon> -->
                 </div>
             </div>
         </mat-card-content>
