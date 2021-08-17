@@ -19,16 +19,16 @@
                         <mat-label>Rango de Fechas</mat-label>
                     </div>
                     <mat-form-field appearance="fill" class="col-4">
-                        <mat-label>Fecha Nacimiento:</mat-label>
-                        <input matInput [matDatepicker]="fechaNacimiento" formControlName="fecha_inicio" [(ngModel)]="fecha_inicio" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="fechaNacimiento"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaNacimiento></mat-datepicker>
+                        <mat-label>Fecha Inicio:</mat-label>
+                        <input matInput [matDatepicker]="fechaInicio" formControlName="fecha_inicio"  [(ngModel)]="fecha_inicio" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaInicio></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="col-4">
-                        <mat-label>Fecha Defunción:</mat-label>
-                        <input matInput [matDatepicker]="fechaDefuncion" formControlName="fecha_fin" [(ngModel)]="fecha_fin" readonly>
-                        <mat-datepicker-toggle matSuffix [for]="fechaDefuncion"></mat-datepicker-toggle>
-                        <mat-datepicker #fechaDefuncion></mat-datepicker>
+                        <mat-label>Fecha Fin:</mat-label>
+                        <input matInput [matDatepicker]="fechaFin"  formControlName="fecha_fin" [(ngModel)]="fecha_fin" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaFin></mat-datepicker>
                     </mat-form-field>
                 </div>
                 <div class="row">

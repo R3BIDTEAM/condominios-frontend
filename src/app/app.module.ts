@@ -25,6 +25,11 @@ import { ConsultaExpedientesComponent } from './components/reportes/consulta-exp
 import { BandejaTareasComponent } from './components/bandeja-tareas/bandeja-tareas.component';
 import { DialogsComponent, DialogsAlta, DialogsCuenta } from './components/dialogs/dialogs.component';
 import { BandejaEntradaComponent } from './components/bandeja-entrada/bandeja-entrada.component';
+import { RevisionSolicitudesComponent } from './components/revision-solicitudes/revision-solicitudes.component';
+import { SeguimientoSolicitudesComponent } from './components/seguimiento-solicitudes/seguimiento-solicitudes.component';
+import { BusquedaCuentaPredialComponent } from './components/busqueda-cuenta-predial/busqueda-cuenta-predial.component';
+import { ConsultaReportesComponent } from './components/consulta-reportes/consulta-reportes.component';
+import { ConsultaReportesNoComponent } from './components/consulta-reportes-no/consulta-reportes-no.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,12 @@ import { BandejaEntradaComponent } from './components/bandeja-entrada/bandeja-en
     DialogsComponent,
     DialogsAlta,
     BandejaEntradaComponent,
-    DialogsCuenta
+    DialogsCuenta,
+    RevisionSolicitudesComponent,
+    SeguimientoSolicitudesComponent,
+    BusquedaCuentaPredialComponent,
+    ConsultaReportesComponent,
+    ConsultaReportesNoComponent
   ],
   imports: [
     BrowserModule,

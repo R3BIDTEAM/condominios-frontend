@@ -1,0 +1,65 @@
+<!-- <mat-card>
+    <div class="borde"> -->
+
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <h1 class="titulo-cdmx">Cuentas No Empadronadas</h1>
+                <!-- <mat-card-header style="padding-left: 7%;">
+                    <mat-card-title>Bandeja de entrada</mat-card-title>
+                </mat-card-header> -->
+                <hr>
+                <br>
+                <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-2" style="margin-top: 16px;">
+                                <mat-label>Rango de Fechas</mat-label>
+                            </div>
+                            <mat-form-field appearance="fill" class="col-4">
+                                <mat-label>Fecha Inicio:</mat-label>
+                                <input matInput [matDatepicker]="fechaInicio" [(ngModel)]="fecha_inicio" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                                        <mat-datepicker #fechaInicio></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="col-4">
+                                <mat-label>Fecha Fin:</mat-label>
+                                <input matInput [matDatepicker]="fechaFin" [(ngModel)]="fecha_fin" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaFin></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2" style="margin-top: 16px;">
+                                Notarios:
+                            </div>
+                            <mat-form-field appearance="fill" class="col-4">
+                                <mat-label>Seleccione Notarios:</mat-label>
+                                <mat-select>
+                                    <mat-option value="cuenta">Cuenta</mat-option>
+                                    <mat-option value="contribuyente">Contribuyente</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div class="col-4">
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-1 offset-md-5" style="text-align: center;">
+                            <div class="d-flex flex-row-reverse">
+                                <button mat-icon-button class="boton-normal" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="text-align: center;">
+                            <div class="d-flex flex-row-reverse">
+                                <button mat-icon-button class="boton-normal" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </div>
+        </div>
+        
+            <!-- </div>
+        </mat-card> -->
