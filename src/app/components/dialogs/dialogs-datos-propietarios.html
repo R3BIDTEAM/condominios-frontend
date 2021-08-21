@@ -1,0 +1,83 @@
+<h1 mat-dialog-title>Datos del Propietario</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <h3>Ficha de Propietario</h3><br>
+        <label>Tipo de Propietario</label>
+    </div>
+    
+    <div class="text-center" style="margin-top: 16px;">
+        <mat-form-field appearance="fill" class="col-6">
+            <mat-label>Tipo de Propietario:</mat-label>
+            <mat-select [(value)]="tipoPersona">
+                <mat-option value="F">Fisica</mat-option>
+                <mat-option value="M">Moral</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <ng-container *ngIf="tipoPersona == 'F'">
+        <form [formGroup]="fisicaFormGroup">
+            <div class="row">
+                <label>Detalle Propietario Física</label>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-12">
+                    <mat-label>Nombre:</mat-label>
+                    <input matInput formControlName="nombre">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>Apellido Paterno:</mat-label>
+                    <input matInput formControlName="apaterno">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>Apellido Materno:</mat-label>
+                    <input matInput formControlName="amaterno">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>RFC:</mat-label>
+                    <input matInput formControlName="apaterno">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>CURP:</mat-label>
+                    <input matInput formControlName="amaterno">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>INE:</mat-label>
+                    <input matInput formControlName="nombre">
+                </mat-form-field>
+            </div>
+        </form>
+    </ng-container>
+    <ng-container *ngIf="tipoPersona == 'M'">
+        <form [formGroup]="fisicaFormGroup">
+            <div class="row">
+                <label>Detalle Propietario Moral</label>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-12">
+                    <mat-label>Nombre:</mat-label>
+                    <input matInput formControlName="nombre">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>RFC:</mat-label>
+                    <input matInput formControlName="apaterno">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-6">
+                    <mat-label>Actividad:</mat-label>
+                    <input matInput formControlName="amaterno">
+                </mat-form-field>
+            </div>
+        </form>
+    </ng-container>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary" [disabled]="(tipoPersona == 'F' ? fisicaFormGroup.invalid : moralFormGroup.invalid)">Aceptar</button>
+</mat-dialog-actions>

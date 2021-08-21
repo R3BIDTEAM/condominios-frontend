@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Instalaciones Especiales</h1>
+<div mat-dialog-content>
+    <div class="text-center" style="margin-top: 16px;">
+        <mat-form-field appearance="fill" class="col-6">
+            <mat-label>Tipo:</mat-label>
+            <mat-select>
+                <mat-option value="1">Elementos accesorios</mat-option>
+                <mat-option value="2">Instalaciones especiales</mat-option>
+                <mat-option value="3">Obras Complementarias</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Albercas y Chapoteadoras</td>
+                <td>
+                    <mat-checkbox></mat-checkbox>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary">Aceptar</button>
+</mat-dialog-actions>

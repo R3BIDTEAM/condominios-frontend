@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Propietarios</h1>
+<div mat-dialog-content>
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Nombre y apellidos</th>
+            <th>RFC</th>
+            <th>CURP</th>
+            <th>INE</th>
+            <th>
+                ...
+            </th>
+        </tr>
+        <tr>
+            <td>Física</td>
+            <td>Propietarios de ejemplo</td>
+            <td>VIPI900629NG5</td>
+            <td>VIPI900629HDFDRS08</td>
+            <td>INE61914723515</td>
+            <td>
+                <button mat-icon-button aria-label="Agregar" matTooltip="Agregar" style="margin: auto;" (click)="openDatosPropietario()">
+                    <mat-icon class="mini-boton">add</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Editar" matTooltip="Editar" style="margin: auto;">
+                    <mat-icon class="mini-boton">edit</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                    <mat-icon class="mini-boton">search</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Borrar" matTooltip="Borrar" style="margin: auto;">
+                    <mat-icon class="mini-boton">delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary">Aceptar</button>
+</mat-dialog-actions>

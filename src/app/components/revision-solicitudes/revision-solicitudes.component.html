@@ -1,110 +1,126 @@
-<!-- <mat-card>
-    <div class="borde"> -->
 
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <h1 class="titulo-cdmx">Revisión de Solicitudes</h1>
-                <!-- <mat-card-header style="padding-left: 7%;">
-                    <mat-card-title>Bandeja de entrada</mat-card-title>
-                </mat-card-header> -->
-                <hr>
-                <br>
-                <mat-card-content>
-                    <form [formGroup]="buscaFormGroup" style="margin-bottom: 3%;">
-                        <div class="row">
-                            <div class="col-md-1 text-center" style="margin-top: 16px;">
-                                <mat-radio-button value="0" style="margin: auto!important;"></mat-radio-button>
-                            </div>
-                            <div class="col-md-2" style="margin-top: 16px;">
-                                <mat-label>Rango de Fechas</mat-label>
-                            </div>
-                            <mat-form-field appearance="fill" class="col-4">
-                                <mat-label>Fecha Inicio:</mat-label>
-                                <input matInput [matDatepicker]="fechaInicio" formControlName="fecha_inicio" [(ngModel)]="fecha_inicio" readonly>
-                                        <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
-                                        <mat-datepicker #fechaInicio></mat-datepicker>
-                            </mat-form-field>
-                            <mat-form-field appearance="fill" class="col-4">
-                                <mat-label>Fecha Fin:</mat-label>
-                                <input matInput [matDatepicker]="fechaFin" formControlName="fecha_fin" [(ngModel)]="fecha_fin" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaFin></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-1 text-center" style="margin-top: 16px;">
-                                <mat-radio-button value="1" style="margin: auto!important;"></mat-radio-button>
-                            </div>
-                            <div class="col-md-2" style="margin-top: 16px;">
-                                <mat-label>Número de cuenta</mat-label>
-                            </div>
-                            <mat-form-field appearance="outline" class="col-md-2">
-                                <mat-label>Región:</mat-label>
-                                <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
-                                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.required">Requerido</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.region.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline"  class="col-md-2">
-                                <mat-label>Manzana:</mat-label>
-                                <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
-                                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.required">Requerido</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                            </mat-form-field>
-                            <mat-form-field appearance="outline"  class="col-md-2">
-                                <mat-label>Lote:</mat-label>
-                                <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
-                                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.required">Requerido</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.minlength">El valor debe de tener 2 alfanúmericos</mat-error>
-                                <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.maxlength">El valor debe de tener 2 alfanúmericos</mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2" style="margin-top: 16px;">
-                                Estados:
-                            </div>
-                            <mat-form-field appearance="fill" class="col-4">
-                                <mat-label>Estado:</mat-label>
-                                <mat-select>
-                                    <mat-option value="cuenta">Cuenta</mat-option>
-                                    <mat-option value="contribuyente">Contribuyente</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <div class="col-4">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-md-1 offset-md-5" style="text-align: center;">
-                            <div class="d-flex flex-row-reverse">
-                                <button mat-icon-button class="boton-normal" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
-                                    <mat-icon>search</mat-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-1" style="text-align: center;">
-                            <div class="d-flex flex-row-reverse">
-                                <button mat-icon-button class="boton-normal" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </div>
-                        </div>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h1 class="titulo-cdmx">Revisión de Solicitudes</h1>
+        <hr>
+        <br>
+        <mat-card-content>
+            <form [formGroup]="buscaFormGroup" style="margin-bottom: 3%;">
+                <div class="row">
+                    <div class="col-md-1 text-center" style="margin-top: 16px;">
+                        <mat-radio-button value="0" style="margin: auto!important;"></mat-radio-button>
                     </div>
-        
-                    <div class="row" style="margin-top: 8%;">
-                        <div class="col-md-6">
-                           <label class="verde-cdmx" style="font-size: 16px;">Listado de solicitudes</label>
-                            <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
-                                <mat-icon class="mini-boton">find_in_page</mat-icon>
-                            </button>
-                            
-                        </div>
+                    <div class="col-md-2" style="margin-top: 16px;">
+                        <mat-label>Rango de Fechas</mat-label>
                     </div>
-                </mat-card-content>
+                    <mat-form-field appearance="fill" class="col-4">
+                        <mat-label>Fecha Inicio:</mat-label>
+                        <input matInput [matDatepicker]="fechaInicio" formControlName="fecha_inicio" [(ngModel)]="fecha_inicio" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaInicio></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="col-4">
+                        <mat-label>Fecha Fin:</mat-label>
+                        <input matInput [matDatepicker]="fechaFin" formControlName="fecha_fin" [(ngModel)]="fecha_fin" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                        <mat-datepicker #fechaFin></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 text-center" style="margin-top: 16px;">
+                        <mat-radio-button value="1" style="margin: auto!important;"></mat-radio-button>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 16px;">
+                        <mat-label>Número de cuenta</mat-label>
+                    </div>
+                    <mat-form-field appearance="outline" class="col-md-2">
+                        <mat-label>Región:</mat-label>
+                        <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
+                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline"  class="col-md-2">
+                        <mat-label>Manzana:</mat-label>
+                        <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
+                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline"  class="col-md-2">
+                        <mat-label>Lote:</mat-label>
+                        <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
+                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.required">Requerido</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.minlength">El valor debe de tener 2 alfanúmericos</mat-error>
+                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.maxlength">El valor debe de tener 2 alfanúmericos</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="col-md-2" style="margin-top: 16px;">
+                        Estados:
+                    </div>
+                    <mat-form-field appearance="fill" class="col-4">
+                        <mat-label>Estado:</mat-label>
+                        <mat-select>
+                            <mat-option value="cuenta">Cuenta</mat-option>
+                            <mat-option value="contribuyente">Contribuyente</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="col-4">
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-1 offset-md-5" style="text-align: center;">
+                    <div class="d-flex flex-row-reverse">
+                        <button mat-icon-button class="boton-normal" aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-1" style="text-align: center;">
+                    <div class="d-flex flex-row-reverse">
+                        <button mat-icon-button class="boton-normal" aria-label="Limpiar" matTooltip="Limpiar" style="margin: auto;">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-            <!-- </div>
-        </mat-card> -->
-        
+
+            <div class="row" style="margin-top: 8%;">
+                <div class="col-md-6">
+                    <label class="verde-cdmx" style="font-size: 16px;">Listado de solicitudes</label>
+                    <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                        <mat-icon class="mini-boton">find_in_page</mat-icon>
+                    </button>
+                    
+                </div>
+            </div>
+            <br>
+            <table>
+                <tr>
+                    <th>Solictud</th>
+                    <th>...</th>
+                </tr>
+                <tr>
+                    <td>C-2021</td>
+                    <td>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item [routerLink]="['/main/datos-generales', 1]">
+                                <mat-icon>find_in_page</mat-icon>
+                                <span>Visualizar solicitud</span>
+                            </button>
+                            <button mat-menu-item [routerLink]="['/main/datos-generales-editar', 1]">
+                                <mat-icon>find_in_page</mat-icon>
+                                <span>Editar solicitud</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </div>
+</div>

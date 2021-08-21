@@ -1,0 +1,125 @@
+<h1 mat-dialog-title>Unidades Privativas</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <label>Cuenta Catastral</label>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Reg. 030 Manz. 162 Lote 10 Unidad Priv. 000
+        </div>
+    </div>
+    <div class="row">
+        <label>Características del Inmueble</label>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            Sup. Construcción 918.35    
+        </div>
+        <div class="col-md-6">
+            Sup. Terreno 255.37
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            Condominios
+            <button mat-icon-button aria-label="Agregar" matTooltip="Agregar" style="margin: auto;" (click)="openDatosCondominios()">
+                <mat-icon class="mini-boton">add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                <th>Edificio</th>
+                <th>Loc.</th>
+                <th>Num. Int.</th>
+                <th>Ind. (%)</th>
+                <th>Superficie Terreno</th>
+                <th>Superficie Priv.</th>
+                <th>Superficie Común</th>
+                <th>Superficie Total</th>
+                <th></th>
+                <th>Uso</th>
+                <th>Niveles</th>
+                <th>Clase</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Edificio</mat-label>
+                        <input matInput formControlName="nombre">
+                    </mat-form-field>
+                </th>
+                <th>
+                    <mat-select>
+                        <mat-option value="1">Acc.</mat-option>
+                        <mat-option value="2">Bod</mat-option>
+                        <mat-option value="3">Casa</mat-option>
+                    </mat-select>
+                </th>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Número Interior</mat-label>
+                        <input matInput formControlName="nombre">
+                    </mat-form-field>
+                </th>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>(%))</mat-label>
+                        <input matInput formControlName="nombre">
+                    </mat-form-field>
+                </th>
+                <th>49.64</th>
+                <th>
+                    <mat-form-field appearance="outline">
+                        <mat-label>(%))</mat-label>
+                        <input matInput formControlName="nombre">
+                    </mat-form-field>
+                </th>
+                <th>0.00</th>
+                <th>178.49</th>
+                <th>
+                    <mat-checkbox></mat-checkbox>
+                </th>
+                <th>
+                    <mat-select>
+                        <mat-option value="1">A.</mat-option>
+                        <mat-option value="2">B</mat-option>
+                        <mat-option value="3">C</mat-option>
+                    </mat-select>
+                </th>
+                <th>
+                    <mat-select>
+                        <mat-option value="1">02.</mat-option>
+                        <mat-option value="2">05</mat-option>
+                        <mat-option value="3">10</mat-option>
+                    </mat-select>
+                </th>
+                <th>4</th>
+                <th>
+                    <mat-checkbox></mat-checkbox>
+                </th>
+                <th>
+                    <button mat-icon-button aria-label="Editar" matTooltip="Editar" style="margin: auto;">
+                        <mat-icon class="mini-boton">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                        <mat-icon class="mini-boton">account_box</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Borrar" matTooltip="Borrar" style="margin: auto;">
+                        <mat-icon class="mini-boton">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button aria-label="Buscar" matTooltip="Buscar" style="margin: auto;">
+                        <mat-icon class="mini-boton">assignment</mat-icon>
+                    </button>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary">Aceptar</button>
+</mat-dialog-actions>

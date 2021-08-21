@@ -49,6 +49,7 @@ export class DialogsAlta {
 
 }
 
+////////////////////////////////////////// CUENTA PREDIAL ///////////////////////////////////////////////////
 @Component({
     selector: 'dialog-cuenta',
     templateUrl: 'dialog-cuenta.html',
@@ -95,4 +96,143 @@ export class DialogsCuenta {
             input.focus();
         }
     }
+}
+
+//////////////////////////////////////////////////// PROPIETARIOS ////////////////////////////////////////////////////
+@Component({
+    selector: 'dialog-propietarios',
+    templateUrl: 'dialog-propietarios.html',
+})
+export class DialogPropietarios {
+
+    constructor(
+        public dialog: MatDialog,
+        public dialogRef: MatDialogRef<DialogPropietarios>,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) { 
+        dialogRef.disableClose = true;
+    }
+
+    ngOnInit(): void {
+    }
+
+    openDatosPropietario(){
+        const dialogRef = this.dialog.open(DialogsDatosPropietarios, {
+            width: '700px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if(result){}
+        });
+    }
+}
+
+//////////////////////////////////////////////////// DATOS DEL PROPIETARIO ///////////////////////////////////////////////
+@Component({
+    selector: 'dialogs-datos-propietarios',
+    templateUrl: 'dialogs-datos-propietarios.html',
+})
+export class DialogsDatosPropietarios {
+    fisicaFormGroup: FormGroup;
+    moralFormGroup: FormGroup;
+    tipoPersona = 'F';
+
+    constructor(
+        private _formBuilder: FormBuilder,
+        public dialog: MatDialog,
+        public dialogRef: MatDialogRef<DialogsDatosPropietarios>,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) { 
+        dialogRef.disableClose = true;
+        this.fisicaFormGroup = this._formBuilder.group({
+            nombre: [null, [Validators.required]],
+            apaterno: [null, [Validators.required]],
+            amaterno: [null, []],
+            rfc: [null, []],
+            curp: [null, []],
+            ine: [null, []],
+        });
+    
+        this.moralFormGroup = this._formBuilder.group({
+            nombre: [null, [Validators.required]],
+            rfc: [null, [Validators.required]],
+            actividad: [null, []],
+        });
+    }
+
+    ngOnInit(): void {
+    }
+
+    personaTipo(){
+
+    }
+}
+
+
+/////////////////////////////////////////////// INSTALACIONES ESPECIALES ////////////////////////////////////////
+@Component({
+    selector: 'dialog-instalaciones',
+    templateUrl: 'dialog-instalaciones.html',
+})
+export class DialogInstalaciones {
+
+    constructor(
+        public dialog: MatDialog,
+        public dialogRef: MatDialogRef<DialogInstalaciones>,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) { 
+        dialogRef.disableClose = true;
+    }
+
+    ngOnInit(): void {
+    }
+
+}
+
+/////////////////////////////////////////////// UNIDADAES PRIVATIVAS ////////////////////////////////////////
+@Component({
+    selector: 'dialog-unidad-privativa',
+    templateUrl: 'dialog-unidad-privativa.html',
+})
+export class DialogUnidadPrivativa {
+
+    constructor(
+        public dialog: MatDialog,
+        public dialogRef: MatDialogRef<DialogUnidadPrivativa>,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) { 
+        dialogRef.disableClose = true;
+    }
+
+    ngOnInit(): void {
+    }
+
+    openDatosCondominios(){
+        const dialogRef = this.dialog.open(DialogDatosCondominio, {
+            width: '700px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if(result){}
+        });
+    }
+
+}
+
+/////////////////////////////////////////////// DATOS CONDOMINIOS ////////////////////////////////////////
+@Component({
+    selector: 'dialog-datos-condominio',
+    templateUrl: 'dialog-datos-condominio.html',
+})
+export class DialogDatosCondominio {
+
+    constructor(
+        public dialog: MatDialog,
+        public dialogRef: MatDialogRef<DialogDatosCondominio>,
+        @Inject(MAT_DIALOG_DATA) public data: any
+    ) { 
+        dialogRef.disableClose = true;
+    }
+
+    ngOnInit(): void {
+    }
+
 }

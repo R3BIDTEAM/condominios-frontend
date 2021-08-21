@@ -1,0 +1,143 @@
+<h1 mat-dialog-title>Datos Condominios</h1>
+<div mat-dialog-content>
+    <div class="row">
+        <label>Unidades</label>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline" class="col-12">
+            <mat-label>No. Unidades Privativas:</mat-label>
+            <input matInput formControlName="nombre">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        Clase
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-checkbox>Es casa adptada</mat-checkbox>
+        </div>
+        <div class="col-md-6">
+            <mat-label>USO</mat-label>
+            <mat-select>
+                <mat-option value="1">Acc.</mat-option>
+                <mat-option value="2">Bod</mat-option>
+                <mat-option value="3">Casa</mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="row">
+        <mat-label>Giros</mat-label>
+            <mat-select>
+                <mat-option value="1">Acc.</mat-option>
+                <mat-option value="2">Bod</mat-option>
+                <mat-option value="3">Casa</mat-option>
+            </mat-select>
+    </div>
+    <div class="row">
+        <label>Matriz de clases</label>
+    </div>
+    <div class="row">
+        Niveles
+    </div>
+    <div class="row">
+        <mat-label>Número</mat-label>
+        <mat-select>
+            <mat-option value="1">Acc.</mat-option>
+            <mat-option value="2">Bod</mat-option>
+            <mat-option value="3">Casa</mat-option>
+        </mat-select>
+    </div>
+    <div class="row">
+        Ubicación
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Nombre Edificio:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Entrada:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Andador:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-label>Tipo Localidad</mat-label>
+            <mat-select>
+                <mat-option value="1">Acc.</mat-option>
+                <mat-option value="2">Bod</mat-option>
+                <mat-option value="3">Casa</mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Sección:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Número Interior:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <label>Construcción y terreno</label>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Porcentaje indiviso %:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="col-12">
+                <mat-label>Superficie construida privatica:</mat-label>
+                <input matInput formControlName="nombre">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <label>Instalaciones Especiales</label>
+        <button mat-icon-button aria-label="Agregar" matTooltip="Agregar" style="margin: auto;">
+            <mat-icon class="mini-boton">add</mat-icon>
+        </button>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                <td>Descripción</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Datos</td>
+                <td>
+                    <button mat-icon-button aria-label="Editar" matTooltip="Editar" style="margin: auto;">
+                        <mat-icon class="mini-boton">delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-flat-button color="primary">Aceptar</button>
+</mat-dialog-actions>

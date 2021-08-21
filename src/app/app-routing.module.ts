@@ -12,6 +12,8 @@ import { SeguimientoSolicitudesComponent } from '@comp/seguimiento-solicitudes/s
 import { BusquedaCuentaPredialComponent } from '@comp/busqueda-cuenta-predial/busqueda-cuenta-predial.component';
 import { ConsultaReportesComponent } from '@comp/consulta-reportes/consulta-reportes.component';
 import { ConsultaReportesNoComponent } from '@comp/consulta-reportes-no/consulta-reportes-no.component';
+import { DatosGeneralesComponent } from '@comp/datos-generales/datos-generales.component';
+import { DatosGeneralesEditarComponent } from '@comp/datos-generales-editar/datos-generales-editar.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -26,6 +28,8 @@ const routes: Routes = [
        { path: 'busqueda-cuenta-predial', component: BusquedaCuentaPredialComponent, canActivate: [GuardService] },
        { path: 'consulta-reportes', component: ConsultaReportesComponent, canActivate: [GuardService] },
        { path: 'consulta-reportes-no', component: ConsultaReportesNoComponent, canActivate: [GuardService] },
+       { path: 'datos-generales/:id', component: DatosGeneralesComponent, canActivate: [GuardService] },
+       { path: 'datos-generales-editar/:id', component: DatosGeneralesEditarComponent, canActivate: [GuardService] },
        { path: 'bandeja-tareas', component: BandejaTareasComponent, canActivate: [GuardService] },
        { path: 'consulta-expedientes', component: ConsultaExpedientesComponent, canActivate: [GuardService] },
     ]
