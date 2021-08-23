@@ -1,60 +1,57 @@
-
 <div class="row">
     <div class="col-md-10 offset-md-1">
         <h1 class="titulo-cdmx">Revisión de Solicitudes</h1>
         <hr>
         <br>
+
         <mat-card-content>
-            <form [formGroup]="buscaFormGroup" style="margin-bottom: 3%;">
+
+            <mat-radio-group [(ngModel)]="filtroSelected">
                 <div class="row">
                     <div class="col-md-1 text-center" style="margin-top: 16px;">
-                        <mat-radio-button value="0" style="margin: auto!important;"></mat-radio-button>
+                        <mat-radio-button value="0" style="margin: auto!important;" (change)="getFiltroSelected($event)"></mat-radio-button>
                     </div>
                     <div class="col-md-2" style="margin-top: 16px;">
                         <mat-label>Rango de Fechas</mat-label>
                     </div>
                     <mat-form-field appearance="fill" class="col-4">
                         <mat-label>Fecha Inicio:</mat-label>
-                        <input matInput [matDatepicker]="fechaInicio" formControlName="fecha_inicio" [(ngModel)]="fecha_inicio" readonly>
+                        <input matInput readonly [matDatepicker]="fechaInicio" [(ngModel)]="filtros.fecha_ini" [disabled]="!inputsFiltros[0].isSelected" [required]="inputsFiltros[0].isSelected" (dateChange)="validateDate()">
                                 <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
                                 <mat-datepicker #fechaInicio></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="col-4">
                         <mat-label>Fecha Fin:</mat-label>
-                        <input matInput [matDatepicker]="fechaFin" formControlName="fecha_fin" [(ngModel)]="fecha_fin" readonly>
+                        <input matInput readonly [matDatepicker]="fechaFin" [(ngModel)]="filtros.fecha_fin" [disabled]="!inputsFiltros[0].isSelected" [required]="inputsFiltros[0].isSelected" (dateChange)="validateDate()" [min]="filtros.fecha_ini">
                         <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
                         <mat-datepicker #fechaFin></mat-datepicker>
+                        <mat-error>{{inputsFiltros[0].errorMessage}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <div class="col-md-1 text-center" style="margin-top: 16px;">
-                        <mat-radio-button value="1" style="margin: auto!important;"></mat-radio-button>
+                        <mat-radio-button value="1" style="margin: auto!important;" (change)="getFiltroSelected($event)"></mat-radio-button>
                     </div>
                     <div class="col-md-2" style="margin-top: 16px;">
                         <mat-label>Número de cuenta</mat-label>
                     </div>
                     <mat-form-field appearance="outline" class="col-md-2">
                         <mat-label>Región:</mat-label>
-                        <input matInput #region formControlName="region" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
-                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.required">Requerido</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.region.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                        <input matInput #region [(ngModel)]="filtros.region" [disabled]="!inputsFiltros[1].isSelected" [required]="inputsFiltros[1].isSelected" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, manzana)" style="text-transform: uppercase;">
+                        <mat-error>{{inputsFiltros[1].errorMessage}}</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline"  class="col-md-2">
                         <mat-label>Manzana:</mat-label>
-                        <input matInput #manzana formControlName="manzana" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
-                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.required">Requerido</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.minlength">El valor debe de tener 3 alfanúmericos</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.manzana.errors?.maxlength">El valor debe de tener 3 alfanúmericos</mat-error>
+                        <input matInput #manzana [(ngModel)]="filtros.manzana" [disabled]="!inputsFiltros[1].isSelected" [required]="inputsFiltros[1].isSelected" minlength="3" maxlength="3" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, lote)" style="text-transform: uppercase;">
+                        <mat-error>{{inputsFiltros[1].errorMessage}}</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline"  class="col-md-2">
                         <mat-label>Lote:</mat-label>
-                        <input matInput #lote formControlName="lote" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
-                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.required">Requerido</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.minlength">El valor debe de tener 2 alfanúmericos</mat-error>
-                        <mat-error *ngIf="buscaFormGroup.controls.lote.errors?.maxlength">El valor debe de tener 2 alfanúmericos</mat-error>
+                        <input matInput #lote [(ngModel)]="filtros.lote" [disabled]="!inputsFiltros[1].isSelected" [required]="inputsFiltros[1].isSelected" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;">
+                        <mat-error>{{inputsFiltros[1].errorMessage}}</mat-error>
                     </mat-form-field>
                 </div>
+            </mat-radio-group>
                 <div class="row">
                     <div class="col-md-2" style="margin-top: 16px;">
                         Estados:
@@ -69,7 +66,6 @@
                     <div class="col-4">
                     </div>
                 </div>
-            </form>
             <div class="row">
                 <div class="col-md-1 offset-md-5" style="text-align: center;">
                     <div class="d-flex flex-row-reverse">
@@ -121,6 +117,8 @@
                     </td>
                 </tr>
             </table>
+            
         </mat-card-content>
+
     </div>
 </div>
