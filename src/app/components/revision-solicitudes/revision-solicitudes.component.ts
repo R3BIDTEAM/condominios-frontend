@@ -29,7 +29,7 @@ export class RevisionSolicitudesComponent implements OnInit {
     pagina = 1;
     total = 0;
     pageSize = 10;
-    dataSource = [];
+    dataSource = [1, 1, 1, 1, 1, 1, 1];
     dataResponse = [];
     displayedColumns: string[] = ['solicitud', 'notario', 'fecha_recepcion', 'region', 'manzana', 'lote', 'estado'];
     @ViewChild('paginator') paginator: MatPaginator;
@@ -56,6 +56,13 @@ export class RevisionSolicitudesComponent implements OnInit {
               Authorization: this.auth.getSession().token
             })
         };
+    }
+
+    /**
+     * 
+     */
+    getData(): void {
+    this.isBusqueda = true;
     }
 
     /**
@@ -89,21 +96,45 @@ export class RevisionSolicitudesComponent implements OnInit {
      * *  Valida que la fecha inicial no sea mayor a la fecha final y visceversa
      * */
     validateDate(){
-        if(!this.filtros.fecha_ini || !this.filtros.fecha_fin){
-        this.inputsFiltros[0].isError = true;
-        this.inputsFiltros[0].errorMessage = 'Las fechas son requeridas.';
-        this.canSearch = false;
-        }else{
-        if(moment(this.filtros.fecha_ini).format('YYYY-MM-DD') > moment(this.filtros.fecha_fin).format('YYYY-MM-DD')){
+        if(!this.filtros.fecha_ini || !this.filtros.fecha_fin)
+        {
             this.inputsFiltros[0].isError = true;
-            this.inputsFiltros[0].errorMessage = 'La fecha fin tiene que ser mayor a la inicial.';
-            this.canSearch = false;        
-        }else{
-            this.inputsFiltros[0].isError = false;
-            this.inputsFiltros[0].errorMessage = '';
-            this.canSearch = true;
+            this.inputsFiltros[0].errorMessage = 'Las fechas son requeridas.';
+            this.canSearch = false;
+        } else {
+            if(moment(this.filtros.fecha_ini).format('YYYY-MM-DD') > moment(this.filtros.fecha_fin).format('YYYY-MM-DD'))
+            {
+                this.inputsFiltros[0].isError = true;
+                this.inputsFiltros[0].errorMessage = 'La fecha fin tiene que ser mayor a la inicial.';
+                this.canSearch = false;
+            } else {
+                this.inputsFiltros[0].isError = false;
+                this.inputsFiltros[0].errorMessage = '';
+                this.canSearch = true;
+            }
         }
+    }
+    /**
+     * Verifica que se cumplen ciertas condiciones para habilitar el botón que realiza la búsqueda
+     */
+    validateSearch(){
+        switch(this.filtroSelected) {
+            case '1': {
+                this.canSearch = (this.filtros.region && this.filtros.manzana && this.filtros.lote) ? true : false;
+                break; 
+            }
+            default: {
+                this.canSearch = false;
+                break; 
+            } 
         }
+    }
+
+    /**
+     * Limpia los valores del paginado
+     */
+    clean(): void{
+        this.isBusqueda = false;
     }
 
     /** 
