@@ -47,7 +47,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline"  class="col-md-2">
                         <mat-label>Lote:</mat-label>
-                        <input matInput #lote [(ngModel)]="filtros.lote" [disabled]="!inputsFiltros[1].isSelected" [required]="inputsFiltros[1].isSelected" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" (keyup)="focusNextInput($event, null)" style="text-transform: uppercase;" (ngModelChange)="validateSearch()">
+                        <input matInput #lote [(ngModel)]="filtros.lote" [disabled]="!inputsFiltros[1].isSelected" [required]="inputsFiltros[1].isSelected" minlength="2" maxlength="2" (keypress)="keyPressAlphaNumeric($event)" style="text-transform: uppercase;" (ngModelChange)="validateSearch()">
                         <mat-error>{{inputsFiltros[1].errorMessage}}</mat-error>
                     </mat-form-field>
                 </div>
